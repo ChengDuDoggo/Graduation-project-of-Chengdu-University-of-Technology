@@ -231,8 +231,8 @@ MonoBehaviour:
   - m_Id: 0
     m_Sprites:
     - {fileID: 931385472, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 495394634, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 1711302999, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
+    - {fileID: 2110818186, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
+    - {fileID: 335734, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: 407808871, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: -1630395053, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: -1712836729, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
