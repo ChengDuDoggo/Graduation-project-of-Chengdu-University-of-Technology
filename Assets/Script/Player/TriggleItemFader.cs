@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggleItemFader : MonoBehaviour //当玩家进入道具范围时触发的函数类
+public class TriggleItemFader : MonoBehaviour //当玩家进入道具范围时触发物体身上Fader函数类时物体透明化，挂载在Player身上
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

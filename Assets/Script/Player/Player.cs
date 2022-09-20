@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour //控制玩家基本操作的类
 {
     private Rigidbody2D rb;
     public float speed;
