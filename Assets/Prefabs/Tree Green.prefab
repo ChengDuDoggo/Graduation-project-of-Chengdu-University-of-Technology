@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 486403809819885899}
-  - component: {fileID: 9054620343803258815}
-  - component: {fileID: 4949406199117891422}
+  - component: {fileID: 6445630809760692143}
   m_Layer: 0
   m_Name: Tree Green
   m_TagString: Untagged
@@ -35,8 +34,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &9054620343803258815
-BoxCollider2D:
+--- !u!60 &6445630809760692143
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -45,10 +44,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.321611}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -58,35 +57,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.9561409}
-  m_EdgeRadius: 0
---- !u!61 &4949406199117891422
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486403809819885892}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.009608269, y: 3.6633291}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 9.436033, y: 5.866948}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.1073139, y: 6.258382}
+      - {x: -2.3729658, y: 6.103968}
+      - {x: -4.344125, y: 3.4884412}
+      - {x: -3.811338, y: 1.2030442}
+      - {x: -1.0783913, y: 1.23009}
+      - {x: -0.5877852, y: -1.3455865}
+      - {x: 0.5609569, y: -1.2651011}
+      - {x: 0.67510265, y: 1.1591709}
+      - {x: 2.2275965, y: 1.3787429}
+      - {x: 4.272449, y: 1.6188968}
+      - {x: 4.4212284, y: 3.6678417}
+      - {x: 2.0778527, y: 5.8356833}
 --- !u!1 &486403810062890208
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +82,7 @@ GameObject:
   - component: {fileID: 486403810062890215}
   - component: {fileID: 486403810062890214}
   - component: {fileID: 3755622420458102310}
+  - component: {fileID: 5467781080117088617}
   m_Layer: 0
   m_Name: Tree_Trunk
   m_TagString: Untagged
@@ -188,6 +173,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.17}
   serializedVersion: 2
   m_Radius: 0.74206394
+--- !u!114 &5467781080117088617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486403810062890208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b759647b2ca9f46881a22d878eb805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &486403810708252378
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +196,7 @@ GameObject:
   - component: {fileID: 486403810708252377}
   - component: {fileID: 486403810708252376}
   - component: {fileID: 486403810708252383}
+  - component: {fileID: 7673767752790955774}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -293,3 +291,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7673767752790955774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486403810708252378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b759647b2ca9f46881a22d878eb805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
