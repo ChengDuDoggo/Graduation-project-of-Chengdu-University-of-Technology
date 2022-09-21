@@ -77,7 +77,7 @@ public class ItemEditor : EditorWindow
 
         itemListView.fixedItemHeight = 60;//固定滚轮高度
         itemListView.itemsSource = itemList;//将列表中的数据放入滚轮中
-        itemListView.makeItem = makeItem;
-        itemListView.bindItem = bindItem;
+        itemListView.makeItem = makeItem;//先将模板克隆在滚轮中，于是滚轮就拥有了Icon和Name两个Toolkit元素
+        itemListView.bindItem = bindItem;//在这里调用Action委托就能实现将数据库指定数据绑定至Toolkit
     }
 }
