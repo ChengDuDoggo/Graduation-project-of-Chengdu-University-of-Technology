@@ -3,14 +3,14 @@
         <ui:VisualElement name="ItemList" style="width: 30%; height: 100%;">
             <ui:VisualElement name="Header" style="flex-direction: row; justify-content: space-between;">
                 <ui:Label text="ItemList" display-tooltip-when-elided="true" style="font-size: 20px; white-space: nowrap; -unity-text-align: upper-left; -unity-font-style: bold;" />
-                <ui:Button text="+" display-tooltip-when-elided="true" />
+                <ui:Button text="+" display-tooltip-when-elided="true" name="AddButton" />
             </ui:VisualElement>
             <ui:ListView focusable="true" name="ListView" reorderable="true" show-border="true" style="flex-grow: 1;" />
         </ui:VisualElement>
         <ui:ScrollView name="ItemDetails" style="flex-grow: 1; width: 70%; height: auto; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch;">
             <ui:VisualElement name="Header" style="flex-direction: row; justify-content: space-between; -unity-background-scale-mode: stretch-to-fill;">
                 <ui:Label text="Details Information" display-tooltip-when-elided="true" style="font-size: 20px; white-space: nowrap; -unity-text-align: upper-left; -unity-font-style: bold;" />
-                <ui:Button text="Delete" display-tooltip-when-elided="true" />
+                <ui:Button text="Delete" display-tooltip-when-elided="true" name="DeleteButton" />
             </ui:VisualElement>
             <ui:VisualElement name="Content" style="flex-grow: 1;">
                 <ui:VisualElement name="Row1" style="flex-grow: 1; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">

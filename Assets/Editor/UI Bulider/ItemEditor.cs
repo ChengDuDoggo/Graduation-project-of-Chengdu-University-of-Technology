@@ -48,6 +48,8 @@ public class ItemEditor : EditorWindow
         itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
         itemDetailsSection = root.Q<ScrollView>("ItemDetails");//滚轮页面赋值
         iconPreview = itemDetailsSection.Q<VisualElement>("Icon");//找到当前滚轮详情页面的Icon
+        root.Q<Button>("AddButton").clicked += OnAddItemClicked;
+        root.Q<Button>("DeleteButton").clicked += OnDeleteClicked;
 
         //加载数据
         LoadDataBase();
@@ -55,6 +57,24 @@ public class ItemEditor : EditorWindow
         //生成ListView
         GenerateListView();
     }
+
+    #region 按键事件
+    private void OnDeleteClicked()
+    {
+        itemList.Remove(activeItem);
+        itemListView.Rebuild();//刷新一下滚轮列表，刷新数据
+        itemDetailsSection.visible = false;//删除列表后数据丢失，所以关闭详情面板
+    }
+
+    private void OnAddItemClicked()
+    {
+        ItemDetails newItem = new ItemDetails();
+        newItem.itemID = 1001 + itemList.Count;
+        newItem.itemName = "NEW ITEM";
+        itemList.Add(newItem);
+        itemListView.Rebuild();//刷新一下数据
+    }
+    #endregion
     private void LoadDataBase()//拿到Assets中我们创建的数据库文件
     {
         var dataArray = AssetDatabase.FindAssets("ItemDataList_SO");//在整个Assets中找到类型为ItemDataList_SO的资源文件并列为数组,并获得该类文件的GUID
