@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System.Collections.Generic;
 using System;
-
+using System.Linq;
 
 public class ItemEditor : EditorWindow
 {
@@ -12,6 +12,10 @@ public class ItemEditor : EditorWindow
     private List<ItemDetails> itemList = new List<ItemDetails>();//new一下ItemDtails,相当于数据库中的详细数据列表
     private VisualTreeAsset itemRowTemplate; //获取自己在UIToolkit中定义的样式
     private ListView itemListView;//获得VisualElement中的滚动列表
+    private ScrollView itemDetailsSection;//获取UITookit右侧滚轮
+    private ItemDetails activeItem;//获取当前选中的道具(类)
+    private VisualElement iconPreview;//icon预览
+    private Sprite defaultIcon;//默认预览图片
 
     [MenuItem("Doggo/ItemEditor")]
     public static void ShowExample()
@@ -37,8 +41,13 @@ public class ItemEditor : EditorWindow
         //直接通过绝对路径方式拿到样式模板
         itemRowTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UI Bulider/ItemRowTemplate.uxml");
 
+        //拿到默认图片
+        defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/M Studio/Art/Items/Icons/icon_M.png");
+
         //变量赋值
         itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
+        itemDetailsSection = root.Q<ScrollView>("ItemDetails");//滚轮页面赋值
+        iconPreview = itemDetailsSection.Q<VisualElement>("Icon");//找到当前滚轮详情页面的Icon
 
         //加载数据
         LoadDataBase();
@@ -79,5 +88,97 @@ public class ItemEditor : EditorWindow
         itemListView.itemsSource = itemList;//将列表中的数据放入滚轮中
         itemListView.makeItem = makeItem;//先将模板克隆在滚轮中，于是滚轮就拥有了Icon和Name两个Toolkit元素
         itemListView.bindItem = bindItem;//在这里调用Action委托就能实现将数据库指定数据绑定至Toolkit
+
+        itemListView.onSelectionChange += OnListSelectionChange;//事件添加委托
+        itemDetailsSection.visible = false;//右侧面板信息不可见(默认点进去的时候不会显示任何物品信息，只有点击一个触发函数后才显示)
+    }
+    private void OnListSelectionChange(IEnumerable<object> selectedItem)
+    {
+        activeItem = (ItemDetails)selectedItem.First();
+        GetItemDetails();
+        itemDetailsSection.visible = true;
+    }
+    private void GetItemDetails()
+    {
+        itemDetailsSection.MarkDirtyRepaint();//在下一帧触发中重绘，可以撤销，返回功能
+        itemDetailsSection.Q<IntegerField>("ItemID").value = activeItem.itemID;//将当前选中的道具类的ID值传递给滚动详情列表中的ID
+        itemDetailsSection.Q<IntegerField>("ItemID").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.itemID = evt.newValue;
+        });//当ID值发生改变执行回调函数
+
+        itemDetailsSection.Q<TextField>("ItemName").value = activeItem.itemName;
+        itemDetailsSection.Q<TextField>("ItemName").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.itemName = evt.newValue;
+            itemListView.Rebuild();//重构,刷新一下,当在详情面板中修改了道具的名字,左侧滚动列表中的名字就会刷新重构
+        });
+
+        iconPreview.style.backgroundImage = activeItem.itemIcon == null?defaultIcon.texture:activeItem.itemIcon.texture;//获取当前选中的道具的Icon,如果为null就放入默认icon
+        itemDetailsSection.Q<ObjectField>("ItemIcon").value = activeItem.itemIcon;
+        itemDetailsSection.Q<ObjectField>("ItemIcon").RegisterValueChangedCallback(evt =>
+        {
+            Sprite newIcon = evt.newValue as Sprite;
+            activeItem.itemIcon = newIcon;
+
+            iconPreview.style.backgroundImage = newIcon == null ? defaultIcon.texture : newIcon.texture;
+            itemListView.Rebuild();
+        });
+
+        //其他所有变量的绑定
+        itemDetailsSection.Q<ObjectField>("ItemSprite").value = activeItem.itemOnWorldIcon;
+        itemDetailsSection.Q<ObjectField>("ItemSprite").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.itemOnWorldIcon = (Sprite)evt.newValue;
+        });
+
+        itemDetailsSection.Q<EnumField>("ItemType").Init(activeItem.itemType);
+        itemDetailsSection.Q<EnumField>("ItemType").value = activeItem.itemType;
+        itemDetailsSection.Q<EnumField>("ItemType").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.itemType = (ItemType)evt.newValue;
+        });
+
+        itemDetailsSection.Q<TextField>("Description").value = activeItem.itemDescription;
+        itemDetailsSection.Q<TextField>("Description").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.itemDescription = evt.newValue;
+        });
+
+        itemDetailsSection.Q<IntegerField>("ItemUseRadius").value = activeItem.itemUseRadius;
+        itemDetailsSection.Q<IntegerField>("ItemUseRadius").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.itemUseRadius = evt.newValue;
+        });
+
+        itemDetailsSection.Q<Toggle>("CanPickedup").value = activeItem.canPickedUp;
+        itemDetailsSection.Q<Toggle>("CanPickedup").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.canPickedUp = evt.newValue;
+        });
+
+        itemDetailsSection.Q<Toggle>("CanDropped").value = activeItem.canDropped;
+        itemDetailsSection.Q<Toggle>("CanDropped").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.canDropped = evt.newValue;
+        });
+
+        itemDetailsSection.Q<Toggle>("CanCarried").value = activeItem.canCarried;
+        itemDetailsSection.Q<Toggle>("CanCarried").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.canCarried = evt.newValue;
+        });
+
+        itemDetailsSection.Q<IntegerField>("Price").value = activeItem.itemPrice;
+        itemDetailsSection.Q<IntegerField>("Price").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.itemPrice = evt.newValue;
+        });
+
+        itemDetailsSection.Q<Slider>("SellPercentage").value = activeItem.sellPercentage;
+        itemDetailsSection.Q<Slider>("SellPercentage").RegisterValueChangedCallback(evt =>
+        {
+            activeItem.sellPercentage = evt.newValue;
+        });
     }
 }

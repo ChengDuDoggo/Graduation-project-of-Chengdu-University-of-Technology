@@ -5,7 +5,7 @@ public class ItemDetails //物品详细信息类
 {
     public int itemID;//物品的ID
     public string itemName;//物品的名字
-    public ItemType ItemType;//物品的类型
+    public ItemType itemType;//物品的类型
     public Sprite itemIcon;//物品的图片
     public Sprite itemOnWorldIcon;//物品在世界范围内内时的图片
     public string itemDescription;//物品的详情
