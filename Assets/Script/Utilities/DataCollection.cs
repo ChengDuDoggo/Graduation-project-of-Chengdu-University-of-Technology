@@ -17,3 +17,9 @@ public class ItemDetails //物品详细信息类
     [Range(0, 1)]
     public float sellPercentage;//物品销售的百分比(售卖物品会相对于原价打折扣)
 }
+[System.Serializable]
+public struct InventoryItem //相比于class,struct结构体更适合来存放背包数据,因为它会默认为0而不是null,避免背包过多报null
+{
+    public int itemID;
+    public int itemAmount;
+}

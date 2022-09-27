@@ -899,6 +899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDataList_SO: {fileID: 11400000, guid: a3ee38617a7d34d40909c51843c3c558, type: 2}
+  PlayerBag: {fileID: 11400000, guid: 01295299c08ed714dad37397b6c5a2ef, type: 2}
 --- !u!1 &2055960968
 GameObject:
   m_ObjectHideFlags: 0
