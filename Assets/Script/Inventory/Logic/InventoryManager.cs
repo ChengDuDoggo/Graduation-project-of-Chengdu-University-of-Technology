@@ -16,6 +16,18 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         {
             return itemDataList_SO.itemDetailsList.Find(i => i.itemID == ID);//找到ID与itemID相匹配的itemDetails返回,使用拉姆达表达式可简写
         }
+        /// <summary>
+        /// 添加物品至Player背包
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="toDestroy">拾取后是否销毁物品</param>
+        public void AddItem(Item item,bool toDestroy)
+        {
+            if (toDestroy)
+            {
+                Destroy(item.gameObject);
+            }
+        }
     }
 }
 

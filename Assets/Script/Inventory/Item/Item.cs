@@ -7,7 +7,7 @@ namespace MFarm.Inventory
     {
         public int itemID;
         private SpriteRenderer spriteRenderer;//图片组件
-        private ItemDetails itemDetails;//物品信息
+        public ItemDetails itemDetails;//物品信息
         private BoxCollider2D coll;
         private void Awake()
         {
