@@ -26,18 +26,64 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         /// <param name="toDestroy">拾取后是否销毁物品</param>
         public void AddItem(Item item,bool toDestroy)
         {
-            //背包是否有空位
-
             //背包是否已经有这个物体
-
-            InventoryItem newItem = new InventoryItem();
-            newItem.itemID = item.itemID;
-            newItem.itemAmount = 1;
-            PlayerBag.itemList[0] = newItem;
-
+            var index = GetItemIndexInBag(item.itemID);
+            AddItemAtIndex(item.itemID, index, 1);
             if (toDestroy)
             {
                 Destroy(item.gameObject);
+            }
+        }
+        /// <summary>
+        /// 检查背包是否有空位
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckBagCapacity()
+        {
+            for (int i = 0; i < PlayerBag.itemList.Count; i++)
+            {
+                if (PlayerBag.itemList[i].itemID == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// 通过物品ID找到背包中物品所在的位置(索引)
+        /// </summary>
+        /// <param name="ID">传入的物品ID</param>
+        /// <returns>没有找到就返回-1</returns>
+        private int GetItemIndexInBag(int ID)
+        {
+            for (int i = 0; i < PlayerBag.itemList.Count; i++)
+            {
+                if(PlayerBag.itemList[i].itemID == ID)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        private void AddItemAtIndex(int ID,int index,int amount)
+        {
+            if(index == -1 && CheckBagCapacity())//背包中没有这个物体且背包中有空位
+            {
+                var item = new InventoryItem { itemID = ID, itemAmount = amount };//new一个在背包中的Item
+                for (int i = 0; i < PlayerBag.itemList.Count; i++)
+                {
+                    if(PlayerBag.itemList[i].itemID == 0)
+                    {
+                        PlayerBag.itemList[i] = item;//将空位的这个地方将捡到的新物品赋值给List
+                        break;
+                    }
+                }
+            }
+            else//背包有这个物体
+            {
+                int currentAmount = PlayerBag.itemList[index].itemAmount+amount;//获取背包中这个物体的当前数量
+                var item = new InventoryItem { itemID = ID, itemAmount = currentAmount };//获得新物体的ID和Amount
+                PlayerBag.itemList[index] = item;
             }
         }
     }
