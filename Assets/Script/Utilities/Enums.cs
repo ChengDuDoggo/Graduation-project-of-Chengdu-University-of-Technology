@@ -5,3 +5,7 @@ public enum ItemType //м╗╧Щц╤╬ы©ирт╨э╥╫╠Ц╣дапЁЖ╡╩м╛юЮпмё╛╤Ьц╩╠ьр╙ц©╦ЖюЮпм╢╢╫╗р╩╦
     HolTool/*ЁЗ╣ь╣д╧╓╬ъ*/,ChopTool/*©ЁйВ╣д╧╓╬ъ*/,BreakTool/*трй╞м╥╣д╧╓╬ъ*/,ReapTool/*╦Н╡щ╣д╧╓╬ъ*/,WaterTool/*╫╫к╝╣д╧╓╬ъ*/,CollectTool/*кя╪╞╡к╣д╧╓╬ъ*/,
     ReapableScenery/*©ирт╠╩╦Н╣дтс╡щ*/
 }
+public enum SlotType//UIжп╥е╤╚нВ╣д╦Явстз╡╩м╛╣ь╥╫йг╡╩м╛╣дюЮпм(хкнОиМиоё╛ил╣ЙюОё╛╨пвсюО╣х╣х)
+{
+    Bag,Shop,Box
+}
