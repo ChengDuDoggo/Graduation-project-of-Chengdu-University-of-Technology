@@ -92,6 +92,27 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
                 PlayerBag.itemList[index] = item;
             }
         }
+        /// <summary>
+        /// Player背包范围内交换物品
+        /// </summary>
+        /// <param name="fromIndex">起始序号</param>
+        /// <param name="targetIndex">目标数据序号</param>
+        public void SwapItem(int fromIndex,int targetIndex)
+        {
+            InventoryItem currentItem = PlayerBag.itemList[fromIndex];//获得当前选择的物体数据
+            InventoryItem targetItem = PlayerBag.itemList[targetIndex];//获得要去的格子上的物体数据
+            if (targetItem.itemID != 0)//目标格子上有数据,则交换ID
+            {
+                PlayerBag.itemList[fromIndex] = targetItem;
+                PlayerBag.itemList[targetIndex] = currentItem;
+            }
+            else
+            {
+                PlayerBag.itemList[targetIndex] = currentItem;
+                PlayerBag.itemList[fromIndex] = new InventoryItem();//new 一个空的InventoryItem
+            }
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//刷新一下背包UI
+        }
     }
 }
 

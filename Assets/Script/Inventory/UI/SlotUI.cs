@@ -86,6 +86,32 @@ namespace MFarm.Inventory
         public void OnEndDrag(PointerEventData eventData)
         {
             inventoryUI.dragItem.enabled = false;//拖拽结束,关闭图片
+            if (eventData.pointerCurrentRaycast.gameObject != null)//拖拽物体停止的当前射线之下不为null
+            {
+                if (eventData.pointerCurrentRaycast.gameObject.GetComponent<SlotUI>() == null)//如果图片触碰到的物品没有SlotUI脚本即无法互动，直接返回
+                {
+                    return;
+                }
+                var targatSlot = eventData.pointerCurrentRaycast.gameObject.GetComponent<SlotUI>();//将目标格子获取
+                int targetIndex = targatSlot.slotIndex;//获得目标格子的序号
+                //在Player自身背包中交换
+                if(slotType == SlotType.Bag&&targatSlot.slotType == SlotType.Bag)
+                {
+                    InventoryManager.Instance.SwapItem(slotIndex, targetIndex);
+                }
+                //拖拽完成后关闭所有的高亮显示
+                inventoryUI.UpdateSlotHighlight(-1);
+            }
+            else//测试扔在地上
+            {
+                if (itemDetails.canCarried)
+                {
+                    //鼠标对应的世界地图上的坐标
+                    var pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));//将鼠标的屏幕坐标转化为世界坐标
+                    EventHandler.CallInstantiateItemInScene(itemDetails.itemID, pos);
+                }
+
+            }
         }
     }
 }
