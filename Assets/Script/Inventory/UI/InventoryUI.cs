@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MFarm.Inventory
 {
     public class InventoryUI : MonoBehaviour//控制背包打开，道具触碰显示信息等UI的控制
     {
+        [Header("拖拽的图片")]
+        public Image dragItem;
         [Header("玩家背包UI")]
         [SerializeField] private GameObject bagUI;
         private bool bagOpened;//判断背包是否被打开的状态

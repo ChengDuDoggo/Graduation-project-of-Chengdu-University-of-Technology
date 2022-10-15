@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 namespace MFarm.Inventory
 {
-    public class SlotUI : MonoBehaviour,IPointerClickHandler//调用一个unity自带的点按事件接口
+    public class SlotUI : MonoBehaviour,IPointerClickHandler,IBeginDragHandler,IDragHandler,IEndDragHandler//调用几个unity自带的点按事件接口(点击,开始拖拽,正在拖拽,拖拽结束)
     {
         [Header("组件获取")]
         [SerializeField] private Image slotImage;//[SerializeField]可以在可视化面板中为私有变量直接托取赋值
@@ -64,6 +64,28 @@ namespace MFarm.Inventory
                 return;//如过点击的这个格子没有任何物品，则无法点击
             isSelected = !isSelected;//切换一下选中的状态
             inventoryUI.UpdateSlotHighlight(slotIndex);
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)//都是Unity自带的接口中的函数方法,具体用途可以查看Unity手册查看
+        {
+            if (itemAmount != 0)
+            {
+                inventoryUI.dragItem.enabled = true;
+                inventoryUI.dragItem.sprite = slotImage.sprite;//将格子中的图片赋值给准备拖拽的图片
+                inventoryUI.dragItem.SetNativeSize();//适配一下图片大小
+                isSelected = true;//拖拽的图片默认变为选择状态
+                inventoryUI.UpdateSlotHighlight(slotIndex);//变为高光
+            }
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            inventoryUI.dragItem.transform.position = Input.mousePosition;//拖拽过程中不断将鼠标三维向量赋值给图片
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            inventoryUI.dragItem.enabled = false;//拖拽结束,关闭图片
         }
     }
 }
