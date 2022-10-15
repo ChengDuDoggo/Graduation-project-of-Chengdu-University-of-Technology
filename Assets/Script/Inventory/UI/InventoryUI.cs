@@ -56,10 +56,32 @@ namespace MFarm.Inventory
                 OpenBagUI();
             }
         }
+        /// <summary>
+        /// 打开关闭背包UI，按钮点击事件
+        /// </summary>
         public void OpenBagUI()
         {
             bagOpened = !bagOpened;
             bagUI.SetActive(bagOpened);
+        }
+        /// <summary>
+        /// 更新Slots高亮显示
+        /// </summary>
+        /// <param name="index">每一个格子的序号</param>
+        public void UpdateSlotHighlight(int index)//更新格子选中时的高光表现，每次只有一个格子能表现高光
+        {
+            foreach (var slot in playerSlots)
+            {
+                if (slot.isSelected && slot.slotIndex == index)
+                {
+                    slot.slotHightLight.gameObject.SetActive(true);
+                }
+                else
+                {
+                    slot.isSelected = false;
+                    slot.slotHightLight.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }

@@ -1,14 +1,15 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 namespace MFarm.Inventory
 {
-    public class SlotUI : MonoBehaviour
+    public class SlotUI : MonoBehaviour,IPointerClickHandler//调用一个unity自带的点按事件接口
     {
         [Header("组件获取")]
         [SerializeField] private Image slotImage;//[SerializeField]可以在可视化面板中为私有变量直接托取赋值
         [SerializeField] private TextMeshProUGUI amountText;
-        [SerializeField] private Image slotHightLight;
+        public Image slotHightLight;
         [SerializeField] private Button button;
         [Header("格子类型")]
         public SlotType slotType;
@@ -18,6 +19,8 @@ namespace MFarm.Inventory
         //物品信息
         public ItemDetails itemDetails;
         public int itemAmount;
+
+        private InventoryUI inventoryUI => GetComponentInParent<InventoryUI>();
         private void Start()
         {
             isSelected = false;
@@ -53,6 +56,14 @@ namespace MFarm.Inventory
             slotImage.enabled = false;
             amountText.text = string.Empty;
             button.interactable = false;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)//接口里面的函数方法,具体是干什么的可以去Unity官方手册中查看
+        {
+            if (itemAmount == 0)
+                return;//如过点击的这个格子没有任何物品，则无法点击
+            isSelected = !isSelected;//切换一下选中的状态
+            inventoryUI.UpdateSlotHighlight(slotIndex);
         }
     }
 }
