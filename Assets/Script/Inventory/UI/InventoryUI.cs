@@ -6,6 +6,9 @@ namespace MFarm.Inventory
 {
     public class InventoryUI : MonoBehaviour//控制背包打开，道具触碰显示信息等UI的控制
     {
+        [Header("玩家背包UI")]
+        [SerializeField] private GameObject bagUI;
+        private bool bagOpened;//判断背包是否被打开的状态
         [SerializeField] private SlotUI[] playerSlots;
         private void OnEnable()//当脚本执行时为委托事件添加方法(注册方法)
         {
@@ -44,6 +47,19 @@ namespace MFarm.Inventory
             {
                 playerSlots[i].slotIndex = i;
             }
+            bagOpened = bagUI.activeInHierarchy;//判断该GameObject在Hierarchy是否是激活状态
+        }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                OpenBagUI();
+            }
+        }
+        public void OpenBagUI()
+        {
+            bagOpened = !bagOpened;
+            bagUI.SetActive(bagOpened);
         }
     }
 }
