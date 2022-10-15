@@ -9,3 +9,7 @@ public enum SlotType//UIжп╥е╤╚нВ╣д╦Явстз╡╩м╛╣ь╥╫йг╡╩м╛╣дюЮпм(хкнОиМиоё╛ил╣ЙюОё╛╨
 {
     Bag,Shop,Box
 }
+public enum InventoryLocation//еп╤оUI╦Эпб╣╫ддюОё╛йг╦ЭпбхкнОиМио╣д╦Явс╩╧йгоДвсюО╣д╦Явс
+{
+    Player,Box
+}

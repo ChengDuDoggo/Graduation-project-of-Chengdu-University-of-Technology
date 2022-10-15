@@ -10,6 +10,10 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         public ItemDataList_SO itemDataList_SO;//拿到数据库
         [Header("背包数据")]
         public InventoryBag_SO PlayerBag;
+        private void Start()
+        {
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//游戏一开始就调用一下更新UI的委托事件
+        }
         /// <summary>
         /// 通过ID返回物品信息
         /// </summary>
@@ -33,6 +37,8 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
             {
                 Destroy(item.gameObject);
             }
+            //添加物品数据之后需要更新一下UI
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//直接调用其他脚本注册好的委托事件
         }
         /// <summary>
         /// 检查背包是否有空位
