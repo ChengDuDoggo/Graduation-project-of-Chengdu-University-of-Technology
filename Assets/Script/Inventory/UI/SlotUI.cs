@@ -102,7 +102,7 @@ namespace MFarm.Inventory
                 //拖拽完成后关闭所有的高亮显示
                 inventoryUI.UpdateSlotHighlight(-1);
             }
-            else//测试扔在地上
+            /*else//测试扔在地上
             {
                 if (itemDetails.canCarried)
                 {
@@ -111,7 +111,7 @@ namespace MFarm.Inventory
                     EventHandler.CallInstantiateItemInScene(itemDetails.itemID, pos);
                 }
 
-            }
+            }*/
         }
     }
 }
