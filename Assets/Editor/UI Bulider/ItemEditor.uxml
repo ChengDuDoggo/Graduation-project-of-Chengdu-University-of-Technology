@@ -34,14 +34,14 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="Row3" style="flex-direction: row; align-items: stretch; justify-content: flex-start;">
                     <ui:VisualElement name="Left" style="width: 50%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-left: 5px; margin-right: 2px;">
-                        <ui:Label text="Description" display-tooltip-when-elided="true" name="Header" style="height: auto; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; background-color: rgb(89, 89, 89); -unity-font-style: bold; flex-shrink: 0; flex-grow: 0; -unity-text-align: upper-left; white-space: nowrap;" />
+                        <ui:Label text="Properties" display-tooltip-when-elided="true" name="Header" style="height: auto; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; background-color: rgb(89, 89, 89); -unity-font-style: bold; flex-shrink: 0; flex-grow: 0; -unity-text-align: upper-left; white-space: nowrap;" />
                         <uie:IntegerField label="Use Radius" value="0" name="ItemUseRadius" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
                         <ui:Toggle label="Can PickedUp" name="CanPickedup" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
                         <ui:Toggle label="Can Dropped" name="CanDropped" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
                         <ui:Toggle label="Can Carried" name="CanCarried" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="Right" style="width: 50%; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-right: 5px; margin-left: 2px;">
-                        <ui:Label text="Description" display-tooltip-when-elided="true" name="Header" style="height: auto; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; background-color: rgb(89, 89, 89); -unity-font-style: bold; flex-shrink: 0; flex-grow: 0; -unity-text-align: upper-left; white-space: nowrap; width: auto;" />
+                        <ui:Label text="Vender" display-tooltip-when-elided="true" name="Header" style="height: auto; padding-left: 10px; padding-top: 3px; padding-bottom: 3px; background-color: rgb(89, 89, 89); -unity-font-style: bold; flex-shrink: 0; flex-grow: 0; -unity-text-align: upper-left; white-space: nowrap; width: auto;" />
                         <uie:IntegerField label="Price" value="0" name="Price" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
                         <ui:Slider picking-mode="Ignore" label="Sell Percentage" value="0" high-value="1" name="SellPercentage" show-input-field="true" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
                     </ui:VisualElement>

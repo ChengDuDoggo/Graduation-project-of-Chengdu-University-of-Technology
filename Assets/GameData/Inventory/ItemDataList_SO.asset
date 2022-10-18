@@ -215,5 +215,5 @@ MonoBehaviour:
     canPickedUp: 1
     canDropped: 1
     canCarried: 1
-    itemPrice: 0
-    sellPercentage: 0
+    itemPrice: 10
+    sellPercentage: 0.5

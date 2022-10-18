@@ -7,6 +7,7 @@ namespace MFarm.Inventory
 {
     public class InventoryUI : MonoBehaviour//控制背包打开，道具触碰显示信息等UI的控制
     {
+        public ItemToolTip itemToolTip;
         [Header("拖拽的图片")]
         public Image dragItem;
         [Header("玩家背包UI")]
