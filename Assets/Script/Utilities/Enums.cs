@@ -13,3 +13,11 @@ public enum InventoryLocation//ÅĞ¶ÏUI¸üĞÂµ½ÄÄÀï£¬ÊÇ¸üĞÂÈËÎïÉíÉÏµÄ¸ñ×Ó»¹ÊÇÏä×ÓÀïµ
 {
     Player,Box
 }
+public enum PartType//ÅĞ¶ÏÄÃµ½ÊÖÉÏµÄ¹¤¾ßÀàĞÍ
+{
+    None,Carry,Hoe,Break
+}
+public enum PartName//ÎïÌåĞèÒªÉíÉÏÄÇ¸ö²¿Î»ÄÃÈ¡
+{
+    Body,Hair,Arm,Tool
+}

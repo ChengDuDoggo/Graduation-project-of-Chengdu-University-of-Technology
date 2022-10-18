@@ -17,4 +17,9 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         InstantiateItemInScene?.Invoke(ID,pos);
     }
+    public static event Action<ItemDetails, bool> ItemSelectedEvent;
+    public static void CallItemSelectedEvent(ItemDetails itemDetails,bool isSelected)
+    {
+        ItemSelectedEvent?.Invoke(itemDetails, isSelected);
+    }
 }

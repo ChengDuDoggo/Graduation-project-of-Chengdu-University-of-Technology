@@ -64,6 +64,10 @@ namespace MFarm.Inventory
                 return;//如过点击的这个格子没有任何物品，则无法点击
             isSelected = !isSelected;//切换一下选中的状态
             inventoryUI.UpdateSlotHighlight(slotIndex);
+            if (slotType == SlotType.Bag)//如果格子类型是背包格子，才能触发切换动画效果
+            {
+                EventHandler.CallItemSelectedEvent(itemDetails, isSelected);//触发点击委托事件
+            }
         }
 
         public void OnBeginDrag(PointerEventData eventData)//都是Unity自带的接口中的函数方法,具体用途可以查看Unity手册查看

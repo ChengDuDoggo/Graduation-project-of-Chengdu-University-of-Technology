@@ -23,3 +23,10 @@ public struct InventoryItem //Ïà±ÈÓÚclass,struct½á¹¹Ìå¸üÊÊºÏÀ´´æ·Å±³°üÊı¾İ,ÒòÎªË
     public int itemID;
     public int itemAmount;
 }
+[System.Serializable]
+public class AnimatorType//ÒªÇĞ»»µÄ²»Í¬ÀàĞÍµÄ¶¯»­
+{
+    public PartType partType;
+    public PartName partName;
+    public AnimatorOverrideController overrideController;
+}
