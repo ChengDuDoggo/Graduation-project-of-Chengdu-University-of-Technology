@@ -21,3 +21,7 @@ public enum PartName//物体需要身上那个部位拿取
 {
     Body,Hair,Arm,Tool
 }
+public enum Season//季节类型
+{
+    春天,夏天,秋天,冬天
+}

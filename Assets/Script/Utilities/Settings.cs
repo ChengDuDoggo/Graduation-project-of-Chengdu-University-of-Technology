@@ -7,4 +7,12 @@ public class Settings //自己编写的一个静态设置类，相当于写了一个设置按钮来控制工
 {
     public const float fadeDuration = 0.35f;
     public const float targetAlpha = 0.45f;
+    //时间相关
+    public const float secondThreshold = 0.1f;//数值越小时间越快
+    //时间进制,时间达到多少归零同时向前进一
+    public const int secondHold = 59;
+    public const int minuteHold = 59;
+    public const int hourHold = 23;
+    public const int dayHold = 30;
+    public const int seasonHold = 3;
 }
