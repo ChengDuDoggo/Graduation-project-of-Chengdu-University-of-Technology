@@ -13,6 +13,11 @@ public class TimeManager : MonoBehaviour
     {
         NewGameTime();
     }
+    private void Start()
+    {
+        EventHandler.CallGameDateSeason(gameHour, gameDay, gameMonth, gameYear, gameSeason);
+        EventHandler.CallGameMinuteEvent(gameMinute, gameHour);
+    }
     private void Update()
     {
         if (!gameClockPause)
@@ -22,6 +27,13 @@ public class TimeManager : MonoBehaviour
             if (tikTime >= Settings.secondThreshold)
             {
                 tikTime -= Settings.secondThreshold;
+                UpdateGameTime();
+            }
+        }
+        if (Input.GetKey(KeyCode.T))//作弊按钮
+        {
+            for (int i = 0; i < 60; i++)
+            {
                 UpdateGameTime();
             }
         }
@@ -85,7 +97,9 @@ public class TimeManager : MonoBehaviour
                         }
                     }
                 }
+                EventHandler.CallGameDateSeason(gameHour, gameDay, gameMonth, gameYear, gameSeason); //这里需要调用一下委托事件
             }
+            EventHandler.CallGameMinuteEvent(gameMinute, gameHour);//这里需要调用一下委托事件
         }
     }
 }
