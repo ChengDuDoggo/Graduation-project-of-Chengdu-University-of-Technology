@@ -6,6 +6,7 @@ namespace MFarm.Transition
 {
     public class TransitionManager : MonoBehaviour
     {
+        [SceneName]//自己编写的Unity辅助功能标记
         public string startSceneName = string.Empty;
         private void Start()
         {

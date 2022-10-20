@@ -1262,7 +1262,7 @@ GameObject:
   - component: {fileID: 78148815}
   - component: {fileID: 78148817}
   m_Layer: 0
-  m_Name: TeleportToField
+  m_Name: TeleportToHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26310,7 +26310,7 @@ GameObject:
   - component: {fileID: 1686182685}
   - component: {fileID: 1686182684}
   m_Layer: 0
-  m_Name: House_02_Door
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
