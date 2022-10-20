@@ -32,4 +32,9 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         GameDateSeason?.Invoke(hour,day,month,year,season);
     }
+    public static event Action<string, Vector3> TransitionEvent;//³¡¾°ÇĞ»»Î¯ÍĞÊÂ¼ş
+    public static void CallTransitionEvent(string sceneName,Vector3 pos)
+    {
+        TransitionEvent?.Invoke(sceneName, pos);
+    }
 }
