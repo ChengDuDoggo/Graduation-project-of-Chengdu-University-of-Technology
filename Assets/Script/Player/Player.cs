@@ -48,15 +48,20 @@ public class Player : MonoBehaviour //控制玩家基本操作的类
 
     private void Update()
     {
-        if (inputDisable == false)
+        if (!inputDisable)
         {
             PlayerInput();
+        }
+        else
+        {
+            isMoving = false;
         }
 
         SwitchAnimator();
     }
     private void FixedUpdate()
     {
+        if(!inputDisable)
         Movement();
     }
     private void PlayerInput()

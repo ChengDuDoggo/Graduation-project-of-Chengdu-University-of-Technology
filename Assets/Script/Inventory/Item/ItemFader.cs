@@ -15,7 +15,7 @@ public class ItemFader : MonoBehaviour //¹ÒÔØÔÚÎïÌåÉíÉÏ£¬Ê¹ÈËÎï¾­¹ıµÀ¾ßÈ»ºóµÀ¾ßÍ
     public void Fadein()
     {
         Color targetColor = new Color(1, 1, 1, 1);
-        spriteRender.DOColor(targetColor, Settings.fadeDuration);
+        spriteRender.DOColor(targetColor, Settings.ItemfadeDuration);
     }
     /// <summary>
     /// Öğ½¥°ëÍ¸Ã÷
@@ -23,6 +23,6 @@ public class ItemFader : MonoBehaviour //¹ÒÔØÔÚÎïÌåÉíÉÏ£¬Ê¹ÈËÎï¾­¹ıµÀ¾ßÈ»ºóµÀ¾ßÍ
     public void FadeOut()
     {
         Color targetColor = new Color(1, 1, 1, Settings.targetAlpha);
-        spriteRender.DOColor(targetColor, Settings.fadeDuration);
+        spriteRender.DOColor(targetColor, Settings.ItemfadeDuration);
     }
 }

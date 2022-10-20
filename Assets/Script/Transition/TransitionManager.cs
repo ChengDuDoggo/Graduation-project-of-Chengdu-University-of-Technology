@@ -8,9 +8,12 @@ namespace MFarm.Transition
     {
         [SceneName]//自己编写的Unity辅助功能标记
         public string startSceneName = string.Empty;
+        private CanvasGroup fadeCanvasGroup;
+        private bool isFade;//判断场景切换阿尔法加载是否完成
         private void Start()
         {
             StartCoroutine(LoadSceneSetActive(startSceneName));
+            fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
         }
         private void OnEnable()
         {
@@ -23,6 +26,7 @@ namespace MFarm.Transition
 
         private void OnTransitionEvent(string sceneToGo, Vector3 positionToGo)
         {
+            if(!isFade)
             StartCoroutine(Transition(sceneToGo, positionToGo));
         }
 
@@ -35,10 +39,12 @@ namespace MFarm.Transition
         private IEnumerator Transition(string sceneName,Vector3 targetPosition)
         {
             EventHandler.CallBeforeSceneUnloadEvent();//先执行一下卸载场景之前要做的事儿
+            yield return Fade(1);
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());//卸载掉当前场景
             yield return LoadSceneSetActive(sceneName);//加载新的场景
             //移动人物坐标
             EventHandler.CallMoveToPosition(targetPosition);//场景加载好了就把人物挪过去
+            yield return Fade(0);
             EventHandler.CallAfterSceneLoadedEvent();//加载场景之后又需要做一些事件
         }
         /// <summary>
@@ -53,6 +59,24 @@ namespace MFarm.Transition
             //单独模式:一个项目中一次性只加载一个场景，切换场景时其他场景切换进来，当前场景切换出去
             Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);//获取放入到场景管理器里的当前场景
             SceneManager.SetActiveScene(newScene);//激活场景
+        }
+        /// <summary>
+        /// 淡入淡出场景
+        /// </summary>
+        /// <param name="targetAlpha">1是黑,0是透明</param>
+        /// <returns></returns>
+        private IEnumerator Fade(float targetAlpha)//场景切换时的加载转换动画更适合用协程来完成
+        {
+            isFade = true;//开始阿尔法值转换
+            fadeCanvasGroup.blocksRaycasts = true;//开启鼠标遮挡,场景加载时鼠标不能点击任何物品
+            float speed = Mathf.Abs(fadeCanvasGroup.alpha - targetAlpha) / Settings.fadeDuration;//获得一个阿尔法变透明的速度
+            while (!Mathf.Approximately(fadeCanvasGroup.alpha, targetAlpha))//当当前阿尔法值不等于目标阿尔法值就会一直执行动画转换
+            {
+                fadeCanvasGroup.alpha = Mathf.MoveTowards(fadeCanvasGroup.alpha, targetAlpha, speed * Time.deltaTime);
+                yield return null;
+            }
+            fadeCanvasGroup.blocksRaycasts = false;//动画执行完毕,关闭鼠标遮挡
+            isFade = false;
         }
     }
 }
