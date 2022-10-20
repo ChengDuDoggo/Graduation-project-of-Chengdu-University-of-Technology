@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class SwitchBounds : MonoBehaviour //控制切换边界时的类，每张地图边界不同，每次切换地图时调用此类，更新一下边界让Cinamachine知道
 {
-    private void Start()
+    private void OnEnable()
     {
-        SwitchConfinerShape();
+        EventHandler.AfterSceneLoadedEvent += SwitchConfinerShape;//加载注册事件
+    }
+    private void OnDisable()
+    {
+        EventHandler.AfterSceneLoadedEvent -= SwitchConfinerShape;
     }
     private void SwitchConfinerShape()
     {

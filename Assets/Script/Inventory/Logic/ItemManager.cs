@@ -11,14 +11,16 @@ namespace MFarm.Inventory
         private void OnEnable()
         {
             EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;//为委托事件添加函数方法
+            EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         }
         private void OnDisable()
         {
             EventHandler.InstantiateItemInScene -= OnInstantiateItemInScene;
+            EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         }
-        private void Start()
+        private void OnAfterSceneLoadedEvent()
         {
-            itemParent = GameObject.FindWithTag("ItemParent").transform;
+            itemParent = GameObject.FindWithTag("ItemParent").transform;//场景加载之后再寻找ItemParent避免报空
         }
         private void OnInstantiateItemInScene(int ID, Vector3 pos)
         {

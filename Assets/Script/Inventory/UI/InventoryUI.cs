@@ -17,10 +17,17 @@ namespace MFarm.Inventory
         private void OnEnable()//当脚本执行时为委托事件添加方法(注册方法)
         {
             EventHandler.UpdateInventoryUI += OnUpdateInventoryUI;
+            EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
         }
         private void OnDisable()//当脚本关闭时去除委托中的函数方法
         {
             EventHandler.UpdateInventoryUI -= OnUpdateInventoryUI;
+            EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
+        }
+
+        private void OnBeforeSceneUnloadEvent()
+        {
+            UpdateSlotHighlight(-1);
         }
 
         private void OnUpdateInventoryUI(InventoryLocation location, List<InventoryItem> list)

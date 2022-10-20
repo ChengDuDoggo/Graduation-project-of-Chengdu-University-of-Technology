@@ -33,8 +33,12 @@ namespace MFarm.Transition
         /// <returns></returns>
         private IEnumerator Transition(string sceneName,Vector3 targetPosition)
         {
+            EventHandler.CallBeforeSceneUnloadEvent();//先执行一下卸载场景之前要做的事儿
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());//卸载掉当前场景
             yield return LoadSceneSetActive(sceneName);//加载新的场景
+            //移动人物坐标
+            EventHandler.CallMoveToPosition(targetPosition);//场景加载好了就把人物挪过去
+            EventHandler.CallAfterSceneLoadedEvent();//加载场景之后又需要做一些事件
         }
         /// <summary>
         /// 加载场景并设置为激活

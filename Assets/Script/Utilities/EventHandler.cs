@@ -37,4 +37,19 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         TransitionEvent?.Invoke(sceneName, pos);
     }
+    public static event Action BeforeSceneUnloadEvent;//³¡¾°Ğ¶ÔØÖ®Ç°ĞèÒª´¥·¢Ò»Ğ©ÊÂ¼şÀ´±ÜÃâ±¨´í
+    public static void CallBeforeSceneUnloadEvent()
+    {
+        BeforeSceneUnloadEvent?.Invoke();
+    }
+    public static event Action AfterSceneLoadedEvent;//¼ÓÔØ³¡¾°Ö®ºóĞèÒª´¥·¢Ò»Ğ©ÊÂ¼şÀ´ÇĞ»»Êı¾İ
+    public static void CallAfterSceneLoadedEvent()
+    {
+        AfterSceneLoadedEvent?.Invoke();
+    }
+    public static event Action<Vector3> MoveToPosition;//ÇĞ»»³¡¾°ÈËÎïÒÆ¶¯µ½Ö¸¶¨Î»ÖÃÎ¯ÍĞÊÂ¼ş
+    public static void CallMoveToPosition(Vector3 targetPosition)
+    {
+        MoveToPosition?.Invoke(targetPosition);
+    }
 }

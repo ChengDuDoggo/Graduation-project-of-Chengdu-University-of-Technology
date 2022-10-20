@@ -9055,7 +9055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToGo: 01.Field
-  positionToGo: {x: -9, y: -9, z: 0}
+  positionToGo: {x: 13.2, y: -4, z: 0}
 --- !u!1 &1804296234
 GameObject:
   m_ObjectHideFlags: 0
