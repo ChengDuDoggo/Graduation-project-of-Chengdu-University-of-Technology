@@ -44,8 +44,8 @@ namespace MFarm.Transition
             yield return LoadSceneSetActive(sceneName);//加载新的场景
             //移动人物坐标
             EventHandler.CallMoveToPosition(targetPosition);//场景加载好了就把人物挪过去
-            yield return Fade(0);
             EventHandler.CallAfterSceneLoadedEvent();//加载场景之后又需要做一些事件
+            yield return Fade(0);
         }
         /// <summary>
         /// 加载场景并设置为激活

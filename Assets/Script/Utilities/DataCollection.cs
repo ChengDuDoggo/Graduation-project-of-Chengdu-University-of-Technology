@@ -30,3 +30,30 @@ public class AnimatorType//要切换的不同类型的动画
     public PartName partName;
     public AnimatorOverrideController overrideController;
 }
+[System.Serializable]
+//该类代表在场景中物体的坐标类
+public class SerializableVector3
+{
+    public float x, y, z;
+
+    public SerializableVector3(Vector3 pos)//构造函数,该类被触发时立即调用(初始化)
+    {
+        this.x = pos.x;
+        this.y = pos.y;
+        this.z = pos.z;
+    }
+    public Vector3 ToVector3()
+    {
+        return new Vector3(x, y, z);
+    }
+    public Vector2Int ToVector2Int()//只返回x,y且为整形
+    {
+        return new Vector2Int((int)x, (int)y);
+    }
+}
+[System.Serializable]
+public class SceneItem//代表在场景中的物体的类型
+{
+    public int ItemID;
+    public SerializableVector3 position;
+}
