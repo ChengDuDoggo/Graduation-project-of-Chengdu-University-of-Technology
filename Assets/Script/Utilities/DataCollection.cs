@@ -32,7 +32,7 @@ public class AnimatorType//要切换的不同类型的动画
 }
 [System.Serializable]
 //该类代表在场景中物体的坐标类
-public class SerializableVector3
+public class SerializableVector3//无论是2D游戏还是3D游戏,都需要使用此方法创建此类来实现物品的坐标获取
 {
     public float x, y, z;
 
