@@ -25,3 +25,7 @@ public enum Season//季节类型
 {
     春天,夏天,秋天,冬天
 }
+public enum GridType//网格的类型
+{
+    Digable,DropItem,PlaceFurniture,NPCObstacle//NPC行走的路径
+}

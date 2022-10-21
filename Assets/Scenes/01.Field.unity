@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 62674277}
   - component: {fileID: 62674279}
   - component: {fileID: 62674278}
+  - component: {fileID: 62674280}
   m_Layer: 0
   m_Name: NPC Obstacle
   m_TagString: Untagged
@@ -243,6 +244,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &62674280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62674276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6e19e32f8776840b3aac78c138ebac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapData: {fileID: 11400000, guid: 1bff33c0db99f9649b3bef8a1177d5d2, type: 2}
+  gridType: 3
 --- !u!1 &68086171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,6 +1543,7 @@ GameObject:
   - component: {fileID: 347573491}
   - component: {fileID: 347573493}
   - component: {fileID: 347573492}
+  - component: {fileID: 347573494}
   m_Layer: 0
   m_Name: CanDig
   m_TagString: Untagged
@@ -1637,6 +1653,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &347573494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347573490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6e19e32f8776840b3aac78c138ebac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapData: {fileID: 11400000, guid: 1bff33c0db99f9649b3bef8a1177d5d2, type: 2}
+  gridType: 0
 --- !u!1 &377801498
 GameObject:
   m_ObjectHideFlags: 0
@@ -20136,6 +20166,7 @@ GameObject:
   - component: {fileID: 1220660573}
   - component: {fileID: 1220660575}
   - component: {fileID: 1220660574}
+  - component: {fileID: 1220660576}
   m_Layer: 0
   m_Name: CanPlaceFurniture
   m_TagString: Untagged
@@ -20245,6 +20276,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1220660576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220660572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6e19e32f8776840b3aac78c138ebac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapData: {fileID: 11400000, guid: 1bff33c0db99f9649b3bef8a1177d5d2, type: 2}
+  gridType: 2
 --- !u!1 &1413425549
 GameObject:
   m_ObjectHideFlags: 0
@@ -20256,6 +20301,7 @@ GameObject:
   - component: {fileID: 1413425550}
   - component: {fileID: 1413425552}
   - component: {fileID: 1413425551}
+  - component: {fileID: 1413425553}
   m_Layer: 0
   m_Name: CanDropItem
   m_TagString: Untagged
@@ -20365,6 +20411,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1413425553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413425549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6e19e32f8776840b3aac78c138ebac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapData: {fileID: 11400000, guid: 1bff33c0db99f9649b3bef8a1177d5d2, type: 2}
+  gridType: 1
 --- !u!1 &1496684511
 GameObject:
   m_ObjectHideFlags: 0

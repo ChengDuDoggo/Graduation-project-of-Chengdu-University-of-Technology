@@ -57,3 +57,10 @@ public class SceneItem//代表在场景中的物体的类型
     public int ItemID;
     public SerializableVector3 position;
 }
+[System.Serializable]
+public class TileProperty//瓦片属性类,定义一片瓦片是否可以种植,挖掘,丢弃道具,放置家具等等
+{
+    public Vector2Int tileCoordinate;//瓦片坐标
+    public GridType gridType;
+    public bool boolTypeValue;
+}
