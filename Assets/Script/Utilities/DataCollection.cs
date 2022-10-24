@@ -64,3 +64,17 @@ public class TileProperty//ÍßÆ¬ÊôĞÔÀà,¶¨ÒåÒ»Æ¬ÍßÆ¬ÊÇ·ñ¿ÉÒÔÖÖÖ²,ÍÚ¾ò,¶ªÆúµÀ¾ß,·ÅÖ
     public GridType gridType;
     public bool boolTypeValue;
 }
+[System.Serializable]
+public class TileDetails//¶¨ÒåÒ»¸ö¸ñ×ÓµÄ¾ßÌåĞÅÏ¢Àà£¬Õâ¸ö¸ñ×ÓÉÏÃæÓĞÊ²Ã´ÊôĞÔ
+{
+    public int gridX, gridY;//¸ñ×ÓµÄ×ø±ê
+    public bool canDig;//¸ñ×ÓÄÜ±»ÍÚ¾ò
+    public bool canDropItm;//¸ñ×ÓÉÏÄÜ¶ªÎïÆ·
+    public bool canPlaceFurniturn;//¸ñ×ÓÄÜ·ÅÖÃ¼Ò¾ß
+    public bool isNPCObstacle;//¸ñ×ÓÊÇNPCµÄÂ·¾¶
+    public int daysSinceDug = -1;//¸ñ×Ó±»ÍÚ¾òºó¿ªÊ¼¼ÆËãÌìÊı£¬À´¿ØÖÆÅ©×÷Îï³É³¤µÄÂß¼­
+    public int daysSinceWatered = -1;//¸ñ×Ó±»½½Ë®ºó¼ÆËãÌìÊı
+    public int seedItemID = -1;//¸ñ×ÓÉÏ±»ÖÖÖ²µÄÖÖ×ÓµÄID
+    public int growthDays = -1;//Ö²Îï³É³¤µÄÌìÊı
+    public int daysSinceLastHarvest = -1;//Ä³Ğ©Ö²Îï¿ÉÒÔ·´¸´ÖÖÖ²£¬ÔÚÊÕ»ñºó»Øµ½Ò»¶¨µÄÌìÊı£¬½×¶Î
+}

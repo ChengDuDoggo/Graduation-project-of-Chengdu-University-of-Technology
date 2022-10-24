@@ -10,10 +10,11 @@ namespace MFarm.Transition
         public string startSceneName = string.Empty;
         private CanvasGroup fadeCanvasGroup;
         private bool isFade;//判断场景切换阿尔法加载是否完成
-        private void Start()
+        private IEnumerator Start()
         {
-            StartCoroutine(LoadSceneSetActive(startSceneName));
             fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
+            yield return LoadSceneSetActive(startSceneName);
+            EventHandler.CallAfterSceneLoadedEvent();
         }
         private void OnEnable()
         {
