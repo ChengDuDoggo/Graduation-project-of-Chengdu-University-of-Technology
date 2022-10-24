@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 namespace MFarm.Map
 {
-    public class GridMapManager : MonoBehaviour
+    public class GridMapManager : Singleton<GridMapManager>
     {
         [Header("地图信息")]
         public List<MapData_SO> mapDataList;
         //定义一个字典来保存格子场景名字+格子坐标对应的瓦片信息
         private Dictionary<string, TileDetails> tileDetailesDict = new Dictionary<string, TileDetails>();
+        private void Start()
+        {
+            foreach (var mapData in mapDataList)
+            {
+                InitTileDetailsDict(mapData);
+            }
+        }
         /// <summary>
         /// 根据地图信息生成字典
         /// </summary>
@@ -50,7 +58,7 @@ namespace MFarm.Map
             }
         }
         /// <summary>
-        /// 更具key返回瓦片信息
+        /// 根据key返回瓦片信息
         /// </summary>
         /// <param name="key">x+y+地图名字</param>
         /// <returns></returns>
@@ -64,6 +72,16 @@ namespace MFarm.Map
             {
                 return null;
             }
+        }
+        /// <summary>
+        /// 根据鼠标网格坐标返回瓦片信息
+        /// </summary>
+        /// <param name="mouseGridPos">鼠标网格坐标</param>
+        /// <returns></returns>
+        public TileDetails GetTileDetailsOnMousePosition(Vector3Int mouseGridPos)
+        {
+            string key = mouseGridPos.x + "x" + mouseGridPos.y + "y" + SceneManager.GetActiveScene().name;
+            return GetTileDetailes(key);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using MFarm.Map;
 //此脚本来控制鼠标在不同功能下切换不同的状态图片
 public class CursorManager : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class CursorManager : MonoBehaviour
     private Vector3 mouseWorldPos;//世界坐标
     private Vector3Int mouseGridPos;//网格坐标
     private bool cursorEnable;
+    private bool cursorPositionValid;//判断当前鼠标位置是否可以点按
+    private ItemDetails currentItem;
+    private Transform PlayerTransform => FindObjectOfType<Player>().transform;//拿到Player的Transform来限制物品的使用范围
     private void Start()
     {
         cursorCanvas = GameObject.FindGameObjectWithTag("CursorCanvas").GetComponent<RectTransform>();
@@ -45,7 +49,6 @@ public class CursorManager : MonoBehaviour
     private void OnAfterSceneLoadedEvent()
     {
         currentGrid = FindObjectOfType<Grid>();
-        cursorEnable = true;
     }
 
     private void Update()
@@ -64,6 +67,7 @@ public class CursorManager : MonoBehaviour
         }
 
     }
+    #region 设置鼠标样式
     /// <summary>
     /// 设置物品图片
     /// </summary>
@@ -73,14 +77,28 @@ public class CursorManager : MonoBehaviour
         cursorImage.sprite = sprite;
         cursorImage.color = new Color(1, 1, 1, 1);
     }
+    private void SetCursorValid()//检测当前鼠标道具在地图上可用，道具图片完全显示
+    {
+        cursorPositionValid = true;//鼠标可以点按
+        cursorImage.color = new Color(1, 1, 1, 1);
+    }
+    private void SetCursorInvalid()//检测当前鼠标道具在地图上不可用，道具图片变为红色半透明
+    {
+        cursorPositionValid = false;//鼠标不能点按
+        cursorImage.color = new Color(1, 0, 0, 0.5f);
+    }
+    #endregion
     private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
     {
         if (!isSelected)
         {
+            currentItem = null;
+            cursorEnable = false;
             currentSprite = normal;
         }
         else
         {
+            currentItem = itemDetails;
             currentSprite = itemDetails.itemType switch//根据物品的类型来返回指定的图片
             {
                 //WORKFLOW:添加所有类型对应的图片
@@ -94,6 +112,7 @@ public class CursorManager : MonoBehaviour
                 ItemType.Furniture => tool,
                 _ => normal //默认返回的是normal图片
             };
+            cursorEnable = true;
         }
     }
     /// <summary>
@@ -103,6 +122,27 @@ public class CursorManager : MonoBehaviour
     {
         mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y,-mainCamera.transform.position.z));//屏幕坐标转化为世界坐标
         mouseGridPos = currentGrid.WorldToCell(mouseWorldPos);//世界坐标转化为网格坐标
+        var playerGridPos = currentGrid.WorldToCell(PlayerTransform.position);//拿到人物所在的网格坐标
+        //判断在使用范围之内
+        if (Mathf.Abs(mouseGridPos.x - playerGridPos.x) > currentItem.itemUseRadius || Mathf.Abs(mouseGridPos.y - playerGridPos.y) > currentItem.itemUseRadius)
+        {
+            SetCursorInvalid();
+            return;
+        }
+        TileDetails currentTile = GridMapManager.Instance.GetTileDetailsOnMousePosition(mouseGridPos);
+        if (currentTile != null)
+        {
+            switch (currentItem.itemType)
+            {
+                case ItemType.Commodity:
+                    if (currentTile.canDropItm&&currentItem.canDropped) SetCursorValid(); else SetCursorInvalid();
+                    break;
+            }
+        }
+        else
+        {
+            SetCursorInvalid();
+        }
     }
     /// <summary>
     /// 是否与UI互动
