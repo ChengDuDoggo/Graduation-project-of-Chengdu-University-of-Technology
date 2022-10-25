@@ -17,6 +17,11 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         InstantiateItemInScene?.Invoke(ID,pos);
     }
+    public static event Action<int, Vector3> DropItemEvent;//ÈËÎï¶ªÆúµÀ¾ßºó´¥·¢ÊÂ¼şÎ¯ÍĞ
+    public static void CallDropItemEvent(int ID,Vector3 pos)
+    {
+        DropItemEvent?.Invoke(ID, pos);
+    }
     public static event Action<ItemDetails, bool> ItemSelectedEvent;
     public static void CallItemSelectedEvent(ItemDetails itemDetails,bool isSelected)
     {
@@ -51,5 +56,15 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     public static void CallMoveToPosition(Vector3 targetPosition)
     {
         MoveToPosition?.Invoke(targetPosition);
+    }
+    public static event Action<Vector3, ItemDetails> MouseClickedEvent;//Êó±êµã»÷ÊÂ¼ş
+    public static void CallMouseClickedEvent(Vector3 pos,ItemDetails itemDetails)
+    {
+        MouseClickedEvent?.Invoke(pos,itemDetails);
+    }
+    public static event Action<Vector3, ItemDetails> ExecuteActionAfterAnimation;//Êµ¼ÊÊÂ¼ş,·ÅÔÚPlayerÄ³¸ö¶¯×÷¶¯»­²¥·ÅÍê³Éºóµ÷ÓÃµÄÊµ¼ÊÊÂ¼ş¹¦ÄÜ
+    public static void CallExecuteActionAfterAnimation(Vector3 pos,ItemDetails itemDetails)
+    {
+        ExecuteActionAfterAnimation?.Invoke(pos, itemDetails);
     }
 }

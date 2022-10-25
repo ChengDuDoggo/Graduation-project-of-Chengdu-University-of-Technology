@@ -14,14 +14,23 @@ namespace MFarm.Inventory
         private void OnEnable()
         {
             EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;//为委托事件添加函数方法
+            EventHandler.DropItemEvent += OnDropItemEvent;//扔东西委托事件
             EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         }
         private void OnDisable()
         {
             EventHandler.InstantiateItemInScene -= OnInstantiateItemInScene;
+            EventHandler.DropItemEvent -= OnDropItemEvent;
             EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
+        }
+
+        private void OnDropItemEvent(int ID, Vector3 pos)
+        {
+            //TODO:扔东西的效果
+            var item = Instantiate(itemPrefab, pos, Quaternion.identity, itemParent);//克隆物体
+            item.itemID = ID;
         }
 
         private void OnBeforeSceneUnloadEvent()

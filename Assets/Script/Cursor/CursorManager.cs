@@ -60,12 +60,21 @@ public class CursorManager : MonoBehaviour
         {
             SetCursorImage(currentSprite);
             CheckCursorValid();
+            CheckPlayerInput();
         }
         else
         {
             SetCursorImage(normal);
         }
 
+    }
+    private void CheckPlayerInput()
+    {
+        if (Input.GetMouseButtonDown(0) && cursorPositionValid)//如果按下鼠标左键切鼠标当前是可用状态
+        {
+            //执行方法
+            EventHandler.CallMouseClickedEvent(mouseWorldPos, currentItem);
+        }
     }
     #region 设置鼠标样式
     /// <summary>

@@ -24,7 +24,7 @@ namespace MFarm.Inventory
         private void Start()
         {
             isSelected = false;
-            if (itemDetails.itemID == 0)//如果当前单独的格子里面的物品ID为0就说明当前物品格子为null
+            if (itemDetails == null)//如果当前单独的格子里面的物品ID为0就说明当前物品格子为null
             {
                 UpdateEmptySlot();
             }
@@ -52,7 +52,10 @@ namespace MFarm.Inventory
             if (isSelected)
             {
                 isSelected = false;
+                inventoryUI.UpdateSlotHighlight(-1);
+                EventHandler.CallItemSelectedEvent(itemDetails, isSelected);
             }
+            itemDetails = null;
             slotImage.enabled = false;
             amountText.text = string.Empty;
             button.interactable = false;
@@ -60,7 +63,7 @@ namespace MFarm.Inventory
 
         public void OnPointerClick(PointerEventData eventData)//接口里面的函数方法,具体是干什么的可以去Unity官方手册中查看
         {
-            if (itemAmount == 0)
+            if (itemDetails == null)
                 return;//如过点击的这个格子没有任何物品，则无法点击
             isSelected = !isSelected;//切换一下选中的状态
             inventoryUI.UpdateSlotHighlight(slotIndex);

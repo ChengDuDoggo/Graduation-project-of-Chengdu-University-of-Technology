@@ -10,6 +10,23 @@ namespace MFarm.Map
         public List<MapData_SO> mapDataList;
         //定义一个字典来保存格子场景名字+格子坐标对应的瓦片信息
         private Dictionary<string, TileDetails> tileDetailesDict = new Dictionary<string, TileDetails>();
+        private Grid currentGrid;
+        private void OnEnable()
+        {
+            EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
+            EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
+        }
+        private void OnDisable()
+        {
+            EventHandler.ExecuteActionAfterAnimation -= OnExecuteActionAfterAnimation;
+            EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
+        }
+
+        private void OnAfterSceneLoadedEvent()
+        {
+            currentGrid = FindObjectOfType<Grid>();
+        }
+
         private void Start()
         {
             foreach (var mapData in mapDataList)
@@ -82,6 +99,26 @@ namespace MFarm.Map
         {
             string key = mouseGridPos.x + "x" + mouseGridPos.y + "y" + SceneManager.GetActiveScene().name;
             return GetTileDetailes(key);
+        }
+        /// <summary>
+        /// 执行实际工具或物品功能
+        /// </summary>
+        /// <param name="mouseWorldPos">鼠标坐标</param>
+        /// <param name="itemDetails">物品信息</param>
+        private void OnExecuteActionAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
+        {
+            var mouseGridPos = currentGrid.WorldToCell(mouseWorldPos);//返回鼠标所指瓦片的坐标
+            var currentTile = GetTileDetailsOnMousePosition(mouseGridPos);//返回鼠标所指瓦片
+            if (currentTile != null)//如果当前瓦片信息不为null
+            {
+                //WORKFLOW:物品使用实际功能
+                switch (itemDetails.itemType)
+                {
+                    case ItemType.Commodity:
+                        EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos);//复制一个商品到鼠标位置
+                        break;
+                }
+            }
         }
     }
 }

@@ -23,12 +23,20 @@ public class Player : MonoBehaviour //控制玩家基本操作的类
         EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         EventHandler.MoveToPosition += OnMoveToPosition;
+        EventHandler.MouseClickedEvent += OnMouseClickedEvent;
     }
     private void OnDisable()
     {
         EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         EventHandler.MoveToPosition -= OnMoveToPosition;
+        EventHandler.MouseClickedEvent -= OnMouseClickedEvent;
+    }
+
+    private void OnMouseClickedEvent(Vector3 pos, ItemDetails itemDatils)
+    {
+        //TODO:执行动画
+        EventHandler.CallExecuteActionAfterAnimation(pos, itemDatils);
     }
 
     private void OnBeforeSceneUnloadEvent()

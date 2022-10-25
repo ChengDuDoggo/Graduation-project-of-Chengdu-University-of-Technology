@@ -10,6 +10,20 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         public ItemDataList_SO itemDataList_SO;//拿到数据库
         [Header("背包数据")]
         public InventoryBag_SO PlayerBag;
+        private void OnEnable()
+        {
+            EventHandler.DropItemEvent += OnDropItemEvent;
+        }
+        private void OnDisable()
+        {
+            EventHandler.DropItemEvent -= OnDropItemEvent;
+        }
+
+        private void OnDropItemEvent(int ID, Vector3 pos)
+        {
+            RemoveItem(ID, 1);
+        }
+
         private void Start()
         {
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//游戏一开始就调用一下更新UI的委托事件
@@ -112,6 +126,27 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
                 PlayerBag.itemList[fromIndex] = new InventoryItem();//new 一个空的InventoryItem
             }
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//刷新一下背包UI
+        }
+        /// <summary>
+        /// 移除指定数量的背包物品
+        /// </summary>
+        /// <param name="ID">物品ID</param>
+        /// <param name="removeAmount">数量</param>
+        private void RemoveItem(int ID,int removeAmount)
+        {
+            var index = GetItemIndexInBag(ID);
+            if (PlayerBag.itemList[index].itemAmount > removeAmount)
+            {
+                var amount = PlayerBag.itemList[index].itemAmount - removeAmount;
+                var item = new InventoryItem { itemID = ID, itemAmount = amount };
+                PlayerBag.itemList[index] = item;
+            }
+            else if (PlayerBag.itemList[index].itemAmount == removeAmount)
+            {
+                var item = new InventoryItem();
+                PlayerBag.itemList[index] = item;
+            }
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//更新一下UI
         }
     }
 }
