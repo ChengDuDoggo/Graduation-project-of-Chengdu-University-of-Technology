@@ -8,7 +8,9 @@ namespace MFarm.Inventory
     public class ItemManager : Singleton<ItemManager>
     {
         public Item itemPrefab;
+        public Item bounceItemPrefab;
         private Transform itemParent;
+        private Transform playerTransform => FindObjectOfType<Player>().transform;
         //记录场景Item
         private Dictionary<string, List<SceneItem>> sceneItemDict = new Dictionary<string, List<SceneItem>>();//该字典通过场景名来保存场景中存在的物体
         private void OnEnable()
@@ -26,11 +28,13 @@ namespace MFarm.Inventory
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         }
 
-        private void OnDropItemEvent(int ID, Vector3 pos)
+        private void OnDropItemEvent(int ID, Vector3 mousePos)
         {
             //TODO:扔东西的效果
-            var item = Instantiate(itemPrefab, pos, Quaternion.identity, itemParent);//克隆物体
+            var item = Instantiate(bounceItemPrefab, playerTransform.position, Quaternion.identity, itemParent);//克隆物体
             item.itemID = ID;
+            var dir = (mousePos - playerTransform.position).normalized;
+            item.GetComponent<ItemBounce>().InitBounceItem(mousePos, dir);
         }
 
         private void OnBeforeSceneUnloadEvent()

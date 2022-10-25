@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d690672582d2f845b8ab98b89656019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneName: 02.Home
+  startSceneName: 01.Field
 --- !u!1 &391829273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 6987847025999153552, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+  bounceItemPrefab: {fileID: 5069120351592743041, guid: 53c5c8f86bb19c947b2caaa723862169, type: 3}
 --- !u!4 &1313016492
 Transform:
   m_ObjectHideFlags: 0
