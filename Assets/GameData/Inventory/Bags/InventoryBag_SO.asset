@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: InventoryBag_SO
   m_EditorClassIdentifier: 
   itemList:
-  - itemID: 0
-    itemAmount: 0
-  - itemID: 0
-    itemAmount: 0
+  - itemID: 1018
+    itemAmount: 1
+  - itemID: 1019
+    itemAmount: 1
   - itemID: 0
     itemAmount: 0
   - itemID: 0
