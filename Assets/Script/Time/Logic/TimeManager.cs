@@ -30,12 +30,18 @@ public class TimeManager : MonoBehaviour
                 UpdateGameTime();
             }
         }
-        if (Input.GetKey(KeyCode.T))//作弊按钮
+        if (Input.GetKey(KeyCode.T))//作弊按钮(时间加快)
         {
             for (int i = 0; i < 60; i++)
             {
                 UpdateGameTime();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.G))//作弊按钮(天数增加)
+        {
+            gameDay++;
+            EventHandler.CallGameDayEvent(gameDay, gameSeason);
+            EventHandler.CallGameDateSeason(gameHour, gameDay, gameMonth, gameYear, gameSeason);
         }
     }
     private void NewGameTime()//新开一局游戏时给游戏初始化赋值
@@ -95,6 +101,8 @@ public class TimeManager : MonoBehaviour
                                 gameYear = 2022;
                             }
                         }
+                        //用来刷新地图和农作物生长
+                        EventHandler.CallGameDayEvent(gameDay, gameSeason);
                     }
                 }
                 //每时间执行到此位置，调用一下委托时间
