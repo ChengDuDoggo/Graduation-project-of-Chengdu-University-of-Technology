@@ -41,6 +41,8 @@ public class AnimatorOverride : MonoBehaviour
         {
             ItemType.Seed => PartType.Carry,//假如itemType是种子,就给currentType赋值PartType.Carry
             ItemType.Commodity => PartType.Carry,
+            ItemType.HolTool => PartType.Hoe,
+            ItemType.WaterTool => PartType.Water,
             _ => PartType.None
         };//语法糖
         if (isSelected == false)
