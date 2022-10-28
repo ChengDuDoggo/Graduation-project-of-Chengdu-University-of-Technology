@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CropDataList_SO
   m_EditorClassIdentifier: 
   cropDetailsList:
-  - seedItemID: 1014
+  - seedItemID: 1002
     growthDays: 0100000002000000020000000300000003000000
     growsPrefabs:
     - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
@@ -30,13 +30,258 @@ MonoBehaviour:
     seasons: 0000000001000000
     harvestToolItemID: fc030000
     requireActionCount: 01000000
-    transferItemID: 1014
+    transferItemID: 0
     producedItemID: f6030000
     produceMinAmount: 01000000
     produceMaxAmount: 03000000
     spawnRadius: {x: 0, y: 0}
     daysToRegrow: 0
     regrowTimes: 0
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1003
+    growthDays: 0100000002000000020000000300000003000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: -1489595994, guid: ba8cb7102384d418883ef909ed3befd5, type: 3}
+    - {fileID: 718811943, guid: ba8cb7102384d418883ef909ed3befd5, type: 3}
+    - {fileID: 1774969089, guid: ba8cb7102384d418883ef909ed3befd5, type: 3}
+    - {fileID: -1256380199, guid: ba8cb7102384d418883ef909ed3befd5, type: 3}
+    - {fileID: -455393919, guid: ba8cb7102384d418883ef909ed3befd5, type: 3}
+    seasons: 0000000001000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: f5030000
+    produceMinAmount: 01000000
+    produceMaxAmount: 02000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1004
+    growthDays: 0100000001000000020000000200000001000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: -605721469, guid: 87430ba1a26c4408191e4027950e7133, type: 3}
+    - {fileID: -1805732352, guid: 87430ba1a26c4408191e4027950e7133, type: 3}
+    - {fileID: -331841672, guid: 87430ba1a26c4408191e4027950e7133, type: 3}
+    - {fileID: -1201955594, guid: 87430ba1a26c4408191e4027950e7133, type: 3}
+    - {fileID: 22577986, guid: 87430ba1a26c4408191e4027950e7133, type: 3}
+    seasons: 0000000001000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: f8030000
+    produceMinAmount: 03000000
+    produceMaxAmount: 06000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1005
+    growthDays: 0200000002000000030000000300000004000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: 1619592865, guid: d51ba492cc4d84616b8153b632a0f330, type: 3}
+    - {fileID: 2133311509, guid: d51ba492cc4d84616b8153b632a0f330, type: 3}
+    - {fileID: 1840255864, guid: d51ba492cc4d84616b8153b632a0f330, type: 3}
+    - {fileID: 1126550860, guid: d51ba492cc4d84616b8153b632a0f330, type: 3}
+    - {fileID: -1700157861, guid: d51ba492cc4d84616b8153b632a0f330, type: 3}
+    seasons: 000000000100000002000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: fd030000
+    produceMinAmount: 08000000
+    produceMaxAmount: 10000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 6
+    regrowTimes: 8
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1006
+    growthDays: 08000000080000000a0000000c00000005000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: -1270250029, guid: 95e7e06c6bf4644f3a4bc7b164e261bf, type: 3}
+    - {fileID: 1885931999, guid: 95e7e06c6bf4644f3a4bc7b164e261bf, type: 3}
+    - {fileID: -1817254309, guid: 95e7e06c6bf4644f3a4bc7b164e261bf, type: 3}
+    - {fileID: 816233219, guid: 95e7e06c6bf4644f3a4bc7b164e261bf, type: 3}
+    - {fileID: -173135368, guid: 95e7e06c6bf4644f3a4bc7b164e261bf, type: 3}
+    seasons: 03000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: fe030000
+    produceMinAmount: 0a000000
+    produceMaxAmount: 32000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 10
+    regrowTimes: 10
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1007
+    growthDays: 0700000006000000080000000800000006000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: 1758879028, guid: 2367379c11bac476d8ae816305d1bf35, type: 3}
+    - {fileID: 629908302, guid: 2367379c11bac476d8ae816305d1bf35, type: 3}
+    - {fileID: -2074996742, guid: 2367379c11bac476d8ae816305d1bf35, type: 3}
+    - {fileID: -1775656775, guid: 2367379c11bac476d8ae816305d1bf35, type: 3}
+    - {fileID: 869094605, guid: 2367379c11bac476d8ae816305d1bf35, type: 3}
+    seasons: 00000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: ff030000
+    produceMinAmount: 01000000
+    produceMaxAmount: 63000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 8
+    regrowTimes: 8
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1008
+    growthDays: 050000000600000006000000080000000800000007000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: 335049101, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: -1150923953, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: -270931293, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: 546229442, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: -1031843392, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    - {fileID: -1889884627, guid: 24e3edf5cfa4d468fbdeed1f09a965a8, type: 3}
+    seasons: 0000000001000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: f4030000
+    produceMinAmount: 05000000
+    produceMaxAmount: 0a000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 12
+    regrowTimes: 12
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1009
+    growthDays: 0300000003000000040000000400000005000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: -171679066, guid: 0f8fa26bd67a74039b2bfcc93554e8a2, type: 3}
+    - {fileID: 2025822110, guid: 0f8fa26bd67a74039b2bfcc93554e8a2, type: 3}
+    - {fileID: 1261225977, guid: 0f8fa26bd67a74039b2bfcc93554e8a2, type: 3}
+    - {fileID: 1188135482, guid: 0f8fa26bd67a74039b2bfcc93554e8a2, type: 3}
+    - {fileID: 1454489578, guid: 0f8fa26bd67a74039b2bfcc93554e8a2, type: 3}
+    seasons: 0000000002000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: f7030000
+    produceMinAmount: 02000000
+    produceMaxAmount: 04000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 6
+    regrowTimes: 10
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1010
+    growthDays: 0200000003000000020000000500000002000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: -2007405922, guid: cfbc4902a2e4349e2986894ea4d8330b, type: 3}
+    - {fileID: 875008789, guid: cfbc4902a2e4349e2986894ea4d8330b, type: 3}
+    - {fileID: 1324347211, guid: cfbc4902a2e4349e2986894ea4d8330b, type: 3}
+    - {fileID: 1065365656, guid: cfbc4902a2e4349e2986894ea4d8330b, type: 3}
+    - {fileID: 675625077, guid: cfbc4902a2e4349e2986894ea4d8330b, type: 3}
+    seasons: 0000000001000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: 00040000
+    produceMinAmount: 14000000
+    produceMaxAmount: 28000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 8
+    regrowTimes: 20
+    generateAtPlayerPostion: 1
+    hasAmiontion: 0
+    hasParticalEffect: 0
+  - seedItemID: 1011
+    growthDays: 0a000000140000000a0000000f00000005000000
+    growsPrefabs:
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    - {fileID: 5075076979360243208, guid: 3a8027e19e92e2e4ea995ef4ccd17c65, type: 3}
+    growthSprites:
+    - {fileID: -1903213204, guid: 8f2e8097fb3aa4be68e23bead3addf6e, type: 3}
+    - {fileID: 1433627235, guid: 8f2e8097fb3aa4be68e23bead3addf6e, type: 3}
+    - {fileID: 2066509890, guid: 8f2e8097fb3aa4be68e23bead3addf6e, type: 3}
+    - {fileID: 47405303, guid: 8f2e8097fb3aa4be68e23bead3addf6e, type: 3}
+    - {fileID: 2095958316, guid: 8f2e8097fb3aa4be68e23bead3addf6e, type: 3}
+    seasons: 01000000
+    harvestToolItemID: fc030000
+    requireActionCount: 01000000
+    transferItemID: 0
+    producedItemID: 01040000
+    produceMinAmount: 03000000
+    produceMaxAmount: 0a000000
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 3
+    regrowTimes: 30
     generateAtPlayerPostion: 1
     hasAmiontion: 0
     hasParticalEffect: 0
