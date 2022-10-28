@@ -72,4 +72,9 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         GameDayEvent?.Invoke(day, season);
     }
+    public static event Action<int, TileDetails> PlantSeedEvent;
+    public static void CallPlantSeedEvent(int ID,TileDetails tile)
+    {
+        PlantSeedEvent?.Invoke(ID, tile);
+    }
 }
