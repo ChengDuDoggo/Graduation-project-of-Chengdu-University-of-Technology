@@ -28,8 +28,9 @@ namespace MFarm.Inventory
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         }
 
-        private void OnDropItemEvent(int ID, Vector3 mousePos)
+        private void OnDropItemEvent(int ID, Vector3 mousePos,ItemType itemType)
         {
+            if (itemType == ItemType.Seed) return;
             //TODO:扔东西的效果
             var item = Instantiate(bounceItemPrefab, playerTransform.position, Quaternion.identity, itemParent);//克隆物体
             item.itemID = ID;

@@ -57,6 +57,10 @@ public class AnimatorOverride : MonoBehaviour
                 holdItem.sprite = itemDetails.itemOnWorldIcon;
                 holdItem.enabled = true;
             }
+            else
+            {
+                holdItem.enabled = false;
+            }
         }
         SwitchAnimator(currentType);
     }

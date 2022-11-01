@@ -52,6 +52,11 @@ namespace MFarm.Map
                 {
                     tile.Value.daysSinceDug = -1;//如果一个格子被开垦五天且没有种植种子,则变回泥土地
                     tile.Value.canDig = true;
+                    tile.Value.growthDays = -1;
+                }
+                if (tile.Value.seedItemID != -1)
+                {
+                    tile.Value.growthDays++;
                 }
             }
             RefreshMap();
@@ -155,9 +160,10 @@ namespace MFarm.Map
                 {
                     case ItemType.Seed:
                         EventHandler.CallPlantSeedEvent(itemDetails.itemID, currentTile);
+                        EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos,itemDetails.itemType);
                         break;
                     case ItemType.Commodity:
-                        EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos);//复制一个商品到鼠标位置
+                        EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);//复制一个商品到鼠标位置
                         break;
                     case ItemType.HolTool:
                         SetDigGround(currentTile);
@@ -224,6 +230,10 @@ namespace MFarm.Map
             {
                 waterTilemap.ClearAllTiles();
             }
+            foreach (var crop in FindObjectsOfType<Crop>())
+            {
+                Destroy(crop.gameObject);
+            }
             DisplayMap(SceneManager.GetActiveScene().name);
         }
         /// <summary>
@@ -247,6 +257,8 @@ namespace MFarm.Map
                         SetWaterGround(tileDetails);
                     }
                     //TODO:种子
+                    if (tileDetails.seedItemID > -1)//当前格子中有种子信息
+                        EventHandler.CallPlantSeedEvent(tileDetails.seedItemID, tileDetails);
                 }
             }
         }

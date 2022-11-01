@@ -17,10 +17,10 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         InstantiateItemInScene?.Invoke(ID,pos);
     }
-    public static event Action<int, Vector3> DropItemEvent;//ÈËÎï¶ªÆúµÀ¾ßºó´¥·¢ÊÂ¼şÎ¯ÍĞ
-    public static void CallDropItemEvent(int ID,Vector3 pos)
+    public static event Action<int, Vector3,ItemType> DropItemEvent;//ÈËÎï¶ªÆúµÀ¾ßºó´¥·¢ÊÂ¼şÎ¯ÍĞ
+    public static void CallDropItemEvent(int ID,Vector3 pos,ItemType itemType)
     {
-        DropItemEvent?.Invoke(ID, pos);
+        DropItemEvent?.Invoke(ID, pos,itemType);
     }
     public static event Action<ItemDetails, bool> ItemSelectedEvent;
     public static void CallItemSelectedEvent(ItemDetails itemDetails,bool isSelected)

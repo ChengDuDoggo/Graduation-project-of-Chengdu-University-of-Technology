@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace MFarm.Crop
+namespace MFarm.CropPlant
 {
     public class CropManager : MonoBehaviour
     {

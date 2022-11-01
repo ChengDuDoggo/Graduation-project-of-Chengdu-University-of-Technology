@@ -19,7 +19,7 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
             EventHandler.DropItemEvent -= OnDropItemEvent;
         }
 
-        private void OnDropItemEvent(int ID, Vector3 pos)
+        private void OnDropItemEvent(int ID, Vector3 pos,ItemType itemType)
         {
             RemoveItem(ID, 1);
         }
