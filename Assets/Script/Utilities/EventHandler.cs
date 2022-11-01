@@ -77,4 +77,9 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         PlantSeedEvent?.Invoke(ID, tile);
     }
+    public static event Action<int> HarvestAtPlayerPostion;//ÔÚÍæ¼ÒÖ¸¶¨Î»ÖÃÉú³ÉIDÎïÆ·
+    public static void CallHarvestAtPlayerPostion(int ID)
+    {
+        HarvestAtPlayerPostion?.Invoke(ID);
+    }
 }

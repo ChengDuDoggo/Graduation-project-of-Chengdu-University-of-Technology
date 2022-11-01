@@ -160,7 +160,10 @@ public class CursorManager : MonoBehaviour
                 case ItemType.CollectTool:
                     if (currentCrop != null)
                     {
-                        if (currentTile.growthDays >= currentCrop.TotalGrowthDays) SetCursorValid(); else SetCursorInvalid();//种子成熟后才可以选中
+                        if (currentCrop.CheckToolAvailable(currentItem.itemID))//判断手里拿的工具ID是否和收割工具ID匹配
+                        {
+                            if (currentTile.growthDays >= currentCrop.TotalGrowthDays) SetCursorValid(); else SetCursorInvalid();//种子成熟后才可以选中
+                        }
                     }
                     else
                     {

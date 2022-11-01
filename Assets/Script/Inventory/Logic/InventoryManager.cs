@@ -13,10 +13,20 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         private void OnEnable()
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
+            EventHandler.HarvestAtPlayerPostion += OnHarvestAtPlayerPostion;
         }
         private void OnDisable()
         {
             EventHandler.DropItemEvent -= OnDropItemEvent;
+            EventHandler.HarvestAtPlayerPostion -= OnHarvestAtPlayerPostion;
+        }
+
+        private void OnHarvestAtPlayerPostion(int ID)
+        {
+            var index = GetItemIndexInBag(ID);
+            AddItemAtIndex(ID, index, 1);
+            //更新UI
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);
         }
 
         private void OnDropItemEvent(int ID, Vector3 pos,ItemType itemType)

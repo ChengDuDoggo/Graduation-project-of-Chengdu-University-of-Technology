@@ -1,4 +1,5 @@
 using System.Collections;
+using MFarm.Inventory;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,11 +22,30 @@ public class AnimatorOverride : MonoBehaviour
     {
         EventHandler.ItemSelectedEvent += OnItemSelectedEvent;
         EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
+        EventHandler.HarvestAtPlayerPostion += OnHarvestAtPlayerPostion;
     }
     private void OnDisable()
     {
         EventHandler.ItemSelectedEvent -= OnItemSelectedEvent;
         EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
+        EventHandler.HarvestAtPlayerPostion -= OnHarvestAtPlayerPostion;
+    }
+
+    private void OnHarvestAtPlayerPostion(int ID)
+    {
+        //显示对应物品的图片
+        Sprite itemSprite = InventoryManager.Instance.GetItemDetails(ID).itemOnWorldIcon;
+        if(holdItem.enabled == false)
+        {
+            StartCoroutine(ShowItem(itemSprite));
+        }
+    }
+    private IEnumerator ShowItem(Sprite itemSprite)
+    {
+        holdItem.sprite = itemSprite;
+        holdItem.enabled = true;
+        yield return new WaitForSeconds(1.0f);
+        holdItem.enabled = false;
     }
 
     private void OnBeforeSceneUnloadEvent()

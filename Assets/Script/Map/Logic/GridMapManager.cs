@@ -180,6 +180,7 @@ namespace MFarm.Map
                     case ItemType.CollectTool:
                         Crop currentCrop = GetCropObject(mouseWorldPos);
                         //执行收割方法
+                        currentCrop.ProcessToolAction(itemDetails);
                         break;
                 }
                 UpdateTileDetails(currentTile);

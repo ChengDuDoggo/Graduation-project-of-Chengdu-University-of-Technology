@@ -44,4 +44,28 @@ public class CropDetails
     public bool hasAmiontion;//是否有动画
     public bool hasParticalEffect;//是否有粒子特效
     //TODO:特效,音效等
+
+    public bool CheckToolAvailable(int toolID)//判断当前所持工具是否可用
+    {
+        foreach (var tool in harvestToolItemID)
+        {
+            if (tool == toolID)
+                return true;
+        }
+        return false;
+    }
+    /// <summary>
+    /// 返回工具需要使用的次数
+    /// </summary>
+    /// <param name="toolID">工具ID</param>
+    /// <returns></returns>
+    public int GetTotalRequireCount(int toolID)
+    {
+        for (int i = 0; i < harvestToolItemID.Length; i++)
+        {
+            if (harvestToolItemID[i] == toolID)
+                return requireActionCount[i];
+        }
+        return -1;
+    }
 }
