@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace MFarm.CropPlant
 {
-    public class CropManager : MonoBehaviour
+    public class CropManager : Singleton<CropManager>
     {
         public CropDataList_SO cropData;
         private Transform cropParent;
@@ -78,13 +78,14 @@ namespace MFarm.CropPlant
             GameObject cropInstance = Instantiate(cropPrefab, pos, Quaternion.identity, cropParent);
             //添加图片
             cropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
+            cropInstance.GetComponent<Crop>().cropDetails = cropDetails;
         }
         /// <summary>
         /// 通过物品ID查找种子信息
         /// </summary>
         /// <param name="ID">种子ID</param>
         /// <returns></returns>
-        private CropDetails GetCropDetails(int ID)
+        public CropDetails GetCropDetails(int ID)
         {
             return cropData.cropDetailsList.Find(c => c.seedItemID == ID);//拉姆达表达式
         }

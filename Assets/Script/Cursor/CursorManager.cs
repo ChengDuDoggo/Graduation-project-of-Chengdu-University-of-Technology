@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using MFarm.CropPlant;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -119,6 +118,7 @@ public class CursorManager : MonoBehaviour
                 ItemType.BreakTool => tool,
                 ItemType.ReapTool => tool,
                 ItemType.Furniture => tool,
+                ItemType.CollectTool => tool,
                 _ => normal //默认返回的是normal图片
             };
             cursorEnable = true;
@@ -141,6 +141,8 @@ public class CursorManager : MonoBehaviour
         TileDetails currentTile = GridMapManager.Instance.GetTileDetailsOnMousePosition(mouseGridPos);
         if (currentTile != null)
         {
+            //拿到种植下的种子数据
+            CropDetails currentCrop = CropManager.Instance.GetCropDetails(currentTile.seedItemID);
             switch (currentItem.itemType)
             {
                 case ItemType.Seed:
@@ -154,6 +156,16 @@ public class CursorManager : MonoBehaviour
                     break;
                 case ItemType.WaterTool:
                     if (currentTile.daysSinceDug > -1 && currentTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInvalid();
+                    break;
+                case ItemType.CollectTool:
+                    if (currentCrop != null)
+                    {
+                        if (currentTile.growthDays >= currentCrop.TotalGrowthDays) SetCursorValid(); else SetCursorInvalid();//种子成熟后才可以选中
+                    }
+                    else
+                    {
+                        SetCursorInvalid();
+                    }
                     break;
             }
         }
