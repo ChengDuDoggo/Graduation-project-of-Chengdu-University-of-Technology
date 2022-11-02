@@ -143,6 +143,7 @@ public class CursorManager : MonoBehaviour
         {
             //拿到种植下的种子数据
             CropDetails currentCrop = CropManager.Instance.GetCropDetails(currentTile.seedItemID);
+            Crop crop = GridMapManager.Instance.GetCropObject(mouseWorldPos);
             switch (currentItem.itemType)
             {
                 case ItemType.Seed:
@@ -158,6 +159,11 @@ public class CursorManager : MonoBehaviour
                     if (currentTile.daysSinceDug > -1 && currentTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInvalid();
                     break;
                 case ItemType.ChopTool:
+                    if (crop != null)
+                    {
+                        if(crop.canHarvest&&crop.cropDetails.CheckToolAvailable(currentItem.itemID)) SetCursorValid(); else SetCursorInvalid();
+                    }
+                    break;
                 case ItemType.CollectTool:
                     if (currentCrop != null)
                     {

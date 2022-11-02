@@ -45,7 +45,7 @@ public class Player : MonoBehaviour //控制玩家基本操作的类
         if(itemDatils.itemType!= ItemType.Seed && itemDatils.itemType != ItemType.Commodity && itemDatils.itemType != ItemType.Furniture)
         {
             mouseX = mouseWorldPos.x - transform.position.x;
-            mouseY = mouseWorldPos.y - transform.position.y;
+            mouseY = mouseWorldPos.y - (transform.position.y+0.85f);
             if (Mathf.Abs(mouseX) > Mathf.Abs(mouseY))
             {
                 mouseY = 0;

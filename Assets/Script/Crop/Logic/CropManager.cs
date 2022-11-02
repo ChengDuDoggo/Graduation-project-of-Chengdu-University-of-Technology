@@ -79,6 +79,7 @@ namespace MFarm.CropPlant
             //添加图片
             cropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
             cropInstance.GetComponent<Crop>().cropDetails = cropDetails;
+            cropInstance.GetComponent<Crop>().tileDetails = tileDetails;
         }
         /// <summary>
         /// 通过物品ID查找种子信息

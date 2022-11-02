@@ -5,8 +5,9 @@ using UnityEngine;
 public class Crop : MonoBehaviour
 {
     public CropDetails cropDetails;
-    private TileDetails tileDetails;
+    public TileDetails tileDetails;
     private int harvestActionCount;
+    public bool canHarvest => tileDetails.growthDays >= cropDetails.TotalGrowthDays;//判断是否能够收获
     private Animator anim;
     private Transform PlayerTransform => FindObjectOfType<Player>().transform;
     public void ProcessToolAction(ItemDetails tool,TileDetails tile)//执行工具的行为

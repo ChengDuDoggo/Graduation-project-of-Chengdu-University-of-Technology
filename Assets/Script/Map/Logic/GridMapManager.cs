@@ -157,6 +157,7 @@ namespace MFarm.Map
             var currentTile = GetTileDetailsOnMousePosition(mouseGridPos);//返回鼠标所指瓦片
             if (currentTile != null)//如果当前瓦片信息不为null
             {
+                Crop currentCrop = GetCropObject(mouseWorldPos);
                 //WORKFLOW:物品使用实际功能
                 switch (itemDetails.itemType)
                 {
@@ -180,8 +181,10 @@ namespace MFarm.Map
                         //音效
                         break;
                     case ItemType.ChopTool:
+                        //执行收割方法
+                        currentCrop.ProcessToolAction(itemDetails, currentCrop.tileDetails);
+                        break;
                     case ItemType.CollectTool:
-                        Crop currentCrop = GetCropObject(mouseWorldPos);
                         //执行收割方法
                         currentCrop.ProcessToolAction(itemDetails,currentTile);
                         break;
@@ -194,7 +197,7 @@ namespace MFarm.Map
         /// </summary>
         /// <param name="mouseWorldPos">鼠标点击位置</param>
         /// <returns></returns>
-        private Crop GetCropObject(Vector3 mouseWorldPos)
+        public Crop GetCropObject(Vector3 mouseWorldPos)
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);//Physics2D.OverlapPointAll:返回某个点周围的所有碰撞体放到一个数组中
             Crop currentCrop = null;
