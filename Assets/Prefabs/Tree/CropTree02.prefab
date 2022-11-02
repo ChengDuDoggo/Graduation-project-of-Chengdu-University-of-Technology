@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4978418091011673479}
   - component: {fileID: 4978418091011673476}
   m_Layer: 0
-  m_Name: Tree01_Bottom
+  m_Name: Tree02_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 4978418091899883186}
   - component: {fileID: 535151240143872227}
   m_Layer: 0
-  m_Name: Tree01_Top
+  m_Name: Tree02_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,3 +398,15 @@ MonoBehaviour:
     generateAtPlayerPostion: 0
     hasAnimation: 0
     hasParticalEffect: 0
+  tileDetails:
+    gridX: 0
+    gridY: 0
+    canDig: 0
+    canDropItm: 0
+    canPlaceFurniturn: 0
+    isNPCObstacle: 0
+    daysSinceDug: -1
+    daysSinceWatered: -1
+    seedItemID: -1
+    growthDays: -1
+    daysSinceLastHarvest: -1

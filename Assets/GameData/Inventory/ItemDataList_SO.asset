@@ -354,7 +354,7 @@ MonoBehaviour:
     itemType: 1
     itemIcon: {fileID: 21300000, guid: 6bdcabcb3e8684660981c3dbfa135c8d, type: 3}
     itemOnWorldIcon: {fileID: 21300000, guid: 018bd79f696fb400584536e445976758, type: 3}
-    itemDescription: "\u5728Minecraft\u4E2D\uFF0C\u6A61\u6728\u662F\u5EFA\u9020\u7684\u597D\u6750\u6599\uFF0C\u5F53\u7136\uFF0C\u8FD9\u4E2A\u6E38\u620F\u4E5F\u4E0D\u4F8B\u5916\u3002"
+    itemDescription: "\u5728Minecraft\u4E2D,\u6A61\u6728\u662F\u5EFA\u9020\u7684\u597D\u6750\u6599,\u5F53\u7136,\u8FD9\u4E2A\u6E38\u620F\u4E5F\u4E0D\u4F8B\u5916."
     itemUseRadius: 2
     canPickedUp: 1
     canDropped: 1

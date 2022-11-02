@@ -50,8 +50,9 @@ namespace MFarm.Inventory
         }
         private void OnInstantiateItemInScene(int ID, Vector3 pos)
         {
-            var item = Instantiate(itemPrefab, pos, Quaternion.identity, itemParent);//克隆物体
+            var item = Instantiate(bounceItemPrefab, pos, Quaternion.identity, itemParent);//克隆物体
             item.itemID = ID;
+            item.GetComponent<ItemBounce>().InitBounceItem(pos, Vector3.up);
         }
         /// <summary>
         /// 获得当前场景中的所有Item
