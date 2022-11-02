@@ -5,9 +5,11 @@ using UnityEngine;
 public class Crop : MonoBehaviour
 {
     public CropDetails cropDetails;
+    private TileDetails tileDetails;
     private int harvestActionCount;
-    public void ProcessToolAction(ItemDetails tool)//执行工具的行为
+    public void ProcessToolAction(ItemDetails tool,TileDetails tile)//执行工具的行为
     {
+        tileDetails = tile;
         //工具使用次数
         int requireActionCount = cropDetails.GetTotalRequireCount(tool.itemID);
         if (requireActionCount == -1) return;
@@ -54,7 +56,29 @@ public class Crop : MonoBehaviour
                 {
                     EventHandler.CallHarvestAtPlayerPostion(cropDetails.producedItemID[i]);
                 }
+                else//在世界地图上生成物品
+                {
+
+                }
             }
+        }
+        if (tileDetails != null)
+        {
+            tileDetails.daysSinceLastHarvest++;//表明重复收获了一次
+            //判断是否可以重复生长
+            if (cropDetails.daysToRegrow > 0 && tileDetails.daysSinceLastHarvest < cropDetails.regrowTimes)
+            {
+                tileDetails.growthDays = cropDetails.TotalGrowthDays - cropDetails.daysToRegrow;
+                //刷新种子
+                EventHandler.CallRefreshCurrentMap();//这里刷新种子阶段是直接刷新整张地图,而不是只单纯刷新这个种子
+                /*这里只是改变了当前种子的生长阶段的时间,所以刷新整张地图的话,只有当前种子数据发生变化了,并不会影响地图上的其他物品*/
+            }
+            else//不可重复生长
+            {
+                tileDetails.daysSinceLastHarvest = -1;
+                tileDetails.seedItemID = -1;
+            }
+            Destroy(gameObject);
         }
     }
 }

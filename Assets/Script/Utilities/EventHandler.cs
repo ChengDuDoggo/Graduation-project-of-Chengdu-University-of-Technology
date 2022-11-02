@@ -82,4 +82,9 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         HarvestAtPlayerPostion?.Invoke(ID);
     }
+    public static event Action RefreshCurrentMap;//Ë¢ĞÂµ±Ç°µØÍ¼Î¯ÍĞÊÂ¼ş
+    public static void CallRefreshCurrentMap()
+    {
+        RefreshCurrentMap?.Invoke();
+    }
 }
