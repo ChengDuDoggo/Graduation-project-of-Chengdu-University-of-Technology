@@ -211,7 +211,7 @@ MonoBehaviour:
     itemIcon: {fileID: 21300000, guid: 5809980803ddf45a1aa8df14dbc00394, type: 3}
     itemOnWorldIcon: {fileID: 21300000, guid: 0d5f887d0ba144b7180f3e33336beac5, type: 3}
     itemDescription: "\u6E29\u5E26\u5927\u9646\u6C14\u5019\u5E7F\u6CDB\u5206\u5E03\u7684\u6E29\u5E26\u9488\u53F6\u6797"
-    itemUseRadius: 0
+    itemUseRadius: 2
     canPickedUp: 1
     canDropped: 1
     canCarried: 1
@@ -313,3 +313,63 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 500
     sellPercentage: 0.5
+  - itemID: 1026
+    itemName: "\u677E\u5B50\u513F"
+    itemType: 0
+    itemIcon: {fileID: 21300000, guid: 9930d861d3ccf4ddc87536ae85a56425, type: 3}
+    itemOnWorldIcon: {fileID: 21300000, guid: 3979be82862ab4b42be8e0b3222694bc, type: 3}
+    itemDescription: "\u6216\u8BB8\u53EF\u4EE5\u62FF\u6765\u5356\u94B1,\u4F46\u662F\u4E3A\u4EC0\u4E48\u4E0D\u8BD5\u8BD5\u79CD\u5728\u5730\u91CC\u5462\uFF1F"
+    itemUseRadius: 1
+    canPickedUp: 1
+    canDropped: 0
+    canCarried: 1
+    itemPrice: 50
+    sellPercentage: 0.1
+  - itemID: 1027
+    itemName: "\u9488\u53F6\u6811\u6839\u513F"
+    itemType: 9
+    itemIcon: {fileID: 21300000, guid: f92caccf9fb8e45bcb3b3b1116dcbf48, type: 3}
+    itemOnWorldIcon: {fileID: 21300000, guid: f92caccf9fb8e45bcb3b3b1116dcbf48, type: 3}
+    itemDescription: 
+    itemUseRadius: 0
+    canPickedUp: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0
+  - itemID: 1028
+    itemName: "\u6A61\u5B50\u513F"
+    itemType: 0
+    itemIcon: {fileID: 21300000, guid: 1ae82374d0e4445118e47ce07e8426fe, type: 3}
+    itemOnWorldIcon: {fileID: 21300000, guid: 83539708444bc497b8d9f5bba223cc6f, type: 3}
+    itemDescription: "\u6A61\u679C\u56FD\u9645\uFF01"
+    itemUseRadius: 1
+    canPickedUp: 1
+    canDropped: 0
+    canCarried: 1
+    itemPrice: 8
+    sellPercentage: 0.3
+  - itemID: 1029
+    itemName: "\u6A61\u6728\u6728\u6750"
+    itemType: 1
+    itemIcon: {fileID: 21300000, guid: 6bdcabcb3e8684660981c3dbfa135c8d, type: 3}
+    itemOnWorldIcon: {fileID: 21300000, guid: 018bd79f696fb400584536e445976758, type: 3}
+    itemDescription: "\u5728Minecraft\u4E2D\uFF0C\u6A61\u6728\u662F\u5EFA\u9020\u7684\u597D\u6750\u6599\uFF0C\u5F53\u7136\uFF0C\u8FD9\u4E2A\u6E38\u620F\u4E5F\u4E0D\u4F8B\u5916\u3002"
+    itemUseRadius: 2
+    canPickedUp: 1
+    canDropped: 1
+    canCarried: 1
+    itemPrice: 50
+    sellPercentage: 0.8
+  - itemID: 1030
+    itemName: "\u6A61\u6728\u6811\u6839\u513F"
+    itemType: 9
+    itemIcon: {fileID: 21300000, guid: 774ad8d2636c5457e81a95a3e1f2352d, type: 3}
+    itemOnWorldIcon: {fileID: 21300000, guid: 774ad8d2636c5457e81a95a3e1f2352d, type: 3}
+    itemDescription: 
+    itemUseRadius: 0
+    canPickedUp: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0

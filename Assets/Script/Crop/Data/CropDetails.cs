@@ -41,7 +41,7 @@ public class CropDetails
     public int regrowTimes;//再次生长几次
     [Header("Options")]
     public bool generateAtPlayerPostion;
-    public bool hasAmiontion;//是否有动画
+    public bool hasAnimation;//是否有动画
     public bool hasParticalEffect;//是否有粒子特效
     //TODO:特效,音效等
 

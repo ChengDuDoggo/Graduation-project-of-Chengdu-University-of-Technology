@@ -15,7 +15,7 @@ public enum InventoryLocation//ÅĞ¶ÏUI¸üĞÂµ½ÄÄÀï£¬ÊÇ¸üĞÂÈËÎïÉíÉÏµÄ¸ñ×Ó»¹ÊÇÏä×ÓÀïµ
 }
 public enum PartType//ÅĞ¶ÏÄÃµ½ÊÖÉÏµÄ¹¤¾ßÀàĞÍ
 {
-    None,Carry,Hoe,Break,Water,Collect
+    None,Carry,Hoe,Break,Water,Collect,Chop
 }
 public enum PartName//ÎïÌåĞèÒªÉíÉÏÄÇ¸ö²¿Î»ÄÃÈ¡
 {
