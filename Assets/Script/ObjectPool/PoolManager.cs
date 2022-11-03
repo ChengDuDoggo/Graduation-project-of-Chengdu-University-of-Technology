@@ -36,7 +36,7 @@ public class PoolManager : MonoBehaviour
             //创建对象池,为了简洁方便,这里可以使用拉姆达表达式
             //拉姆达表达式实质就是一个函数重载的简写形式,可以不用,但是使用的话会让代码更高级
             var newPool = new ObjectPool<GameObject>(
-                    () => Instantiate(item,parent),//重载第一项:触发对象池时你要做什么(函数)
+                    () => Instantiate(item,parent),//重载第一项:触发对象池时你要做什么(函数)[Get调用时]
                     e => { e.SetActive(true); },//重载第二项:从对象池中得到对象时你要做什么(函数)[Get调用时]
                     e => { e.SetActive(false); },//重载第三项:从对象池中释放掉物品的时候你要做什么(函数)[Relesea调用时]
                     e => { Destroy(e); }//重载第四项:销毁对象池时你要做什么(函数)
