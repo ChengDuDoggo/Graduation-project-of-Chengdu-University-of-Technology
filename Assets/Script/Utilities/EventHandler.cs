@@ -87,4 +87,9 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         RefreshCurrentMap?.Invoke();
     }
+    public static event Action<ParticaleEffectType, Vector3> ParticaleEffectEvent;//´¥·¢ÌØĞ§ÊÂ¼şÎ¯ÍĞ
+    public static void CallParticaleEffectEvent(ParticaleEffectType effectType,Vector3 pos)
+    {
+        ParticaleEffectEvent?.Invoke(effectType, pos);
+    }
 }
