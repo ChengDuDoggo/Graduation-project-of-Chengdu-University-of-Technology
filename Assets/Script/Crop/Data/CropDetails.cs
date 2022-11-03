@@ -44,7 +44,7 @@ public class CropDetails
     public bool hasAnimation;//是否有动画
     public bool hasParticalEffect;//是否有粒子特效
     //TODO:特效,音效等
-
+    public ParticaleEffectType effectType;
     public bool CheckToolAvailable(int toolID)//判断当前所持工具是否可用
     {
         foreach (var tool in harvestToolItemID)

@@ -29,3 +29,7 @@ public enum GridType//网格的类型
 {
     Digable,DropItem,PlaceFurniture,NPCObstacle//NPC行走的路径
 }
+public enum ParticaleEffectType//特效的类型
+{
+    None,LeavesFalling01,LeavesFalling02,Rock,ReapableScenery/*割稻草特效*/
+}
