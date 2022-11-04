@@ -92,4 +92,9 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         ParticaleEffectEvent?.Invoke(effectType, pos);
     }
+    public static event Action GenerateCropEvent;
+    public static void CallGenerateCropEvent()//Ö±½ÓÔÚ³¡¾°ÖĞÉú³ÉÖÖ×ÓÊ÷Å©×÷ÎïµÈÊÂ¼ş
+    {
+        GenerateCropEvent?.Invoke();
+    }
 }

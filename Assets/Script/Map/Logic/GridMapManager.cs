@@ -16,6 +16,8 @@ namespace MFarm.Map
         public List<MapData_SO> mapDataList;
         //定义一个字典来保存格子场景名字+格子坐标对应的瓦片信息
         private Dictionary<string, TileDetails> tileDetailesDict = new Dictionary<string, TileDetails>();
+        //记录场景是否第一次加载
+        private Dictionary<string, bool> firstLoadDic = new Dictionary<string, bool>();
         private Grid currentGrid;
         private Season currentSeason;
         private void OnEnable()
@@ -70,6 +72,13 @@ namespace MFarm.Map
             digTilemap = GameObject.FindWithTag("Dig").GetComponent<Tilemap>();
             waterTilemap = GameObject.FindWithTag("Water").GetComponent<Tilemap>();
             /*DisplayMap(SceneManager.GetActiveScene().name);*/
+            if (firstLoadDic[SceneManager.GetActiveScene().name])
+            {
+                //预先生成农作物
+                EventHandler.CallGenerateCropEvent();
+                firstLoadDic[SceneManager.GetActiveScene().name] = false;//将当前场景的是否是第一次激活状态改为false
+            }
+
             RefreshMap();
         }
 
@@ -77,6 +86,7 @@ namespace MFarm.Map
         {
             foreach (var mapData in mapDataList)
             {
+                firstLoadDic.Add(mapData.sceneName, true);//所有的场景都是第一次加载,加载场景之后就把它改为False
                 InitTileDetailsDict(mapData);
             }
         }
@@ -180,9 +190,10 @@ namespace MFarm.Map
                         currentTile.daysSinceWatered = 0;
                         //音效
                         break;
+                    case ItemType.BreakTool:
                     case ItemType.ChopTool:
                         //执行收割方法
-                        currentCrop.ProcessToolAction(itemDetails, currentCrop.tileDetails);
+                        currentCrop?.ProcessToolAction(itemDetails, currentCrop.tileDetails);
                         break;
                     case ItemType.CollectTool:
                         //执行收割方法
@@ -238,12 +249,16 @@ namespace MFarm.Map
         /// 更新瓦片信息
         /// </summary>
         /// <param name="tileDetails"></param>
-        private void UpdateTileDetails(TileDetails tileDetails)
+        public void UpdateTileDetails(TileDetails tileDetails)
         {
             string key = tileDetails.gridX + "x" + tileDetails.gridY + "y" + SceneManager.GetActiveScene().name;
             if (tileDetailesDict.ContainsKey(key))
             {
                 tileDetailesDict[key] = tileDetails;
+            }
+            else
+            {
+                tileDetailesDict.Add(key, tileDetails);
             }
         }
         /// <summary>
