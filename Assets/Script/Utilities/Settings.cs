@@ -17,4 +17,6 @@ public class Settings //自己编写的一个静态设置类，相当于写了一个设置按钮来控制工
     public const int seasonHold = 3;
     //Transition
     public const float fadeDuration = 1.5f;//场景切换动画持续事件
+    //割草数量限制
+    public const int reapAmount = 2;
 }

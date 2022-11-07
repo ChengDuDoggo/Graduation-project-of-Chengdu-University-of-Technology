@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using MFarm.CropPlant;
 namespace MFarm.Map
 {
     public class GridMapManager : Singleton<GridMapManager>
@@ -20,6 +21,8 @@ namespace MFarm.Map
         private Dictionary<string, bool> firstLoadDic = new Dictionary<string, bool>();
         private Grid currentGrid;
         private Season currentSeason;
+        //杂草列表
+        private List<ReapItem> itemsInRadius;
         private void OnEnable()
         {
             EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
@@ -199,6 +202,20 @@ namespace MFarm.Map
                         //执行收割方法
                         currentCrop.ProcessToolAction(itemDetails,currentTile);
                         break;
+                    case ItemType.ReapTool:
+                        var reapCount = 0;
+                        for (int i = 0; i < itemsInRadius.Count; i++)
+                        {
+                            EventHandler.CallParticaleEffectEvent(ParticaleEffectType.ReapableScenery, itemsInRadius[i].transform.position + Vector3.up);
+                            itemsInRadius[i].SpawnHarvestItems();
+                            Destroy(itemsInRadius[i].gameObject);
+                            reapCount++;
+                            if (reapCount >= Settings.reapAmount)
+                            {
+                                break;//限制一下一次性能收割的草数量避免直接收割一大片
+                            }
+                        }
+                        break;
                 }
                 UpdateTileDetails(currentTile);
             }
@@ -220,6 +237,35 @@ namespace MFarm.Map
                 }
             }
             return currentCrop;
+        }
+        /// <summary>
+        /// 判断在鼠标检测范围之内是否有可实现收割的物品(草)
+        /// </summary>
+        /// <returns></returns>
+        public bool HaveReapableItemsInRadius(Vector3 mouseWorldPos,ItemDetails tool)
+        {
+            itemsInRadius = new List<ReapItem>();
+            Collider2D[] colliders = new Collider2D[20];//检测到的碰撞体放入数组中
+            //圆形物理检测(检测的中心点,检测的范围,检测到的物体放入到的数组)
+            //OverlapCircleNonAlloc和OverlapCircle的区别
+            //OverlapCircle会系统自动帮你将检测到的物体不断new创建放入到临时List列表中
+            //OverlapCircleNonAlloc是你事先设定好一个固定大小的数组,避免系统自己new列表来产生缓存,减少CG
+            Physics2D.OverlapCircleNonAlloc(mouseWorldPos, tool.itemUseRadius, colliders);
+            if (colliders.Length > 0)
+            {
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    if (colliders[i] != null)
+                    {
+                        if (colliders[i].GetComponent<ReapItem>())
+                        {
+                            var item = colliders[i].GetComponent<ReapItem>();
+                            itemsInRadius.Add(item);//将ReapItem放入列表中
+                        }
+                    }
+                }
+            }
+            return itemsInRadius.Count > 0;
         }
         /// <summary>
         /// 显示挖坑瓦片

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MFarm.CropPlant;
 namespace MFarm.Inventory
 {
     public class Item : MonoBehaviour //掉落在世界的物品，绑定数据
@@ -31,6 +32,12 @@ namespace MFarm.Inventory
             Vector2 newSize = new Vector2(spriteRenderer.sprite.bounds.size.x, spriteRenderer.sprite.bounds.size.y);
             coll.size = newSize;
             coll.offset = new Vector2(0, spriteRenderer.sprite.bounds.center.y);
+            if(itemDetails.itemType == ItemType.ReapableScenery)
+            {
+                gameObject.AddComponent<ReapItem>();
+                gameObject.GetComponent<ReapItem>().InitCropData(itemDetails.itemID);
+                gameObject.AddComponent<ItemInterActive>();
+            }
         }
     }
 }

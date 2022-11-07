@@ -475,8 +475,8 @@ MonoBehaviour:
     itemIcon: {fileID: 21300000, guid: 9aae36af8a3474f72a99e04af71b7044, type: 3}
     itemOnWorldIcon: {fileID: 0}
     itemDescription: "\u6C34\u4E4B\u547C\u5438!\u6C34\u8C03\u5272\u5934!"
-    itemUseRadius: 0
-    canPickedUp: 0
+    itemUseRadius: 1
+    canPickedUp: 1
     canDropped: 0
     canCarried: 0
     itemPrice: 0
