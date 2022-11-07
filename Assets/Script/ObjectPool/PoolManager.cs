@@ -41,6 +41,7 @@ public class PoolManager : MonoBehaviour
                     e => { e.SetActive(false); },//重载第三项:从对象池中释放掉物品的时候你要做什么(函数)[Relesea调用时]
                     e => { Destroy(e); }//重载第四项:销毁对象池时你要做什么(函数)
                     //e,代表的是对象池中存放的每一个Object,这里是GameObject类型的
+                    //重载中的函数将会在其他指定的函数调用时产生回调,回调时执行其中的函数
                 );
             poolEffectList.Add(newPool);//将新创建的对象池放入到对象池列表当中
         }
@@ -53,6 +54,8 @@ public class PoolManager : MonoBehaviour
         {
             ParticaleEffectType.LeavesFalling01 => poolEffectList[0],
             ParticaleEffectType.LeavesFalling02 => poolEffectList[1],
+            ParticaleEffectType.Rock => poolEffectList[2],
+            ParticaleEffectType.ReapableScenery => poolEffectList[3],
             _ => null,//默认为null
         };
         GameObject obj = objPool.Get();//从对象池中拿出具体的特效(对象);Get():Unity对象池系统自带的函数方法

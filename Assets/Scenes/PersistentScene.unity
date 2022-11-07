@@ -474,6 +474,8 @@ MonoBehaviour:
   poolPrefabs:
   - {fileID: 2156738730007181511, guid: 83de47d53aae98144ad7857081cc5533, type: 3}
   - {fileID: 7698444588969017422, guid: 861f8ee203569a843b9edbe11cfd3b20, type: 3}
+  - {fileID: 6069031144355194190, guid: 86cea3dc3eda79f4aa0f62d44553ca62, type: 3}
+  - {fileID: 6069031144355194190, guid: 345a904300fdf764f8ea49c9918cb410, type: 3}
 --- !u!1 &371030382
 GameObject:
   m_ObjectHideFlags: 0

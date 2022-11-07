@@ -421,3 +421,63 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
+  - itemID: 1035
+    itemName: "\u6742\u83491"
+    itemType: 9
+    itemIcon: {fileID: 21300000, guid: 9ae5a331348064d73aa91a952b9e1a41, type: 3}
+    itemOnWorldIcon: {fileID: 0}
+    itemDescription: 
+    itemUseRadius: 0
+    canPickedUp: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0
+  - itemID: 1036
+    itemName: "\u6742\u83492"
+    itemType: 9
+    itemIcon: {fileID: 21300000, guid: e6647f7a307d24b65957f4ef34c39562, type: 3}
+    itemOnWorldIcon: {fileID: 0}
+    itemDescription: 
+    itemUseRadius: 0
+    canPickedUp: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0
+  - itemID: 1037
+    itemName: "\u6742\u83493"
+    itemType: 9
+    itemIcon: {fileID: 21300000, guid: 0c055f09a64a74805ad18c1f0b134fec, type: 3}
+    itemOnWorldIcon: {fileID: 0}
+    itemDescription: 
+    itemUseRadius: 0
+    canPickedUp: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0
+  - itemID: 1038
+    itemName: "\u4E00\u6346\u8349"
+    itemType: 1
+    itemIcon: {fileID: 21300000, guid: e457a28d7c05742a6bcb044458883809, type: 3}
+    itemOnWorldIcon: {fileID: 21300000, guid: e8ebe711ec1de4697a10d8c2f3f39f20, type: 3}
+    itemDescription: "\u4E00\u6346\u6742\u8349,\u5168\u90E8\u78BE\u788E\u6216\u8BB8\u80FD\u5236\u4F5C\u51FA\u4E00\u6B3E\u7F8E\u98DF?"
+    itemUseRadius: 2
+    canPickedUp: 1
+    canDropped: 1
+    canCarried: 1
+    itemPrice: 1
+    sellPercentage: 1
+  - itemID: 1039
+    itemName: "\u6B7B\u795E\u9570\u5200"
+    itemType: 6
+    itemIcon: {fileID: 21300000, guid: 9aae36af8a3474f72a99e04af71b7044, type: 3}
+    itemOnWorldIcon: {fileID: 0}
+    itemDescription: "\u6C34\u4E4B\u547C\u5438!\u6C34\u8C03\u5272\u5934!"
+    itemUseRadius: 0
+    canPickedUp: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 0
+    sellPercentage: 0
