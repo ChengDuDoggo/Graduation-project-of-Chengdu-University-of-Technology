@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-//AStar算法,计算最短节点路径
+//AStar算法,计算最短节点路径(管理每一个节点)
 namespace MFarm.AStar
 {
     public class Node : IComparable<Node>//Unity自带的用作比较的接口

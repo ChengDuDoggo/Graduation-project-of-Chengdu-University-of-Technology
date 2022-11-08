@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//管理Grid中所有网格节点
+//管理Grid中所有网格节点(管理整张节点)
 namespace MFarm.AStar
 {
     public class GridNodes
