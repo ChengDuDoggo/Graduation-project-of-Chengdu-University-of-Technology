@@ -352,6 +352,30 @@ namespace MFarm.Map
                 }
             }
         }
+        /// <summary>
+        /// 根据场景名字构建网格范围,输出范围和原点
+        /// </summary>
+        /// <param name="sceneName">场景名字</param>
+        /// <param name="gridDimensions">网格范围</param>
+        /// <param name="gridOrigin">网格原点</param>
+        /// <returns>是否有当前场景信息</returns>
+        public bool GetGridDimensions(string sceneName,out Vector2Int gridDimensions,out Vector2Int gridOrigin)
+        {
+            gridDimensions = Vector2Int.zero;
+            gridOrigin = Vector2Int.zero;//初始化为0
+            foreach (var mapData in mapDataList)//循环拿出每一张地图
+            {
+                if (mapData.sceneName == sceneName)//如果有该场景
+                {
+                    gridDimensions.x = mapData.gridWidth;
+                    gridDimensions.y = mapData.gridHeight;
+                    gridOrigin.x = mapData.originX;
+                    gridOrigin.y = mapData.originY;
+                    return true;
+                }//则将当前场景中的数据全部输出传入节点中并返回true
+            }
+            return false;
+        }
     }
 }
 
