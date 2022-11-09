@@ -19,7 +19,14 @@ namespace MFarm.AStar
         private HashSet<Node> closedNodeList;//所有被选中的点
         //HashSet:和List功能相同但是所存放的数据是无序且唯一的,并且Contain检索的速度要比List快
         private bool pathFound;//是否找到路劲
-        public void BuildPath(string sceneName,Vector2Int startPos, Vector2Int endPos)
+        /// <summary>
+        /// 构建路径更新Stack每一步
+        /// </summary>
+        /// <param name="sceneName"></param>
+        /// <param name="startPos"></param>
+        /// <param name="endPos"></param>
+        /// <param name="npcMovementStep"></param>
+        public void BuildPath(string sceneName,Vector2Int startPos, Vector2Int endPos,Stack<MovementStep> npcMovementStep)
         {
             pathFound = false;
             if (GenerateGridNodes(sceneName, startPos, endPos))
@@ -28,7 +35,7 @@ namespace MFarm.AStar
                 if (FindShortestPath())
                 {
                     //构建NPC的移动路劲
-
+                    UpdatePathOnMovementStepStack(sceneName, npcMovementStep);
                 }
 
             }
@@ -173,6 +180,35 @@ namespace MFarm.AStar
                 return 14 * yDistance + 10 * (xDistance - yDistance);
             }
             return 14 * xDistance + 10 * (yDistance - xDistance);
+        }
+        /// <summary>
+        /// 更新路劲每一步的坐标和场景名字
+        /// </summary>
+        /// <param name="sceneName"></param>
+        /// <param name="npcMovementStep"></param>
+        private void UpdatePathOnMovementStepStack(string sceneName,Stack<MovementStep> npcMovementStep)
+        {
+            //我们是从终点依次推到起点,反向获取路劲(因为每一个节点都对应有一个父节点,除了起点)
+            Node nextNode = targetNode;
+            while (nextNode != null)
+            {
+                MovementStep newStep = new MovementStep();
+                newStep.sceneName = sceneName;
+                newStep.gridCoordinate = new Vector2Int(nextNode.gridPosition.x + originX, nextNode.gridPosition.y + originY);
+                //压入堆栈
+                npcMovementStep.Push(newStep);
+                nextNode = nextNode.parentNode;//当这个节点压入堆栈之后就将它的父节点变为当前节点,依次下去就能反向得到整条路径
+            }
+            /*
+             1.Stack<>:堆栈
+               堆栈的作用和列表List<>大体相似,类似于数组用来存放一系列数据
+               但是,堆栈严格执行"先进后出"的原则,即第一个压入(放入)堆栈的数据一定要等待在它之后压入的数据取出之后才可以取出
+             2.堆栈不同于List的命令有:
+               Stack<>.Peek():拿到堆栈最顶部的数据但不移除它
+               Stack<>.Pop():拿到堆栈最顶部的数据并移除它
+               Stack<>.Push():将一个数据压入堆栈(它只能是在堆栈的最顶部)
+               其他命令就和List相同
+             */
         }
     }
 }
