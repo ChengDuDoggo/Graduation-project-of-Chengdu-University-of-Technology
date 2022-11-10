@@ -78,3 +78,10 @@ public class TileDetails//定义一个格子的具体信息类，这个格子上面有什么属性
     public int growthDays = -1;//植物成长的天数
     public int daysSinceLastHarvest = -1;//某些植物可以反复种植，在收获后回到一定的天数，阶段
 }
+[System.Serializable]
+public class NPCPosition
+{
+    public Transform npc;
+    public string startScene;
+    public Vector3 position;
+}
