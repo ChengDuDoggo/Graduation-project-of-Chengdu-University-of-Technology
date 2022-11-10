@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72649ea6dfea90945ad545ee43da15e0, type: 3}
+  m_Name: Mayor Schedule
+  m_EditorClassIdentifier: 
+  schedulList:
+  - hour: 8
+    minute: 0
+    day: 0
+    priority: 0
+    season: 0
+    targetScene: 01.Field
+    targetGridPosition: {x: 19, y: -8}
+    clipAtStop: {fileID: 7400000, guid: db32c3897ab64466f86a8993b8e48f9e, type: 2}
+    interactable: 0

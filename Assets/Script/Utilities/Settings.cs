@@ -19,4 +19,7 @@ public class Settings //自己编写的一个静态设置类，相当于写了一个设置按钮来控制工
     public const float fadeDuration = 1.5f;//场景切换动画持续事件
     //割草数量限制
     public const int reapAmount = 2;
+    //NPC网格移动
+    public const float gridCellSize = 1;
+    public const float gridCellDiagonalSize = 1.41f;//斜方向移动1.14刚好到网格中心
 }

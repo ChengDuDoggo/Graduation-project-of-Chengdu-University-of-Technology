@@ -6,7 +6,7 @@ using MFarm.Map;
 //NPC在移动时执行AStar算法计算出自己移动的最短路径
 namespace MFarm.AStar
 {
-    public class AStar : MonoBehaviour
+    public class AStar : Singleton<AStar>
     {
         private GridNodes gridNodes;//获取每一张地图的网格节点信息
         private Node startNode;//起点

@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager : Singleton<TimeManager>
 {
     private int gameSecond, gameMinute, gameHour, gameDay, gameMonth, gameYear;
     private Season gameSeason = Season.春天;//默认游戏进入为春天
     private int monthInSeason = 3;//三个月为一个季节
     private bool gameClockPause;//定义一个布尔值来控制游戏的暂停
     private float tikTime;//计时器
-    private void Awake()
+    public TimeSpan GameTime => new TimeSpan(gameHour, gameMinute, gameSecond);
+    protected override void Awake()
     {
+        base.Awake();
         NewGameTime();
     }
     private void Start()
