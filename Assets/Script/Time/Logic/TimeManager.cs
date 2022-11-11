@@ -19,7 +19,7 @@ public class TimeManager : Singleton<TimeManager>
     private void Start()
     {
         EventHandler.CallGameDateSeason(gameHour, gameDay, gameMonth, gameYear, gameSeason);
-        EventHandler.CallGameMinuteEvent(gameMinute, gameHour);
+        EventHandler.CallGameMinuteEvent(gameMinute, gameHour,gameSeason,gameDay);
     }
     private void Update()
     {
@@ -111,7 +111,7 @@ public class TimeManager : Singleton<TimeManager>
                 //每时间执行到此位置，调用一下委托时间
                 EventHandler.CallGameDateSeason(gameHour, gameDay, gameMonth, gameYear, gameSeason); //这里需要调用一下委托事件
             }
-            EventHandler.CallGameMinuteEvent(gameMinute, gameHour);//这里需要调用一下委托事件
+            EventHandler.CallGameMinuteEvent(gameMinute, gameHour,gameSeason,gameDay);//这里需要调用一下委托事件
         }
     }
 }

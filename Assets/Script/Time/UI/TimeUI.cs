@@ -32,7 +32,7 @@ public class TimeUI : MonoBehaviour//将代码逻辑与UI连接到一起的脚本
         EventHandler.GameMinuteEvent -= OnGameMinuteEvent;
         EventHandler.GameDateSeason -= OnGameDateSeason;
     }
-    private void OnGameMinuteEvent(int minute, int hour)
+    private void OnGameMinuteEvent(int minute, int hour,Season season,int day)
     {
         timeText.text = hour.ToString("00") + ":" + minute.ToString("00");
     }

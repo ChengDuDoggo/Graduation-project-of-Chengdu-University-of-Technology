@@ -27,10 +27,10 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         ItemSelectedEvent?.Invoke(itemDetails, isSelected);
     }
-    public static event Action<int, int> GameMinuteEvent;
-    public static void CallGameMinuteEvent(int minute,int hour)
+    public static event Action<int, int,Season,int> GameMinuteEvent;
+    public static void CallGameMinuteEvent(int minute,int hour,Season season,int day)
     {
-        GameMinuteEvent?.Invoke(minute,hour);
+        GameMinuteEvent?.Invoke(minute,hour,season,day);
     }
     public static event Action<int, int, int, int, Season> GameDateSeason;
     public static void CallGameDateSeason(int hour,int day,int month,int year,Season season)

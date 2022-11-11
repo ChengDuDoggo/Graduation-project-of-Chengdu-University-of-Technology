@@ -35,6 +35,11 @@ public class NPCMovement : MonoBehaviour
     private bool isInitialised;//判断NPC是否是第一次加载
     private bool npcMove;//判断NPC是否移动
     private bool sceneLoaded;//判断场景是否加载完毕
+    private float animationBreakTime;//动画计时器
+    private bool canPlayStopAnimation;
+    private AnimationClip stopAnimationClip;
+    public AnimationClip blankAnimationClip;//定义一个空白的动画片段
+    private AnimatorOverrideController animOverride;//重构一个动画控制器
     private TimeSpan GameTime => TimeManager.Instance.GameTime;//TimeSpan:表示一个时间戳
     //作用:例如,定义一个时间戳 TimeSpan targetTime = new TimeSpan(10,20); 这个时间戳就是10分20秒
     //拥有时间戳之后可以利用时间戳作为条件,比如GameTime游戏时间到达10分20秒时能够触发什么事件
@@ -46,16 +51,34 @@ public class NPCMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         movementSteps = new Stack<MovementStep>();
+        animOverride = new AnimatorOverrideController(anim.runtimeAnimatorController);
+        anim.runtimeAnimatorController = animOverride;
+        //runtimeAnimatorController:AnimatorController的运行时表示.使用此表示可在运行时期间更改AnimatorController。
+        scheduleSet = new SortedSet<SchedulDetails>();
+        foreach (var schedule in schedulData.schedulList)
+        {
+            scheduleSet.Add(schedule);
+        }
     }
     private void OnEnable()
     {
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
+        EventHandler.GameMinuteEvent += OnGameMinuteEvent;
     }
     private void OnDisable()
     {
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
+        EventHandler.GameMinuteEvent -= OnGameMinuteEvent;
+    }
+    private void Update()
+    {
+        if (sceneLoaded)
+            SwitchAnimation();
+        //计时器
+        animationBreakTime -= Time.deltaTime;
+        canPlayStopAnimation = animationBreakTime <= 0;
     }
     private void FixedUpdate()
     {
@@ -80,7 +103,28 @@ public class NPCMovement : MonoBehaviour
         }
         sceneLoaded = true;
     }
-
+    private void OnGameMinuteEvent(int minute, int hour, Season season,int day)
+    {
+        int time = (hour * 100) + minute;
+        SchedulDetails matchSchedule = null;
+        foreach (var schedule in scheduleSet)
+        {
+            if (schedule.Time == time)
+            {
+                if (schedule.day != day && schedule.day != 0)
+                    continue;
+                if (schedule.season != season)
+                    continue;
+                matchSchedule = schedule;
+            }
+            else if(schedule.Time>time)
+            {
+                break;
+            }
+        }
+        if (matchSchedule != null)
+            BuildPath(matchSchedule);
+    }
     private void CheckVisiable()
     {
         if (currentScene == SceneManager.GetActiveScene().name)
@@ -100,6 +144,9 @@ public class NPCMovement : MonoBehaviour
         transform.position = new Vector3(currentGridPostion.x + Settings.gridCellSize / 2f, currentGridPostion.y + Settings.gridCellSize / 2f, 0);
         targetGridPostion = currentGridPostion;
     }
+    /// <summary>
+    /// 主要移动方法
+    /// </summary>
     private void Movement()
     {
         if (!npcMove)
@@ -112,6 +159,10 @@ public class NPCMovement : MonoBehaviour
                 nextGridPosition = (Vector3Int)step.gridCoordinate;
                 TimeSpan stepTime = new TimeSpan(step.hour, step.minute, step.second);//拿到这一步的时间戳
                 MoveToGridPosition(nextGridPosition, stepTime);
+            }
+            else if (!isMoving && canPlayStopAnimation)
+            {
+                StartCoroutine(SetStopAnimation());
             }
         }
     }
@@ -155,14 +206,16 @@ public class NPCMovement : MonoBehaviour
     /// <summary>
     /// 根据Schedule时间表构建路径
     /// </summary>
-    /// <param name="schedul"></param>
-    public void BuildPath(SchedulDetails schedul)
+    /// <param name="schedule"></param>
+    public void BuildPath(SchedulDetails schedule)
     {
         movementSteps.Clear();//清理之前堆栈中的路径
-        currentSchedule = schedul;
-        if (schedul.targetScene == currentScene)//如果目标场景恒等于当前场景,则利用AStar开始构建最短路径
+        currentSchedule = schedule;
+        targetGridPostion = (Vector3Int)schedule.targetGridPosition;
+        stopAnimationClip = schedule.clipAtStop;
+        if (schedule.targetScene == currentScene)//如果目标场景恒等于当前场景,则利用AStar开始构建最短路径
         {
-            AStar.Instance.BuildPath(schedul.targetScene, (Vector2Int)currentGridPostion, schedul.targetGridPosition, movementSteps);
+            AStar.Instance.BuildPath(schedule.targetScene, (Vector2Int)currentGridPostion, schedule.targetGridPosition, movementSteps);
         }
         //TODO:跨场景移动
 
@@ -223,6 +276,40 @@ public class NPCMovement : MonoBehaviour
     {
         Vector3 worldPos = grid.CellToWorld(gridPos);
         return new Vector3(worldPos.x + Settings.gridCellSize / 2f, worldPos.y + Settings.gridCellSize / 2f);
+    }
+    private void SwitchAnimation()
+    {
+        isMoving = transform.position != GetWorldPosition(targetGridPostion);
+        anim.SetBool("isMoving", isMoving);
+        if (isMoving)
+        {
+            anim.SetBool("Exit", true);
+            anim.SetFloat("DirX", dir.x);
+            anim.SetFloat("DirY", dir.y);
+        }
+        else
+        {
+            anim.SetBool("Exit", false);
+        }
+    }
+    private IEnumerator SetStopAnimation()
+    {
+        //强制面向镜头
+        anim.SetFloat("DirX", 0);
+        anim.SetFloat("DirY", -1);
+        animationBreakTime = Settings.animationBreakTime;
+        if (stopAnimationClip != null)
+        {
+            animOverride[blankAnimationClip] = stopAnimationClip;
+            anim.SetBool("EventAnimation", true);
+            yield return null;
+            anim.SetBool("EventAnimation", false);
+        }
+        else
+        {
+            animOverride[stopAnimationClip] = blankAnimationClip;
+            anim.SetBool("EventAnimation", false);
+        }
     }
     #region 设置NPC显示情况
     private void SetActiveInScene()
