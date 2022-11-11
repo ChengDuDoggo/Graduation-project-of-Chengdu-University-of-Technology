@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//时间表脚本,根据游戏中的时间变化来操作NPC接下来的每一步行为
 [Serializable]
 public class SchedulDetails:IComparable<SchedulDetails>
 {

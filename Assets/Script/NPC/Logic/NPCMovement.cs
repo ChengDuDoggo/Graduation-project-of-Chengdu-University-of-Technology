@@ -9,13 +9,15 @@ using System;
 public class NPCMovement : MonoBehaviour
 {
     public SchedulDataList_SO schedulData;
-    private SortedSet<SchedulDetails> scheduleSet;//始终保持其中内容的排序以及唯一
+    private SortedSet<SchedulDetails> scheduleSet;//始终保持其中内容的排序顺序以及唯一性的集合
     private SchedulDetails currentSchedule;
     //临时存储信息
     [SerializeField]private string currentScene;
     private string targetScene;
     private Vector3Int currentGridPostion;//当前网格位置
     private Vector3Int targetGridPostion;//目标网格位置
+    private Vector3Int nextGridPosition;//下一步网格位置坐标
+    private Vector3 nextWorldPosition;//下一步的世界坐标
     public string StartScene { set => currentScene = value; }//NPC在一开始所在的场景
     [Header("移动属性")]
     public float normalSpeed = 2f;
@@ -31,23 +33,42 @@ public class NPCMovement : MonoBehaviour
     private Grid grid;
     private Stack<MovementStep> movementSteps;
     private bool isInitialised;//判断NPC是否是第一次加载
-    private TimeSpan GameTime => TimeManager.Instance.GameTime;
+    private bool npcMove;//判断NPC是否移动
+    private bool sceneLoaded;//判断场景是否加载完毕
+    private TimeSpan GameTime => TimeManager.Instance.GameTime;//TimeSpan:表示一个时间戳
+    //作用:例如,定义一个时间戳 TimeSpan targetTime = new TimeSpan(10,20); 这个时间戳就是10分20秒
+    //拥有时间戳之后可以利用时间戳作为条件,比如GameTime游戏时间到达10分20秒时能够触发什么事件
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        movementSteps = new Stack<MovementStep>();
     }
     private void OnEnable()
     {
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
+        EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
     }
     private void OnDisable()
     {
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
+        EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
     }
+    private void FixedUpdate()
+    {
+        if (sceneLoaded)//如果场景加载了才可以让NPC移动
+        {
+            Movement();
+        }
 
+    }
+    private void OnBeforeSceneUnloadEvent()
+    {
+        sceneLoaded = false;
+    }
     private void OnAfterSceneLoadedEvent()
     {
         grid = FindObjectOfType<Grid>();
@@ -57,6 +78,7 @@ public class NPCMovement : MonoBehaviour
             InitNPC();//第一次加载的话就初始化NPC
             isInitialised = true;
         }
+        sceneLoaded = true;
     }
 
     private void CheckVisiable()
@@ -78,45 +100,106 @@ public class NPCMovement : MonoBehaviour
         transform.position = new Vector3(currentGridPostion.x + Settings.gridCellSize / 2f, currentGridPostion.y + Settings.gridCellSize / 2f, 0);
         targetGridPostion = currentGridPostion;
     }
+    private void Movement()
+    {
+        if (!npcMove)
+        {
+            if (movementSteps.Count>0)//判断移动路径堆栈中是否有构建好的步骤路径
+            {
+                MovementStep step = movementSteps.Pop();//拿到堆栈中的第一步并且从堆栈中移除它
+                currentScene = step.sceneName;//当前场景等于步骤中存放的场景
+                CheckVisiable();//实时检测NPC是否可见
+                nextGridPosition = (Vector3Int)step.gridCoordinate;
+                TimeSpan stepTime = new TimeSpan(step.hour, step.minute, step.second);//拿到这一步的时间戳
+                MoveToGridPosition(nextGridPosition, stepTime);
+            }
+        }
+    }
+    private void MoveToGridPosition(Vector3Int gridPos,TimeSpan stepTime)
+    {
+        StartCoroutine(MoveRoutine(gridPos, stepTime));
+    }
+    //因为NPC的移动脱离于主程(自己在场景中自己管理自己移动)所以要用协程辅助
+    private IEnumerator MoveRoutine(Vector3Int gridPos,TimeSpan stepTime)
+    {
+        npcMove = true;//NPC移动状态改为true
+        nextWorldPosition = GetWorldPosition(gridPos);
+        if (stepTime > GameTime)//如果游戏时间还没到当前到这一步的时间戳
+        {
+            //获取用来移动的时间差,以秒为单位
+            float timeToMove = (float)(stepTime.TotalSeconds - GameTime.TotalSeconds);
+            //实际移动距离
+            float distance = Vector3.Distance(transform.position, nextWorldPosition);
+            //计算NPC的实际移动速度
+            float speed = Mathf.Max(minSpeed, (distance / timeToMove / Settings.secondThreshold));//与最小值作比较是为了确保速度不会低于最小值
+            //速度=距离/时间(m/s)
+
+            if (speed <= maxSpeed)//同样不能大于最大移动速度
+            {
+                while (Vector3.Distance(transform.position, nextWorldPosition) > Settings.pixelSize)//如果NPC当前距离和下一步要到达的距离还大于一个像素点说明还没有走到
+                {
+                    dir = (nextWorldPosition - transform.position).normalized;//NPC移动方向
+                    Vector2 posOffset = new Vector2(dir.x * speed * Time.fixedDeltaTime, dir.y * speed * Time.fixedDeltaTime);//移动偏差
+                    rb.MovePosition(rb.position + posOffset);//移动刚体到某个位置
+                    yield return new WaitForFixedUpdate();//等待一小会儿
+                }
+            }
+        }
+        //如果时间已经到了就瞬移
+        rb.position = nextWorldPosition;
+        currentGridPostion = gridPos;
+        nextGridPosition = currentGridPostion;
+
+        npcMove = false;
+    }
+    /// <summary>
+    /// 根据Schedule时间表构建路径
+    /// </summary>
+    /// <param name="schedul"></param>
     public void BuildPath(SchedulDetails schedul)
     {
         movementSteps.Clear();//清理之前堆栈中的路径
         currentSchedule = schedul;
-        if (schedul.targetScene == currentScene)
+        if (schedul.targetScene == currentScene)//如果目标场景恒等于当前场景,则利用AStar开始构建最短路径
         {
             AStar.Instance.BuildPath(schedul.targetScene, (Vector2Int)currentGridPostion, schedul.targetGridPosition, movementSteps);
         }
+        //TODO:跨场景移动
+
         if (movementSteps.Count > 1)//路径大于1代表可以移动了
         {
-            //更新每一步的时间戳
+            //更新每一步的时间时间戳
             UpdateTimeOnPath();
         }
     }
+    /// <summary>
+    /// 更新NPC每走一步的时间戳
+    /// </summary>
     private void UpdateTimeOnPath()
     {
         MovementStep previousSetp = null;
 
         TimeSpan currentGameTime = GameTime;
 
-        foreach (MovementStep step in movementSteps)
+        foreach (MovementStep step in movementSteps)//这里AStar算法已经构建好了堆栈,里面有了每一步的类
         {
-            if (previousSetp == null)
+            if (previousSetp == null)//游戏一开始NPC没有上一步,所以直接将第一步传递给父步
                 previousSetp = step;
 
             step.hour = currentGameTime.Hours;
             step.minute = currentGameTime.Minutes;
-            step.second = currentGameTime.Seconds;
+            step.second = currentGameTime.Seconds;//记录当前的游戏时间戳
 
-            TimeSpan gridMovementStepTime;
+            TimeSpan gridMovementStepTime;//定义一个新的时间戳来获取走的每一步的时间戳
 
-            if (MoveInDiagonal(step, previousSetp))
+            if (MoveInDiagonal(step, previousSetp))//判断是否是斜方向移动,斜方向移动和直方向所需要的时间戳不相同
                 gridMovementStepTime = new TimeSpan(0, 0, (int)(Settings.gridCellDiagonalSize / normalSpeed / Settings.secondThreshold));
             else
                 gridMovementStepTime = new TimeSpan(0, 0, (int)(Settings.gridCellSize / normalSpeed / Settings.secondThreshold));
 
             //累加获得下一步的时间戳
-            currentGameTime = currentGameTime.Add(gridMovementStepTime);
-            //循环下一步
+            currentGameTime = currentGameTime.Add(gridMovementStepTime);//游戏时间戳和走路时间戳累加起来形成一个时间戳条件
+            //循环下一步此步变为父步
             previousSetp = step;
         }
     }
@@ -130,6 +213,16 @@ public class NPCMovement : MonoBehaviour
     private bool MoveInDiagonal(MovementStep currentStep, MovementStep previousStep)
     {
         return (currentStep.gridCoordinate.x != previousStep.gridCoordinate.x) && (currentStep.gridCoordinate.y != previousStep.gridCoordinate.y);
+    }
+    /// <summary>
+    /// 得到网格中心的世界坐标
+    /// </summary>
+    /// <param name="gridPos">网格坐标</param>
+    /// <returns></returns>
+    private Vector3 GetWorldPosition(Vector3Int gridPos)
+    {
+        Vector3 worldPos = grid.CellToWorld(gridPos);
+        return new Vector3(worldPos.x + Settings.gridCellSize / 2f, worldPos.y + Settings.gridCellSize / 2f);
     }
     #region 设置NPC显示情况
     private void SetActiveInScene()

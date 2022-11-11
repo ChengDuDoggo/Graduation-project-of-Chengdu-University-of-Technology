@@ -540,6 +540,11 @@ MonoBehaviour:
   displayTile: {fileID: 11400000, guid: 029df65e4e302694a90d0a6359a27b3b, type: 2}
   displayStartAndFinish: 0
   displayPath: 0
+  npcMovement: {fileID: 2065040019}
+  moveNPC: 0
+  targetScene: 01.Field
+  targetPos: {x: 18, y: -14}
+  stopClip: {fileID: 7400000, guid: 54d560542c0284c169c56cddc7145ac6, type: 2}
 --- !u!114 &301805730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2115,7 +2120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   schedulData: {fileID: 11400000, guid: 8978382de13890044a3d5fb4f9570ba0, type: 2}
-  currentScene: 02.Home
+  currentScene: 01.Field
   normalSpeed: 2
   isMoving: 0
 --- !u!1 &2141444785

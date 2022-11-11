@@ -16,6 +16,12 @@ namespace MFarm.AStar
         public bool displayStartAndFinish;
         public bool displayPath;
         private Stack<MovementStep> npcMovementStepStack;
+        [Header("测试移动NPC")]
+        public NPCMovement npcMovement;
+        public bool moveNPC;
+        [SceneName] public string targetScene;
+        public Vector2Int targetPos;
+        public AnimationClip stopClip;
         private void Awake()
         {
             aStar = GetComponent<AStar>();
@@ -24,6 +30,12 @@ namespace MFarm.AStar
         private void Update()
         {
             ShowPathOnGridMap();
+            if (moveNPC)
+            {
+                moveNPC = false;
+                var schedule = new SchedulDetails(0, 0, 0, 0, Season.春天, targetScene, targetPos, stopClip, true);
+                npcMovement.BuildPath(schedule);//让NPC根据这个时间表来构建移动路径
+            }
         }
         private void ShowPathOnGridMap()
         {
