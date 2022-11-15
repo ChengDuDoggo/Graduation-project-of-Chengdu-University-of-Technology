@@ -16,6 +16,27 @@ public class TimeManager : Singleton<TimeManager>
         base.Awake();
         NewGameTime();
     }
+    private void OnEnable()
+    {
+        EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
+        EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
+    }
+    private void OnDisable()
+    {
+        EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
+        EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
+    }
+
+    private void OnAfterSceneLoadedEvent()
+    {
+        gameClockPause = false;
+    }
+
+    private void OnBeforeSceneUnloadEvent()
+    {
+        gameClockPause = true;
+    }
+
     private void Start()
     {
         EventHandler.CallGameDateSeason(gameHour, gameDay, gameMonth, gameYear, gameSeason);

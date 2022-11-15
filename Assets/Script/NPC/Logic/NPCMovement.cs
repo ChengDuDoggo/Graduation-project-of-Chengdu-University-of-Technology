@@ -217,7 +217,35 @@ public class NPCMovement : MonoBehaviour
         {
             AStar.Instance.BuildPath(schedule.targetScene, (Vector2Int)currentGridPostion, schedule.targetGridPosition, movementSteps);
         }
-        //TODO:跨场景移动
+        else if (schedule.targetScene != currentScene)
+        {
+            SceneRoute sceneRoute = NPCManager.Instance.GetSceneRoute(currentScene, schedule.targetScene);
+            if (sceneRoute != null)
+            {
+                for (int i = 0; i < sceneRoute.scenePathList.Count; i++)
+                {
+                    Vector2Int fromPos, gotoPos;
+                    ScenePath path = sceneRoute.scenePathList[i];
+                    if (path.fromGridCell.x >= Settings.maxGridSize)
+                    {
+                        fromPos = (Vector2Int)currentGridPostion;
+                    }
+                    else
+                    {
+                        fromPos = path.fromGridCell;
+                    }
+                    if (path.gotoGridCell.x >= Settings.maxGridSize)
+                    {
+                        gotoPos = schedule.targetGridPosition;
+                    }
+                    else
+                    {
+                        gotoPos = path.gotoGridCell;
+                    }
+                    AStar.Instance.BuildPath(path.sceneName, fromPos, gotoPos, movementSteps);
+                }
+            }
+        }
 
         if (movementSteps.Count > 1)//路径大于1代表可以移动了
         {
@@ -316,15 +344,13 @@ public class NPCMovement : MonoBehaviour
     {
         spriteRenderer.enabled = true;
         coll.enabled = true;
-        //TODO:影子开启
-        //transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(true);
     }
     private void SetInActiveInScene()
     {
         spriteRenderer.enabled = false;
         coll.enabled = false;
-        //TODO:影子关闭
-        //transform.GetChild(0).gameObject.SetActive(fales);
+        transform.GetChild(0).gameObject.SetActive(false);
     }
     #endregion
 }

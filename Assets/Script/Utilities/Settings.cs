@@ -24,4 +24,5 @@ public class Settings //自己编写的一个静态设置类，相当于写了一个设置按钮来控制工
     public const float gridCellDiagonalSize = 1.41f;//斜方向移动1.14刚好到网格中心
     public const float pixelSize = 0.05f;//本游戏一个像素点的大小
     public const float animationBreakTime = 5f;//动画间隔
+    public const int maxGridSize = 9999;
 }
