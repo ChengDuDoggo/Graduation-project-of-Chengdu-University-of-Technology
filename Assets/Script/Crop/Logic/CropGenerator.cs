@@ -31,6 +31,8 @@ namespace MFarm.CropPlant
                 if(tile == null)//如果当前瓦片信息为null,就new一个瓦片信息
                 {
                     tile = new TileDetails();
+                    tile.gridX = cropGridPos.x;
+                    tile.gridY = cropGridPos.y;
                 }
                 tile.daysSinceWatered = -1;
                 tile.seedItemID = seedItemID;
