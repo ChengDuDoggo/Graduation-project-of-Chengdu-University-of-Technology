@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using MFarm.Dialogue;
 
 public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È«¾ÖµÄ
 {
@@ -96,5 +97,10 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     public static void CallGenerateCropEvent()//Ö±½ÓÔÚ³¡¾°ÖĞÉú³ÉÖÖ×ÓÊ÷Å©×÷ÎïµÈÊÂ¼ş
     {
         GenerateCropEvent?.Invoke();
+    }
+    public static event Action<DialoguePiece> ShowDialogueEvent;
+    public static void CallShowDialogueEvent(DialoguePiece piece)
+    {
+        ShowDialogueEvent?.Invoke(piece);
     }
 }

@@ -35,6 +35,7 @@ public class NPCMovement : MonoBehaviour
     private bool isInitialised;//判断NPC是否是第一次加载
     private bool npcMove;//判断NPC是否移动
     private bool sceneLoaded;//判断场景是否加载完毕
+    public bool interactable;//是否可以互动
     private float animationBreakTime;//动画计时器
     private bool canPlayStopAnimation;
     private AnimationClip stopAnimationClip;
@@ -213,6 +214,7 @@ public class NPCMovement : MonoBehaviour
         currentSchedule = schedule;
         targetGridPostion = (Vector3Int)schedule.targetGridPosition;
         stopAnimationClip = schedule.clipAtStop;
+        this.interactable = schedule.interactable;
         if (schedule.targetScene == currentScene)//如果目标场景恒等于当前场景,则利用AStar开始构建最短路径
         {
             AStar.Instance.BuildPath(schedule.targetScene, (Vector2Int)currentGridPostion, schedule.targetGridPosition, movementSteps);
