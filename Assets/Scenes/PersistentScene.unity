@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d690672582d2f845b8ab98b89656019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneName: 01.Field
+  startSceneName: 03.SmellTown
 --- !u!1 &391829273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,6 +1666,8 @@ GameObject:
   - component: {fileID: 1308913693}
   - component: {fileID: 1308913695}
   - component: {fileID: 1308913696}
+  - component: {fileID: 1308913698}
+  - component: {fileID: 1308913697}
   m_Layer: 0
   m_Name: NPC_Girl_01
   m_TagString: Untagged
@@ -1827,6 +1829,53 @@ MonoBehaviour:
   isMoving: 0
   interactable: 0
   blankAnimationClip: {fileID: 7400000, guid: 500fefed8113b4f7e8f2dc728631a63d, type: 2}
+--- !u!114 &1308913697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308913690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1782b1bc1dc3dc40812cc6e252b70f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnFinishEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1308913698}
+        m_TargetAssemblyTypeName: NPCFunction, Assembly-CSharp
+        m_MethodName: OpenShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  dialogueList:
+  - faceImage: {fileID: 21300000, guid: 3a465f460d75b4ec18ebd486218e7339, type: 3}
+    onLeft: 1
+    name: Mirre
+    dialogueText: "\u4F60\u597D\u9E2D~\u6765\u770B\u770B\u6709\u4EC0\u4E48\u9700\u8981\u7684~"
+    hasToPause: 1
+    isDone: 0
+--- !u!114 &1308913698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308913690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275675c50cd9d0045a895b86fe9b5b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopData: {fileID: 11400000, guid: 1497fdf90747451458b7d9ea03cd8a0c, type: 2}
 --- !u!1 &1310498178
 GameObject:
   m_ObjectHideFlags: 0

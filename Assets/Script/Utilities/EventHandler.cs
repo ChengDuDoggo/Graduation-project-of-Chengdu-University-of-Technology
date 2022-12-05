@@ -103,4 +103,10 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         ShowDialogueEvent?.Invoke(piece);
     }
+    //ÉÌµê¿ªÆôÊÂ¼ş
+    public static event Action<SlotType, InventoryBag_SO> BaseBagOpenEvent;//µ÷ÓÃÕâ¸öÎ¯ÍĞÊÂ¼ş,ÉÌµê¾Í»á¿ªÆô
+    public static void CallBaseBagOpenEvent(SlotType slotType,InventoryBag_SO bag_SO)
+    {
+        BaseBagOpenEvent?.Invoke(slotType, bag_SO);
+    }
 }
