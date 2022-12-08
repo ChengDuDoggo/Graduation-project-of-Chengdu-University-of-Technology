@@ -109,4 +109,21 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         BaseBagOpenEvent?.Invoke(slotType, bag_SO);
     }
+    //ÉÌµê¹Ø±ÕÊÂ¼ş
+    public static event Action<SlotType, InventoryBag_SO> BaseBagCloseEvent;//µ÷ÓÃÕâ¸öÎ¯ÍĞÊÂ¼ş,ÉÌµê¾Í»á¹Ø±Õ
+    public static void CallBaseBagCloseEvent(SlotType slotType, InventoryBag_SO bag_SO)
+    {
+        BaseBagCloseEvent?.Invoke(slotType, bag_SO);
+    }
+    //¸üĞÂÓÎÏ·µ±Ç°×´Ì¬Î¯ÍĞÊÂ¼ş
+    public static event Action<GameState> UpdateGameStateEvent;//ÓÎÏ·ÓĞ½øĞĞÖĞ×´Ì¬ºÍÔİÍ£×´Ì¬
+    public static void CallUpdateGameStateEvent(GameState gameState)
+    {
+        UpdateGameStateEvent?.Invoke(gameState);
+    }
+    public static event Action<ItemDetails, bool> ShowTradeUI;
+    public static void CallShowTradeUI(ItemDetails item,bool isSell)
+    {
+        ShowTradeUI?.Invoke(item,isSell);
+    }
 }

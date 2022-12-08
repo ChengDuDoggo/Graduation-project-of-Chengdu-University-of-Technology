@@ -11,11 +11,19 @@ public class NPCFunction : MonoBehaviour
         if (isOpen && Input.GetKeyDown(KeyCode.Escape))
         {
             //关闭背包
+            CloseShop();
         }
     }
     public void OpenShop()
     {
         isOpen = true;
         EventHandler.CallBaseBagOpenEvent(SlotType.Shop, shopData);//触发打开背包委托事件
+        EventHandler.CallUpdateGameStateEvent(GameState.Pause);//触发游戏暂停事件
+    }
+    public void CloseShop()
+    {
+        isOpen = false;
+        EventHandler.CallBaseBagCloseEvent(SlotType.Shop, shopData);//触发关闭背包委托事件
+        EventHandler.CallUpdateGameStateEvent(GameState.Gameplay);//触发游戏继续事件
     }
 }

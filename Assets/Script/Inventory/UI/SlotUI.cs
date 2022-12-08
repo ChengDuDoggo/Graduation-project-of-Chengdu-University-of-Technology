@@ -106,6 +106,14 @@ namespace MFarm.Inventory
                 {
                     InventoryManager.Instance.SwapItem(slotIndex, targetIndex);
                 }
+                else if (slotType == SlotType.Shop && targatSlot.slotType == SlotType.Bag)//买
+                {
+                    EventHandler.CallShowTradeUI(itemDetails, false);
+                }
+                else if (slotType == SlotType.Bag && targatSlot.slotType == SlotType.Shop)//卖
+                {
+                    EventHandler.CallShowTradeUI(itemDetails, true);
+                }
                 //拖拽完成后关闭所有的高亮显示
                 inventoryUI.UpdateSlotHighlight(-1);
             }

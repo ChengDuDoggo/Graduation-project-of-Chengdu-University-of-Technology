@@ -28,6 +28,7 @@ public class Player : MonoBehaviour //控制玩家基本操作的类
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         EventHandler.MoveToPosition += OnMoveToPosition;
         EventHandler.MouseClickedEvent += OnMouseClickedEvent;
+        EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
     }
     private void OnDisable()
     {
@@ -35,6 +36,37 @@ public class Player : MonoBehaviour //控制玩家基本操作的类
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         EventHandler.MoveToPosition -= OnMoveToPosition;
         EventHandler.MouseClickedEvent -= OnMouseClickedEvent;
+        EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
+    }
+    private void Update()
+    {
+        if (!inputDisable)
+        {
+            PlayerInput();
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        SwitchAnimator();
+    }
+    private void FixedUpdate()
+    {
+        if (!inputDisable)
+            Movement();
+    }
+    private void OnUpdateGameStateEvent(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.Pause:
+                inputDisable = true;//玩家不能控制
+                break;
+            case GameState.Gameplay:
+                inputDisable = false;//玩家可以控制
+                break;
+        }
     }
 
     private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails itemDatils)
@@ -94,25 +126,6 @@ public class Player : MonoBehaviour //控制玩家基本操作的类
     private void OnMoveToPosition(Vector3 targetPosition)
     {
         transform.position = targetPosition;
-    }
-
-    private void Update()
-    {
-        if (!inputDisable)
-        {
-            PlayerInput();
-        }
-        else
-        {
-            isMoving = false;
-        }
-
-        SwitchAnimator();
-    }
-    private void FixedUpdate()
-    {
-        if(!inputDisable)
-        Movement();
     }
     private void PlayerInput()
     {

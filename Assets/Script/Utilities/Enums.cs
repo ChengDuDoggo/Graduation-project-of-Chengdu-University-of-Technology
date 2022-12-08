@@ -33,3 +33,7 @@ public enum ParticaleEffectType//特效的类型
 {
     None,LeavesFalling01,LeavesFalling02,Rock,ReapableScenery/*割稻草特效*/
 }
+public enum GameState//游戏状态枚举
+{
+    Gameplay/*游戏正常运行状态*/,Pause/*游戏暂停状态*/
+}

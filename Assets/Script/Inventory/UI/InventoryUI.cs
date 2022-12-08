@@ -16,6 +16,8 @@ namespace MFarm.Inventory
         [Header("通用背包")]
         [SerializeField] private GameObject baseBag;
         public GameObject shopSlotPrefab;//商店格子预制体
+        [Header("交易UI")]
+        public TradeUI tradeUI;
         [SerializeField] private SlotUI[] playerSlots;//玩家的每一个背包格子
         [SerializeField] private List<SlotUI> baseBagSlots;
         private void OnEnable()//当脚本执行时为委托事件添加方法(注册方法)
@@ -23,14 +25,51 @@ namespace MFarm.Inventory
             EventHandler.UpdateInventoryUI += OnUpdateInventoryUI;
             EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
             EventHandler.BaseBagOpenEvent += OnBaseBagOpenEvent;
+            EventHandler.BaseBagCloseEvent += OnBaseBagCloseEvent;
+            EventHandler.ShowTradeUI += OnShowTradeUI;
         }
         private void OnDisable()//当脚本关闭时去除委托中的函数方法
         {
             EventHandler.UpdateInventoryUI -= OnUpdateInventoryUI;
             EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
             EventHandler.BaseBagOpenEvent -= OnBaseBagOpenEvent;
+            EventHandler.BaseBagCloseEvent -= OnBaseBagCloseEvent;
+            EventHandler.ShowTradeUI -= OnShowTradeUI;
         }
 
+        private void OnShowTradeUI(ItemDetails item, bool isSell)
+        {
+            tradeUI.gameObject.SetActive(true);
+            tradeUI.SetupTradeUI(item, isSell);
+        }
+
+        /// <summary>
+        /// 关闭通用UI包裹事件
+        /// </summary>
+        /// <param name="slotType"></param>
+        /// <param name="bagData"></param>
+        private void OnBaseBagCloseEvent(SlotType slotType, InventoryBag_SO bagData)
+        {
+            baseBag.SetActive(false);
+            itemToolTip.gameObject.SetActive(false);
+            UpdateSlotHighlight(-1);
+            foreach (var slot in baseBagSlots)
+            {
+                Destroy(slot.gameObject);
+            }
+            baseBagSlots.Clear();
+            if (slotType == SlotType.Shop)
+            {
+                bagUI.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+                bagUI.SetActive(false);
+                bagOpened = false;
+            }
+        }
+        /// <summary>
+        /// 打开通用包裹UI事件
+        /// </summary>
+        /// <param name="slotType"></param>
+        /// <param name="bagData"></param>
         private void OnBaseBagOpenEvent(SlotType slotType, InventoryBag_SO bagData)
         {
             //TODO:通用箱子Prefab
@@ -49,6 +88,12 @@ namespace MFarm.Inventory
                 baseBagSlots.Add(slot);
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(baseBag.GetComponent<RectTransform>());//强制刷新,否则UI显示不正确
+            if (slotType == SlotType.Shop)
+            {
+                bagUI.GetComponent<RectTransform>().pivot = new Vector2(-1, 0.5f);
+                bagUI.SetActive(true);
+                bagOpened = true;
+            }
             //更新UI显示
             OnUpdateInventoryUI(InventoryLocation.Box, bagData.itemList);
         }
