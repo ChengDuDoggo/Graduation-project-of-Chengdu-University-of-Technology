@@ -16,11 +16,23 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
             EventHandler.HarvestAtPlayerPostion += OnHarvestAtPlayerPostion;
+            EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
         }
         private void OnDisable()
         {
             EventHandler.DropItemEvent -= OnDropItemEvent;
             EventHandler.HarvestAtPlayerPostion -= OnHarvestAtPlayerPostion;
+            EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
+        }
+
+        private void OnBuildFurnitureEvent(int ID, Vector3 mousePos)
+        {
+            RemoveItem(ID, 1);
+            BulePrintDetailes bulePrint = bulePrintData.GetBulePrintDetailes(ID);
+            foreach (var item in bulePrint.resourceItem)
+            {
+                RemoveItem(item.itemID, item.itemAmount);
+            }
         }
 
         private void OnHarvestAtPlayerPostion(int ID)
@@ -159,6 +171,28 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
                 PlayerBag.itemList[index] = item;
             }
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//更新一下UI
+        }
+        /// <summary>
+        /// 检查建造资源物品库存
+        /// </summary>
+        /// <param name="ID">图纸ID</param>
+        /// <returns></returns>
+        public bool CheckStock(int ID)
+        {
+            var bulePrintDetails = bulePrintData.GetBulePrintDetailes(ID);
+            foreach (var resourceItem in bulePrintDetails.resourceItem)
+            {
+                var itemStock = PlayerBag.GetInventoryItem(resourceItem.itemID);
+                if (itemStock.itemAmount >= resourceItem.itemAmount)
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

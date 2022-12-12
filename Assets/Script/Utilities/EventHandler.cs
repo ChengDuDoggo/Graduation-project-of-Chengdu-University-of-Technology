@@ -126,4 +126,10 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         ShowTradeUI?.Invoke(item,isSell);
     }
+    //½¨Ôì
+    public static event Action<int,Vector3> BuildFurnitureEvent;
+    public static void CallBuildFurnitureEvent(int ID,Vector3 pos)
+    {
+        BuildFurnitureEvent?.Invoke(ID,pos);
+    }
 }

@@ -19,6 +19,7 @@ namespace MFarm.Inventory
             EventHandler.DropItemEvent += OnDropItemEvent;//扔东西委托事件
             EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
+            EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
         }
         private void OnDisable()
         {
@@ -26,6 +27,13 @@ namespace MFarm.Inventory
             EventHandler.DropItemEvent -= OnDropItemEvent;
             EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
+            EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
+        }
+
+        private void OnBuildFurnitureEvent(int ID,Vector3 mousePos)
+        {
+            BulePrintDetailes bulePrint = InventoryManager.Instance.bulePrintData.GetBulePrintDetailes(ID);
+            var buildItem = Instantiate(bulePrint.buildPrefab, mousePos, Quaternion.identity, itemParent);
         }
 
         private void OnDropItemEvent(int ID, Vector3 mousePos,ItemType itemType)

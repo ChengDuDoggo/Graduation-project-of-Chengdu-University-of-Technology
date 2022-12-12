@@ -23,15 +23,15 @@ MonoBehaviour:
     itemAmount: 1
   - itemID: 1020
     itemAmount: 1
-  - itemID: 1026
-    itemAmount: 19
+  - itemID: 1039
+    itemAmount: 1
   - itemID: 1028
     itemAmount: 20
   - itemID: 1033
-    itemAmount: 58
-  - itemID: 1039
+    itemAmount: 56
+  - itemID: 1017
     itemAmount: 1
-  - itemID: 1040
+  - itemID: 1007
     itemAmount: 1
   - itemID: 0
     itemAmount: 0
