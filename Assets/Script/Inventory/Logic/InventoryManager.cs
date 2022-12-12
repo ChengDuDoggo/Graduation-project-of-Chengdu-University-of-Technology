@@ -8,6 +8,8 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
     {
         [Header("物品数据")]
         public ItemDataList_SO itemDataList_SO;//拿到数据库
+        [Header("建造蓝图")]
+        public BluePrintDataList_SO bulePrintData;
         [Header("背包数据")]
         public InventoryBag_SO PlayerBag;
         private void OnEnable()

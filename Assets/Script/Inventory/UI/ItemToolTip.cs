@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using MFarm.Inventory;
 //将ItemDetails的一些属性传入到提示面板中去
 public class ItemToolTip : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class ItemToolTip : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private Text valueText;
     [SerializeField] private GameObject buttonPart;
+    [Header("建造")]
+    public GameObject resoursePanel;
+    [SerializeField] private Image[] resourseItem;
     public void SetupTooltip(ItemDetails itemDetails,SlotType slotType)
     {
         nameText.text = itemDetails.itemName;
@@ -48,5 +52,23 @@ public class ItemToolTip : MonoBehaviour
             ItemType.WaterTool => "工具",
             _ => "无"
         };
+    }
+    public void SetupResouresPanel(int ID)
+    {
+        var bulePrintDetails = InventoryManager.Instance.bulePrintData.GetBulePrintDetailes(ID);
+        for (int i = 0; i < resourseItem.Length; i++)
+        {
+            if (i < bulePrintDetails.resourceItem.Length)
+            {
+                var item = bulePrintDetails.resourceItem[i];
+                resourseItem[i].gameObject.SetActive(true);
+                resourseItem[i].sprite = InventoryManager.Instance.GetItemDetails(item.itemID).itemIcon;
+                resourseItem[i].transform.GetChild(0).GetComponent<Text>().text = item.itemAmount.ToString();
+            }
+            else
+            {
+                resourseItem[i].gameObject.SetActive(false);
+            }
+        }
     }
 }
