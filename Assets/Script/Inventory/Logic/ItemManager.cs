@@ -13,6 +13,8 @@ namespace MFarm.Inventory
         private Transform playerTransform => FindObjectOfType<Player>().transform;
         //记录场景Item
         private Dictionary<string, List<SceneItem>> sceneItemDict = new Dictionary<string, List<SceneItem>>();//该字典通过场景名来保存场景中存在的物体
+        //记录场景中的家具(string:场景名字)
+        private Dictionary<string, List<SceneFurniture>> sceneFurnitureDict = new Dictionary<string, List<SceneFurniture>>();
         private void OnEnable()
         {
             EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;//为委托事件添加函数方法
@@ -49,12 +51,14 @@ namespace MFarm.Inventory
         private void OnBeforeSceneUnloadEvent()
         {
             GetAllSceneItems();
+            GetAllSceneFurnitures();
         }
 
         private void OnAfterSceneLoadedEvent()
         {
             itemParent = GameObject.FindWithTag("ItemParent").transform;//场景加载之后再寻找ItemParent避免报空
             RecreateAllItems();
+            RebuildFurniturn();
         }
         private void OnInstantiateItemInScene(int ID, Vector3 pos)
         {
@@ -109,6 +113,48 @@ namespace MFarm.Inventory
                     {
                         Item newItem = Instantiate(itemPrefab, item.position.ToVector3(), Quaternion.identity, itemParent);
                         newItem.Init(item.ItemID);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 获取场景中的所有家具
+        /// </summary>
+        private void GetAllSceneFurnitures()
+        {
+            List<SceneFurniture> currentSceneFurnitures = new List<SceneFurniture>();//存放当前场景中物体的瓶子
+            foreach (var item in FindObjectsOfType<Furniture>())
+            {
+                SceneFurniture sceneFurniture = new SceneFurniture()
+                {
+                    ItemID = item.itemID,
+                    position = new SerializableVector3(item.transform.position)
+                };//找到当前场景中的所有Furniture并将它的属性传入到sceneFurniture中
+                currentSceneFurnitures.Add(sceneFurniture);//再将sceneFurniture放入临时列表
+            }
+            if (sceneFurnitureDict.ContainsKey(SceneManager.GetActiveScene().name))
+            {
+                //找到数据就更新Furniture数据列表
+                sceneFurnitureDict[SceneManager.GetActiveScene().name] = currentSceneFurnitures;
+            }
+            else//如果是新场景
+            {
+                sceneFurnitureDict.Add(SceneManager.GetActiveScene().name, currentSceneFurnitures);
+            }
+        }
+        /// <summary>
+        /// 重建当前场景家具
+        /// </summary>
+        private void RebuildFurniturn()
+        {
+            List<SceneFurniture> currentSceneFurniture = new List<SceneFurniture>();
+            if(sceneFurnitureDict.TryGetValue(SceneManager.GetActiveScene().name,out currentSceneFurniture))
+            {
+                if (currentSceneFurniture != null)
+                {
+                    foreach (SceneFurniture sceneFurniture in currentSceneFurniture)
+                    {
+                        OnBuildFurnitureEvent(sceneFurniture.ItemID, sceneFurniture.position.ToVector3());
                     }
                 }
             }

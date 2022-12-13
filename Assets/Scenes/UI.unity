@@ -6207,6 +6207,7 @@ MonoBehaviour:
   bagUI: {fileID: 1165464326}
   baseBag: {fileID: 163582876}
   shopSlotPrefab: {fileID: 6705037169751390834, guid: 866f24bebb6eb0e43a84e6b985b68285, type: 3}
+  boxSlotPrefab: {fileID: 6705037169751390834, guid: 2cff7a5adb9d8c74986d62a1b7d5ec0e, type: 3}
   tradeUI: {fileID: 775711409}
   playerSlots:
   - {fileID: 6705037167973922521}

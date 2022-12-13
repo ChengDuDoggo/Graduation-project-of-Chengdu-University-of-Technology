@@ -16,6 +16,7 @@ namespace MFarm.Inventory
         [Header("通用背包")]
         [SerializeField] private GameObject baseBag;
         public GameObject shopSlotPrefab;//商店格子预制体
+        public GameObject boxSlotPrefab;//箱子格子预制体
         [Header("交易UI")]
         public TradeUI tradeUI;
         [SerializeField] private SlotUI[] playerSlots;//玩家的每一个背包格子
@@ -76,6 +77,7 @@ namespace MFarm.Inventory
             GameObject prefab = slotType switch//语法糖,因为这里是通用事件,不只是打开商店,也可以用来打开箱子,所以Switch语法糖来判断传入不同的预制体
             {
                 SlotType.Shop => shopSlotPrefab,
+                SlotType.Box => boxSlotPrefab,
                 _ => null,
             };
             //生成背包UI
