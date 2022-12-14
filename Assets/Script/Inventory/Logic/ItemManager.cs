@@ -36,6 +36,11 @@ namespace MFarm.Inventory
         {
             BulePrintDetailes bulePrint = InventoryManager.Instance.bulePrintData.GetBulePrintDetailes(ID);
             var buildItem = Instantiate(bulePrint.buildPrefab, mousePos, Quaternion.identity, itemParent);
+            if (buildItem.GetComponent<Box>())
+            {
+                buildItem.GetComponent<Box>().index = InventoryManager.Instance.BoxDataAmount;
+                buildItem.GetComponent<Box>().InitBox(buildItem.GetComponent<Box>().index);
+            }
         }
 
         private void OnDropItemEvent(int ID, Vector3 mousePos,ItemType itemType)
@@ -154,7 +159,12 @@ namespace MFarm.Inventory
                 {
                     foreach (SceneFurniture sceneFurniture in currentSceneFurniture)
                     {
-                        OnBuildFurnitureEvent(sceneFurniture.ItemID, sceneFurniture.position.ToVector3());
+                        BulePrintDetailes bulePrint = InventoryManager.Instance.bulePrintData.GetBulePrintDetailes(sceneFurniture.ItemID);
+                        var buildItem = Instantiate(bulePrint.buildPrefab, sceneFurniture.position.ToVector3(), Quaternion.identity, itemParent);
+                        if (buildItem.GetComponent<Box>())
+                        {
+                            buildItem.GetComponent<Box>().InitBox(sceneFurniture.boxIndex);
+                        }
                     }
                 }
             }

@@ -19,6 +19,18 @@ namespace MFarm.Inventory
         //物品信息
         public ItemDetails itemDetails;
         public int itemAmount;
+        public InventoryLocation Location//属性
+        {
+            get//可读
+            {
+                return slotType switch
+                {
+                    SlotType.Bag => InventoryLocation.Player,
+                    SlotType.Box => InventoryLocation.Box,
+                    _ => InventoryLocation.Player
+                };
+            }
+        }
 
         public InventoryUI inventoryUI => GetComponentInParent<InventoryUI>();
         private void Start()
@@ -113,6 +125,11 @@ namespace MFarm.Inventory
                 else if (slotType == SlotType.Bag && targatSlot.slotType == SlotType.Shop)//卖
                 {
                     EventHandler.CallShowTradeUI(itemDetails, true);
+                }
+                else if(slotType != SlotType.Shop && targatSlot.slotType != SlotType.Shop&&slotType != targatSlot.slotType)
+                {
+                    //跨背包数据交换物品
+                    InventoryManager.Instance.SwapItem(Location, slotIndex, targatSlot.Location, targatSlot.slotIndex);
                 }
                 //拖拽完成后关闭所有的高亮显示
                 inventoryUI.UpdateSlotHighlight(-1);

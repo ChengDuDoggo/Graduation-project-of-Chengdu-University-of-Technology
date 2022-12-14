@@ -10,6 +10,7 @@ namespace MFarm.Inventory
         public GameObject mouseIcon;
         private bool canOpen = false;
         private bool isOpen;
+        public int index;//场景中每创建一个新的box该index就累加
         private void OnEnable()
         {
             if (boxBagData == null)
@@ -52,6 +53,19 @@ namespace MFarm.Inventory
                 //关闭箱子
                 EventHandler.CallBaseBagCloseEvent(SlotType.Box, boxBagData);
                 isOpen = false;
+            }
+        }
+        public void InitBox(int boxIndex)
+        {
+            index = boxIndex;
+            var key = this.name + index;
+            if (InventoryManager.Instance.GetBoxDataList(key) != null)//刷新地图读取数据
+            {
+                boxBagData.itemList = InventoryManager.Instance.GetBoxDataList(key);
+            }
+            else//新建箱子
+            {
+                InventoryManager.Instance.AddBoxDataDict(this);
             }
         }
     }

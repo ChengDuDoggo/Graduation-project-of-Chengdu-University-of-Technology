@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d690672582d2f845b8ab98b89656019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneName: 03.SmellTown
+  startSceneName: 01.Field
 --- !u!1 &391829273
 GameObject:
   m_ObjectHideFlags: 0
