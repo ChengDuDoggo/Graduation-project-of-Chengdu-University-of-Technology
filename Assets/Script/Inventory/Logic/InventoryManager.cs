@@ -12,6 +12,8 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         public BluePrintDataList_SO bulePrintData;
         [Header("背包数据")]
         public InventoryBag_SO PlayerBag;
+        [Header("交易")]
+        public int playerMoney;
         private void OnEnable()
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
@@ -193,6 +195,38 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
                 }
             }
             return true;
+        }
+        /// <summary>
+        /// 交易物品
+        /// </summary>
+        /// <param name="itemDetails">物品信息</param>
+        /// <param name="amount">交易数量</param>
+        /// <param name="isSellTrade">是否卖东西</param>
+        public void TradeItem(ItemDetails itemDetails,int amount,bool isSellTrade)
+        {
+            int cost = itemDetails.itemPrice * amount;//总共花费多少金币
+            //获得物品的背包位置
+            int index = GetItemIndexInBag(itemDetails.itemID);
+            if (isSellTrade)//卖
+            {
+                if (PlayerBag.itemList[index].itemAmount >= amount)
+                {
+                    RemoveItem(itemDetails.itemID, amount);
+                    //卖出总价
+                    cost = (int)(cost * itemDetails.sellPercentage);
+                    playerMoney += cost;
+                }
+            }
+            else if (playerMoney - cost >= 0)
+            {
+                if (CheckBagCapacity())
+                {
+                    AddItemAtIndex(itemDetails.itemID, index, amount);
+                }
+                playerMoney -= cost;
+            }
+            //刷新UI
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);
         }
     }
 }

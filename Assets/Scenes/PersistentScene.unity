@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d690672582d2f845b8ab98b89656019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneName: 01.Field
+  startSceneName: 03.SmellTown
 --- !u!1 &391829273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2167,7 @@ MonoBehaviour:
   itemDataList_SO: {fileID: 11400000, guid: a3ee38617a7d34d40909c51843c3c558, type: 2}
   bulePrintData: {fileID: 11400000, guid: 10ac2d3d5dbdb784fb03943cf3516d80, type: 2}
   PlayerBag: {fileID: 11400000, guid: 01295299c08ed714dad37397b6c5a2ef, type: 2}
+  playerMoney: 300
 --- !u!1 &1777619835
 GameObject:
   m_ObjectHideFlags: 0

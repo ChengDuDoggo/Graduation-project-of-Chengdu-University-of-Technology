@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace MFarm.Inventory
 {
@@ -19,6 +20,7 @@ namespace MFarm.Inventory
         public GameObject boxSlotPrefab;//箱子格子预制体
         [Header("交易UI")]
         public TradeUI tradeUI;
+        public TextMeshProUGUI playerMoneyText;
         [SerializeField] private SlotUI[] playerSlots;//玩家的每一个背包格子
         [SerializeField] private List<SlotUI> baseBagSlots;
         private void OnEnable()//当脚本执行时为委托事件添加方法(注册方法)
@@ -138,6 +140,7 @@ namespace MFarm.Inventory
                     }
                     break;
             }
+            playerMoneyText.text = InventoryManager.Instance.playerMoney.ToString();
         }
 
         private void Start()
@@ -148,6 +151,7 @@ namespace MFarm.Inventory
                 playerSlots[i].slotIndex = i;
             }
             bagOpened = bagUI.activeInHierarchy;//判断该GameObject在Hierarchy是否是激活状态
+            playerMoneyText.text = InventoryManager.Instance.playerMoney.ToString();
         }
         private void Update()
         {
