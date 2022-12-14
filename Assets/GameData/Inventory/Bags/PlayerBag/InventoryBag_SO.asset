@@ -25,14 +25,14 @@ MonoBehaviour:
     itemAmount: 1
   - itemID: 1039
     itemAmount: 1
-  - itemID: 1028
-    itemAmount: 20
+  - itemID: 0
+    itemAmount: 0
   - itemID: 1041
-    itemAmount: 5
+    itemAmount: 1
   - itemID: 1017
-    itemAmount: 601
+    itemAmount: 8199
   - itemID: 1029
-    itemAmount: 401
+    itemAmount: 8799
   - itemID: 0
     itemAmount: 0
   - itemID: 0
