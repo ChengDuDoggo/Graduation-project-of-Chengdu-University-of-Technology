@@ -37,3 +37,7 @@ public enum GameState//游戏状态枚举
 {
     Gameplay/*游戏正常运行状态*/,Pause/*游戏暂停状态*/
 }
+public enum LightShift//游戏灯光(早上还是晚上)
+{
+    Morning,Night
+}

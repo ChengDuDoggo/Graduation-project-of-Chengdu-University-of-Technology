@@ -26339,6 +26339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1306547534}
   - component: {fileID: 1306547535}
+  - component: {fileID: 1306547536}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -26440,6 +26441,19 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1306547536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306547533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f19cdfcd7745b949ae4a2888a458846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightData: {fileID: 11400000, guid: 7f50cd295788f694b8aa2f5b2673ec8b, type: 2}
 --- !u!1 &1323049718
 GameObject:
   m_ObjectHideFlags: 0
@@ -26450,6 +26464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323049719}
   - component: {fileID: 1323049720}
+  - component: {fileID: 1323049721}
   m_Layer: 0
   m_Name: Global Light 2D
   m_TagString: Untagged
@@ -26656,6 +26671,19 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1323049721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323049718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f19cdfcd7745b949ae4a2888a458846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightData: {fileID: 11400000, guid: b5d200a71a5ab424389c836bb553d165, type: 2}
 --- !u!1001 &1360744257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43503,6 +43531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1786377727}
   - component: {fileID: 1786377728}
+  - component: {fileID: 1786377729}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
@@ -43604,6 +43633,19 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1786377729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786377726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f19cdfcd7745b949ae4a2888a458846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightData: {fileID: 11400000, guid: 7f50cd295788f694b8aa2f5b2673ec8b, type: 2}
 --- !u!1 &1804296234
 GameObject:
   m_ObjectHideFlags: 0
