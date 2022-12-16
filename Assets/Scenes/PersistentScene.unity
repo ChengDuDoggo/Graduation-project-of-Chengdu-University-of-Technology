@@ -1509,6 +1509,10 @@ MonoBehaviour:
   sceneSoundData: {fileID: 11400000, guid: 9dea089b8048c00418b5b44259155537, type: 2}
   ambientSource: {fileID: 1718700433}
   gameSourse: {fileID: 1748887764}
+  audioMixer: {fileID: 24100000, guid: 28060fda92bdff346a32510b31f42d1f, type: 2}
+  normalSnapshot: {fileID: 24500006, guid: 28060fda92bdff346a32510b31f42d1f, type: 2}
+  ambientSnapshot: {fileID: -1580073477230221499, guid: 28060fda92bdff346a32510b31f42d1f, type: 2}
+  muteSnapshot: {fileID: -1967807277881388937, guid: 28060fda92bdff346a32510b31f42d1f, type: 2}
 --- !u!1 &946889014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2303,7 +2307,7 @@ AudioSource:
   m_GameObject: {fileID: 1718700431}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1335607195249351012, guid: 28060fda92bdff346a32510b31f42d1f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2431,7 +2435,7 @@ AudioSource:
   m_GameObject: {fileID: 1748887762}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8508801340857022040, guid: 28060fda92bdff346a32510b31f42d1f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
