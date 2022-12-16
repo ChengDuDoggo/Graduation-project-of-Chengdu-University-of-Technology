@@ -41,3 +41,10 @@ public enum LightShift//游戏灯光(早上还是晚上)
 {
     Morning,Night
 }
+public enum SoundName
+{
+    none,FootStepSoft,FootStepHard,
+    Axe,Pickaxe,Hoe,Reap,Water,Basket,Chop,
+    Pickup,Plant,TreeFalling,Rustle,
+    AmbientCountryside1,AmbientCountryside2,MusicCalm1, MusicCalm2, MusicCalm4, MusicCalm5, MusicCalm6,MusicCalm3, AmbientIndoor1
+}
