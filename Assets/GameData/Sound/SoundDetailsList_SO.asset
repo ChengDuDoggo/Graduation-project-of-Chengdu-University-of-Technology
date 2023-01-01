@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a09d7b4fad8f7b448d06f35cc7713ab, type: 3}
+  m_Name: SoundDetailsList_SO
+  m_EditorClassIdentifier: 
+  soundDetailsList:
+  - soundName: 1
+    soundClip: {fileID: 8300000, guid: 7be01365d7c1f854195174d340e208c8, type: 3}
+    soundPitchMin: 0.8
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 2
+    soundClip: {fileID: 8300000, guid: 7be01365d7c1f854195174d340e208c8, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 3
+    soundClip: {fileID: 8300000, guid: 68fa5537a54244647a61c5e8bb0cc4bb, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 4
+    soundClip: {fileID: 8300000, guid: 98f0ad1448301f54fb902eab6d396402, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 5
+    soundClip: {fileID: 8300000, guid: 7090f7ff61bdb97468cce053ca6b22c4, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 6
+    soundClip: {fileID: 8300000, guid: 1fa2b9b8f535cc24e936701e5c20970f, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 7
+    soundClip: {fileID: 8300000, guid: 1c5c449bb8837a44b9f65f19dfd840c4, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 8
+    soundClip: {fileID: 8300000, guid: 68013446b144ae948840a87fed846146, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 10
+    soundClip: {fileID: 8300000, guid: 450245030f160274383cf8ad4bd3d32f, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 11
+    soundClip: {fileID: 8300000, guid: b1465d7330c4adb4bb8467d4b5fe23ad, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 12
+    soundClip: {fileID: 8300000, guid: 5ad9497773332094a8b9dd6d520b218a, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 13
+    soundClip: {fileID: 8300000, guid: 3dd95f7ecb41e1d4ab24b2d3d717c5cb, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1.2
+    soundVolume: 0.2
+  - soundName: 14
+    soundClip: {fileID: 8300000, guid: 4d1c218cf6a969148ba6029e64395318, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8
+  - soundName: 15
+    soundClip: {fileID: 8300000, guid: f1479af10b1ccf240bda71811e22f7bb, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8
+  - soundName: 16
+    soundClip: {fileID: 8300000, guid: 13401b2c76a9de042be728ab0636e866, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8
+  - soundName: 17
+    soundClip: {fileID: 8300000, guid: 4ee77560591597346801b585985307e7, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8
+  - soundName: 22
+    soundClip: {fileID: 8300000, guid: db31358d3470cbb47bfef0487efaa4a8, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8
+  - soundName: 17
+    soundClip: {fileID: 8300000, guid: 8faf65dc5570946439cdb157cb98f162, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8
+  - soundName: 18
+    soundClip: {fileID: 8300000, guid: 3c9169a65de56e348baa02afee95d9e8, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8
+  - soundName: 19
+    soundClip: {fileID: 8300000, guid: a110a82de98085745aaad3642890d9d0, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8
+  - soundName: 20
+    soundClip: {fileID: 8300000, guid: c3feeefc7302a1f4d8c2b86cc38fb248, type: 3}
+    soundPitchMin: 1
+    soundPitchMax: 1
+    soundVolume: 0.8

@@ -35,8 +35,8 @@ MonoBehaviour:
     canPickedUp: 1
     canDropped: 0
     canCarried: 1
-    itemPrice: 0
-    sellPercentage: 0
+    itemPrice: 10
+    sellPercentage: 0.2
   - itemID: 1003
     itemName: "\u751C\u83DC\u6839\u79CD\u5B50"
     itemType: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
     canPickedUp: 1
     canDropped: 0
     canCarried: 1
-    itemPrice: 0
-    sellPercentage: 0
+    itemPrice: 20
+    sellPercentage: 0.2
   - itemID: 1004
     itemName: "\u767D\u841D\u535C\u79CD\u5B50"
     itemType: 0
@@ -59,8 +59,8 @@ MonoBehaviour:
     canPickedUp: 1
     canDropped: 0
     canCarried: 1
-    itemPrice: 0
-    sellPercentage: 0
+    itemPrice: 30
+    sellPercentage: 0.2
   - itemID: 1005
     itemName: "\u8FA3\u6912\u79CD\u5B50"
     itemType: 0
@@ -481,3 +481,27 @@ MonoBehaviour:
     canCarried: 0
     itemPrice: 0
     sellPercentage: 0
+  - itemID: 1040
+    itemName: "\u6728\u5934\u6905\u5B50\u56FE\u7EB8"
+    itemType: 2
+    itemIcon: {fileID: -1215904961, guid: d67f8bdea7b454ba08443e00d51268b8, type: 3}
+    itemOnWorldIcon: {fileID: 697528162, guid: d67f8bdea7b454ba08443e00d51268b8, type: 3}
+    itemDescription: "\u9700\u898120\u4E2A\u9488\u53F6\u6570\u6728\u5934\u624D\u80FD\u5EFA\u9020"
+    itemUseRadius: 4
+    canPickedUp: 0
+    canDropped: 1
+    canCarried: 1
+    itemPrice: 800
+    sellPercentage: 0.3
+  - itemID: 1041
+    itemName: "\u50A8\u7269\u7BB1\u56FE\u7EB8"
+    itemType: 2
+    itemIcon: {fileID: -1215904961, guid: d67f8bdea7b454ba08443e00d51268b8, type: 3}
+    itemOnWorldIcon: {fileID: 21300000, guid: 3775f8176edd949449f110983092e864, type: 3}
+    itemDescription: Box not Fox !
+    itemUseRadius: 4
+    canPickedUp: 0
+    canDropped: 1
+    canCarried: 1
+    itemPrice: 3200
+    sellPercentage: 0.3

@@ -59,6 +59,15 @@ public class SceneItem//代表在场景中的物体的类型
     public SerializableVector3 position;
 }
 [System.Serializable]
+public class SceneFurniture//代表场景中玩家自己新建造的家具类
+{
+    //它们有什么属性↓
+    //TODO:更多属性信息
+    public int ItemID;
+    public SerializableVector3 position;//它们有ID和位置信息
+    public int boxIndex;
+}
+[System.Serializable]
 public class TileProperty//瓦片属性类,定义一片瓦片是否可以种植,挖掘,丢弃道具,放置家具等等
 {
     public Vector2Int tileCoordinate;//瓦片坐标

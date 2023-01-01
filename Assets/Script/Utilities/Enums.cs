@@ -33,3 +33,18 @@ public enum ParticaleEffectType//特效的类型
 {
     None,LeavesFalling01,LeavesFalling02,Rock,ReapableScenery/*割稻草特效*/
 }
+public enum GameState//游戏状态枚举
+{
+    Gameplay/*游戏正常运行状态*/,Pause/*游戏暂停状态*/
+}
+public enum LightShift//游戏灯光(早上还是晚上)
+{
+    Morning,Night
+}
+public enum SoundName
+{
+    none,FootStepSoft,FootStepHard,
+    Axe,Pickaxe,Hoe,Reap,Water,Basket,Chop,
+    Pickup,Plant,TreeFalling,Rustle,
+    AmbientCountryside1,AmbientCountryside2,MusicCalm1, MusicCalm2, MusicCalm4, MusicCalm5, MusicCalm6,MusicCalm3, AmbientIndoor1
+}

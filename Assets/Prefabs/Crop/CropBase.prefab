@@ -72,6 +72,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f361f94756e48844a8d7fc4f14172806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cropDetails:
+    seedItemID: 0
+    growthDays: 
+    growsPrefabs: []
+    growthSprites: []
+    seasons: 
+    harvestToolItemID: 
+    requireActionCount: 
+    transferItemID: 0
+    producedItemID: 
+    produceMinAmount: 
+    produceMaxAmount: 
+    spawnRadius: {x: 0, y: 0}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPostion: 0
+    hasAnimation: 0
+    hasParticalEffect: 0
+    effectPos: {x: 0, y: 0, z: 0}
+    effectType: 0
+  tileDetails:
+    gridX: 0
+    gridY: 0
+    canDig: 0
+    canDropItm: 0
+    canPlaceFurniturn: 0
+    isNPCObstacle: 0
+    daysSinceDug: -1
+    daysSinceWatered: -1
+    seedItemID: -1
+    growthDays: -1
+    daysSinceLastHarvest: -1
 --- !u!1 &5896212018746165111
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +156,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

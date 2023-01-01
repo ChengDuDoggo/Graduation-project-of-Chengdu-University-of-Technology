@@ -1,4 +1,5 @@
 using MFarm.CropPlant;
+using MFarm.Inventory;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -10,6 +11,8 @@ public class CursorManager : MonoBehaviour
     private Sprite currentSprite;//存储当前鼠标图片
     private Image cursorImage;//Image是组件,Sprite是图片组件中存放的图片内容
     private RectTransform cursorCanvas;
+    //建造图标跟随
+    private Image buildImage;
     //鼠标检测
     private Camera mainCamera;//拿到摄像机用于屏幕坐标转化为世界坐标
     private Grid currentGrid;//拿到当前网格用于世界坐标转化为格子坐标
@@ -23,6 +26,9 @@ public class CursorManager : MonoBehaviour
     {
         cursorCanvas = GameObject.FindGameObjectWithTag("CursorCanvas").GetComponent<RectTransform>();
         cursorImage = cursorCanvas.GetChild(0).GetComponent<Image>();
+        //拿到建造图标
+        buildImage = cursorCanvas.GetChild(1).GetComponent<Image>();
+        buildImage.gameObject.SetActive(false);
         currentSprite = normal;
         SetCursorImage(normal);
         mainCamera = Camera.main;//获取主摄像机
@@ -55,7 +61,7 @@ public class CursorManager : MonoBehaviour
         if (cursorCanvas == null)
             return;
         cursorImage.transform.position = Input.mousePosition;//图片始终跟随鼠标移动
-        if (!InteractWithUI()&&cursorEnable)
+        if (!InteractWithUI() && cursorEnable)
         {
             SetCursorImage(currentSprite);
             CheckCursorValid();
@@ -64,6 +70,8 @@ public class CursorManager : MonoBehaviour
         else
         {
             SetCursorImage(normal);
+            //BugFix:
+            buildImage.gameObject.SetActive(false);
         }
 
     }
@@ -89,11 +97,13 @@ public class CursorManager : MonoBehaviour
     {
         cursorPositionValid = true;//鼠标可以点按
         cursorImage.color = new Color(1, 1, 1, 1);
+        buildImage.color = new Color(1, 1, 1, 0.5f);
     }
     private void SetCursorInvalid()//检测当前鼠标道具在地图上不可用，道具图片变为红色半透明
     {
         cursorPositionValid = false;//鼠标不能点按
         cursorImage.color = new Color(1, 0, 0, 0.5f);
+        buildImage.color = new Color(1, 0, 0, 0.5f);
     }
     #endregion
     private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
@@ -103,6 +113,7 @@ public class CursorManager : MonoBehaviour
             currentItem = null;
             cursorEnable = false;
             currentSprite = normal;
+            buildImage.gameObject.SetActive(false);
         }
         else
         {
@@ -122,6 +133,13 @@ public class CursorManager : MonoBehaviour
                 _ => normal //默认返回的是normal图片
             };
             cursorEnable = true;
+            //显示建造物品图片
+            if (itemDetails.itemType == ItemType.Furniture)
+            {
+                buildImage.gameObject.SetActive(true);
+                buildImage.sprite = itemDetails.itemOnWorldIcon;
+                buildImage.SetNativeSize();
+            }
         }
     }
     /// <summary>
@@ -132,6 +150,8 @@ public class CursorManager : MonoBehaviour
         mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y,-mainCamera.transform.position.z));//屏幕坐标转化为世界坐标
         mouseGridPos = currentGrid.WorldToCell(mouseWorldPos);//世界坐标转化为网格坐标
         var playerGridPos = currentGrid.WorldToCell(PlayerTransform.position);//拿到人物所在的网格坐标
+        //建造图片跟随移动
+        buildImage.rectTransform.position = Input.mousePosition;
         //判断在使用范围之内
         if (Mathf.Abs(mouseGridPos.x - playerGridPos.x) > currentItem.itemUseRadius || Mathf.Abs(mouseGridPos.y - playerGridPos.y) > currentItem.itemUseRadius)
         {
@@ -184,6 +204,15 @@ public class CursorManager : MonoBehaviour
                     break;
                 case ItemType.ReapTool:
                     if (GridMapManager.Instance.HaveReapableItemsInRadius(mouseWorldPos,currentItem)) SetCursorValid(); else SetCursorInvalid();
+                    break;
+                case ItemType.Furniture:
+                    buildImage.gameObject.SetActive(true);    //需要添加此命令
+                    var bluePrintDetails = InventoryManager.Instance.bulePrintData.GetBulePrintDetailes(currentItem.itemID);
+
+                    if (currentTile.canPlaceFurniturn && InventoryManager.Instance.CheckStock(currentItem.itemID))
+                        SetCursorValid();
+                    else
+                        SetCursorInvalid();
                     break;
             }
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Settings //自己编写的一个静态设置类，相当于写了一个设置按钮来控制工程里面需要经常使用的常量或者函数
                       //只不过是通过代码的形式呈现出的设置按钮，当游戏中的一个效果需要改变时，直接到设置里面来设置一样
@@ -25,4 +26,8 @@ public class Settings //自己编写的一个静态设置类，相当于写了一个设置按钮来控制工
     public const float pixelSize = 0.05f;//本游戏一个像素点的大小
     public const float animationBreakTime = 5f;//动画间隔
     public const int maxGridSize = 9999;
+    //灯光
+    public const float lightChangeDuration = 25f;//灯光25秒动态变换更新一次
+    public static TimeSpan morningTime = new TimeSpan(5, 0, 0);
+    public static TimeSpan nightTime = new TimeSpan(19, 0, 0);//TimeSpan:时间戳
 }

@@ -21,7 +21,7 @@ MonoBehaviour:
     targetScene: 03.SmellTown
     targetGridPosition: {x: 5, y: -5}
     clipAtStop: {fileID: 0}
-    interactable: 0
+    interactable: 1
   - hour: 10
     minute: 0
     day: 0

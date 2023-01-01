@@ -138,7 +138,7 @@ namespace MFarm.Map
         /// </summary>
         /// <param name="key">x+y+地图名字</param>
         /// <returns></returns>
-        private TileDetails GetTileDetailes(string key)
+        public TileDetails GetTileDetailes(string key)
         {
             if (tileDetailesDict.ContainsKey(key))
             {
@@ -215,6 +215,13 @@ namespace MFarm.Map
                                 break;//限制一下一次性能收割的草数量避免直接收割一大片
                             }
                         }
+                        break;
+                    case ItemType.Furniture:
+                        //在地图上生成物品 ItemManager
+                        //移除当前物品(图纸) InventoryManager
+                        //移除资源物品 InventoryManager
+                        //这里只需要触发一个事件即可,然后激活事件之后,对应的脚本去干它们自己该干的活儿
+                        EventHandler.CallBuildFurnitureEvent(itemDetails.itemID,mouseWorldPos);
                         break;
                 }
                 UpdateTileDetails(currentTile);
