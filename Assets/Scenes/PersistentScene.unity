@@ -476,6 +476,7 @@ MonoBehaviour:
   - {fileID: 7698444588969017422, guid: 861f8ee203569a843b9edbe11cfd3b20, type: 3}
   - {fileID: 6069031144355194190, guid: 86cea3dc3eda79f4aa0f62d44553ca62, type: 3}
   - {fileID: 6069031144355194190, guid: 345a904300fdf764f8ea49c9918cb410, type: 3}
+  - {fileID: 1696150800237831992, guid: dbf3d5b5c83f4f34c9c382c26cd26752, type: 3}
 --- !u!1 &301805726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,6 +1603,7 @@ GameObject:
   - component: {fileID: 999453469}
   - component: {fileID: 999453470}
   - component: {fileID: 999453471}
+  - component: {fileID: 999453472}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1696,6 +1698,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &999453472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999453468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1806729cb81f447beebdfb4b851dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1185904970
 GameObject:
   m_ObjectHideFlags: 3
@@ -2346,7 +2360,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2474,7 +2488,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
     [Header("“Ù¿÷ ˝æ›ø‚")]
     public SoundDetailsList_SO soundDetailsData;
@@ -24,10 +24,19 @@ public class AudioManager : MonoBehaviour
     private void OnEnable()
     {
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
+        EventHandler.PlaySoundEvent += OnPlaySoundEvent;
     }
     private void OnDisable()
     {
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
+        EventHandler.PlaySoundEvent -= OnPlaySoundEvent;
+    }
+
+    private void OnPlaySoundEvent(SoundName soundName)
+    {
+        var soundDetails = soundDetailsData.GetSoundDetails(soundName);
+        if (soundDetails != null)
+            EventHandler.CallInitSoundEffect(soundDetails);
     }
 
     private void OnAfterSceneLoadedEvent()

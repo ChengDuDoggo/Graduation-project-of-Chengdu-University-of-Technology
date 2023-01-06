@@ -10,6 +10,7 @@ public class PoolManager : MonoBehaviour
     //因为场景中有不同的特效,不同种类的特效又需要创建出许多相同的特效。
     //因此,会有几个对象池,每一个对象池中有几个特效,所以将对象池也放入List中
     private List<ObjectPool<GameObject>> poolEffectList = new List<ObjectPool<GameObject>>();
+    private Queue<GameObject> soundQueue = new Queue<GameObject>();//Queue:队列(先进先出,类似于做核酸排队)
     private void Start()
     {
         CreatPool();//游戏一开始就要为每一个特效预制体创建一个对象池,对应的对象池放对应的特效
@@ -18,10 +19,12 @@ public class PoolManager : MonoBehaviour
     {
         //注册播放粒子效果委托事件
         EventHandler.ParticaleEffectEvent += OnParticaleEffectEvent;
+        EventHandler.InitSoundEffect += InitSoundEffect;
     }
     private void OnDisable()
     {
         EventHandler.ParticaleEffectEvent -= OnParticaleEffectEvent;
+        EventHandler.InitSoundEffect -= InitSoundEffect;
     }
     /// <summary>
     /// 创建对象池,为每一个特效预制体创建一个专属的对象池
@@ -72,5 +75,48 @@ public class PoolManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         pool.Release(obj);//Unity对象池系统自带的释放对象函数
+    }
+/*    private void InitSoundEffect(SoundDetails soundDetails)
+    {
+        ObjectPool<GameObject> pool = poolEffectList[4];
+        var obj = pool.Get();
+        obj.GetComponent<Sound>().SetSound(soundDetails);
+        StartCoroutine(DisableSound(pool, obj, soundDetails));
+    }
+    private IEnumerator DisableSound(ObjectPool<GameObject> pool,GameObject obj,SoundDetails soundDetails)
+    {
+        yield return new WaitForSeconds(soundDetails.soundClip.length);
+        pool.Release(obj);
+    }*/
+    //传统创建对象池的方式
+    private void CreateSoundPool()//创建音效对象池
+    {
+        var parent = new GameObject(poolPrefabs[4].name).transform;
+        parent.SetParent(transform);
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject newObj = Instantiate(poolPrefabs[4], parent);
+            newObj.SetActive(false);
+            soundQueue.Enqueue(newObj);//将对象池中的obj压入队列
+        }
+    }
+    private GameObject GetPoolObject()//从对象池中得到音效
+    {
+        if (soundQueue.Count < 2)
+            CreateSoundPool();//如果对象池的容量小于2则重新创建对象池(队列)
+        return soundQueue.Dequeue();//返回队列中先进的特效(队列遵循先进先出规则)
+    }
+    private void InitSoundEffect(SoundDetails soundDetails)
+    {
+        var obj = GetPoolObject();
+        obj.GetComponent<Sound>().SetSound(soundDetails);
+        obj.SetActive(true);
+        StartCoroutine(DisableSound(obj, soundDetails.soundClip.length));   
+    }
+    private IEnumerator DisableSound(GameObject obj,float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        obj.SetActive(false);
+        soundQueue.Enqueue(obj);//音效播放完毕后重新将他压入队列
     }
 }

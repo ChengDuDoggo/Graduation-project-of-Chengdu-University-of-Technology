@@ -44,7 +44,7 @@ public class CropDetails
     public bool hasAnimation;//是否有动画
     public bool hasParticalEffect;//是否有粒子特效
     public Vector3 effectPos;//特效产生点的坐标
-    //TODO:特效,音效等
+    public SoundName soundEffect;
     public ParticaleEffectType effectType;
     public bool CheckToolAvailable(int toolID)//判断当前所持工具是否可用
     {

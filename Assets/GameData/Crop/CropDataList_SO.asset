@@ -41,6 +41,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1003
     growthDays: 0100000002000000020000000300000003000000
@@ -70,6 +71,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1004
     growthDays: 0100000001000000020000000200000001000000
@@ -99,6 +101,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1005
     growthDays: 0200000002000000030000000300000004000000
@@ -128,6 +131,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1006
     growthDays: 08000000080000000a0000000c00000005000000
@@ -157,6 +161,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1007
     growthDays: 0700000006000000080000000800000006000000
@@ -186,6 +191,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1008
     growthDays: 050000000600000006000000080000000800000007000000
@@ -217,6 +223,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1009
     growthDays: 0300000003000000040000000400000005000000
@@ -246,6 +253,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1010
     growthDays: 0200000003000000020000000500000002000000
@@ -275,6 +283,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1011
     growthDays: 0a000000140000000a0000000f00000005000000
@@ -304,6 +313,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 11
     effectType: 0
   - seedItemID: 1026
     growthDays: 0a000000190000000f0000000a0000000a000000
@@ -333,6 +343,7 @@ MonoBehaviour:
     hasAnimation: 1
     hasParticalEffect: 1
     effectPos: {x: 0, y: 2.5, z: 0}
+    soundEffect: 3
     effectType: 1
   - seedItemID: 1028
     growthDays: 080000000f00000014000000050000000c000000
@@ -362,6 +373,7 @@ MonoBehaviour:
     hasAnimation: 1
     hasParticalEffect: 1
     effectPos: {x: 0, y: 2.5, z: 0}
+    soundEffect: 3
     effectType: 2
   - seedItemID: 1027
     growthDays: 00000000
@@ -383,6 +395,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 3
     effectType: 0
   - seedItemID: 1030
     growthDays: 00000000
@@ -404,6 +417,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 0
     effectPos: {x: 0, y: 0, z: 0}
+    soundEffect: 3
     effectType: 0
   - seedItemID: 1031
     growthDays: 00000000
@@ -425,6 +439,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 1
     effectPos: {x: 0, y: 0.5, z: 0}
+    soundEffect: 4
     effectType: 3
   - seedItemID: 1032
     growthDays: 00000000
@@ -446,6 +461,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 1
     effectPos: {x: 0, y: 0.8, z: 0}
+    soundEffect: 4
     effectType: 3
   - seedItemID: 1035
     growthDays: 
@@ -467,6 +483,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 1
     effectPos: {x: 0, y: 1, z: 0}
+    soundEffect: 6
     effectType: 4
   - seedItemID: 1036
     growthDays: 
@@ -488,6 +505,7 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 1
     effectPos: {x: 0, y: 1.5, z: 0}
+    soundEffect: 6
     effectType: 4
   - seedItemID: 1037
     growthDays: 
@@ -509,4 +527,5 @@ MonoBehaviour:
     hasAnimation: 0
     hasParticalEffect: 1
     effectPos: {x: 0, y: 1.5, z: 0}
+    soundEffect: 6
     effectType: 4
