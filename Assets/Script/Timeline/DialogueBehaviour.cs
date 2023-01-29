@@ -29,4 +29,23 @@ public class DialogueBehaviour : PlayableBehaviour//Ò»¸ö»ùÀà½Ó¿Ú,¿ÉÒÔÈÃ´´×÷ÕßÊ¹Ó
             }
         }
     }
+    //Timeline¸¸ÀàÖĞ×Ô´øµÄº¯Êı·½·¨,¿ÉÒÔÊ¹TimelineÔÚ²¥·Å¹ı³ÌÖĞÃ¿Ö¡Ö´ĞĞÒ»´Î´Ëº¯Êı
+    public override void ProcessFrame(Playable playable, FrameData info, object playerData)
+    {
+        if (Application.isPlaying)
+            TimelineManager.Instance.IsDone = dialoguePiece.isDone;
+    }
+    //Timeline¸¸Àà×Ô´øº¯Êı,ÔÚTimeline²¥·ÅÍê±ÏÖ®ºóÖ´ĞĞÒ»´Î
+    public override void OnBehaviourPause(Playable playable,FrameData info)
+    {
+        EventHandler.CallShowDialogueEvent(null);//¹Ø±Õ¶Ô»°¿ò
+    }
+    public override void OnGraphStart(Playable playable)
+    {
+        EventHandler.CallUpdateGameStateEvent(GameState.Pause);
+    }
+    public override void OnGraphStop(Playable playable)
+    {
+        EventHandler.CallUpdateGameStateEvent(GameState.Gameplay);//¼¤»îÎ¯ÍĞÀïÃæ´æ·ÅµÄÊÂ¼ş
+    }
 }
