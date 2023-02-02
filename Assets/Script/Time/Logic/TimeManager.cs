@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
-public class TimeManager : Singleton<TimeManager>
+using MFarm.Save;
+public class TimeManager : Singleton<TimeManager>,ISaveable
 {
     private int gameSecond, gameMinute, gameHour, gameDay, gameMonth, gameYear;
     private Season gameSeason = Season.春天;//默认游戏进入为春天
@@ -12,6 +12,9 @@ public class TimeManager : Singleton<TimeManager>
     private float tikTime;//计时器
     private float timeDifference;//灯光时间差
     public TimeSpan GameTime => new TimeSpan(gameHour, gameMinute, gameSecond);
+
+    public string GUID => GetComponent<DataGUID>().guid;
+
     protected override void Awake()
     {
         base.Awake();
@@ -51,6 +54,8 @@ public class TimeManager : Singleton<TimeManager>
         EventHandler.CallGameMinuteEvent(gameMinute, gameHour,gameSeason,gameDay);
         //切换灯光
         EventHandler.CallLightShiftChangeEvent(gameSeason, GetCurrentLightShift(), timeDifference);
+        ISaveable saveable = this;
+        saveable.RegisterSaveable();
     }
     private void Update()
     {
@@ -165,5 +170,30 @@ public class TimeManager : Singleton<TimeManager>
             return LightShift.Night;
         }
         return LightShift.Morning;
+    }
+
+    public GameSaveData GenerateSaveData()
+    {
+        GameSaveData saveData = new GameSaveData();
+        saveData.timeDict = new Dictionary<string, int>();
+        saveData.timeDict.Add("gameYear", gameYear);
+        saveData.timeDict.Add("gameSeason", (int)gameSeason);
+        saveData.timeDict.Add("gameMonth", gameMonth);
+        saveData.timeDict.Add("gameDay", gameDay);
+        saveData.timeDict.Add("gameHour", gameHour);
+        saveData.timeDict.Add("gameMinute", gameMinute);
+        saveData.timeDict.Add("gameSecond", gameSecond);
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveDate)
+    {
+        gameYear = saveDate.timeDict["gameYear"];
+        gameSeason = (Season)saveDate.timeDict["gameSeason"];
+        gameMonth = saveDate.timeDict["gameMonth"];
+        gameDay = saveDate.timeDict["gameDay"];
+        gameHour = saveDate.timeDict["gameHour"];
+        gameMinute = saveDate.timeDict["gameMinute"];
+        gameSecond = saveDate.timeDict["gameSecond"];
     }
 }

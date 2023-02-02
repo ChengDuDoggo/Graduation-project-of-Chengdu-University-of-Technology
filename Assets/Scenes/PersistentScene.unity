@@ -1403,6 +1403,7 @@ GameObject:
   - component: {fileID: 437475138}
   - component: {fileID: 437475139}
   - component: {fileID: 437475140}
+  - component: {fileID: 437475141}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1591,6 +1592,19 @@ MonoBehaviour:
   - partType: 7
     partName: 1
     overrideController: {fileID: 22100000, guid: deeffd8cd044e544ea32ed526716a098, type: 2}
+--- !u!114 &437475141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437475132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: d511a781-d6de-4750-b77b-d66ceb758ef3
 --- !u!1 &441856606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,6 +2445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 764030775}
   - component: {fileID: 764030776}
+  - component: {fileID: 764030777}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -2465,6 +2480,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cb1abda3e0cbb41baed0b9981cadca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &764030777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764030774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 
 --- !u!1 &766325466
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,6 +3068,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1207157223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1207157224}
+  - component: {fileID: 1207157225}
+  m_Layer: 0
+  m_Name: SaveLoad Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1207157224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207157223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1207157225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207157223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a982d923bce0e3c4ca195bf6bdb2a7b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1276961551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,6 +3622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1313016492}
   - component: {fileID: 1313016491}
+  - component: {fileID: 1313016493}
   m_Layer: 0
   m_Name: ItemManager
   m_TagString: Untagged
@@ -3586,6 +3659,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1313016493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313016490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 
 --- !u!1 &1322520128
 GameObject:
   m_ObjectHideFlags: 0
@@ -4354,6 +4440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1698939022}
   - component: {fileID: 1698939023}
+  - component: {fileID: 1698939024}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -4392,6 +4479,19 @@ MonoBehaviour:
   bulePrintData: {fileID: 11400000, guid: 10ac2d3d5dbdb784fb03943cf3516d80, type: 2}
   PlayerBag: {fileID: 11400000, guid: 01295299c08ed714dad37397b6c5a2ef, type: 2}
   playerMoney: 300
+--- !u!114 &1698939024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698939021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 
 --- !u!1 &1718700431
 GameObject:
   m_ObjectHideFlags: 0

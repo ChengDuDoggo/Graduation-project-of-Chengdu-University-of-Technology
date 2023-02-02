@@ -2,19 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MFarm.Save;
 //专门用来管理世界地图中所有的物品的管理类
 namespace MFarm.Inventory
 {
-    public class ItemManager : Singleton<ItemManager>
+    public class ItemManager : Singleton<ItemManager>,ISaveable
     {
         public Item itemPrefab;
         public Item bounceItemPrefab;
         private Transform itemParent;
         private Transform playerTransform => FindObjectOfType<Player>().transform;
+
+        public string GUID => GetComponent<DataGUID>().guid;
+
         //记录场景Item
         private Dictionary<string, List<SceneItem>> sceneItemDict = new Dictionary<string, List<SceneItem>>();//该字典通过场景名来保存场景中存在的物体
         //记录场景中的家具(string:场景名字)
         private Dictionary<string, List<SceneFurniture>> sceneFurnitureDict = new Dictionary<string, List<SceneFurniture>>();
+        private void Start()
+        {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
+        }
         private void OnEnable()
         {
             EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;//为委托事件添加函数方法
@@ -168,6 +177,24 @@ namespace MFarm.Inventory
                     }
                 }
             }
+        }
+
+        public GameSaveData GenerateSaveData()
+        {
+            GetAllSceneItems();
+            GetAllSceneFurnitures();//因为场景中的物品是在场景加载卸载后才保存的,未卸载前拿不到所有物品或家具,必须这里手动拿一下
+            GameSaveData saveData = new GameSaveData();
+            saveData.sceneItemDict = this.sceneItemDict;
+            saveData.sceneFurnitureDict = this.sceneFurnitureDict;
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData saveDate)
+        {
+            this.sceneItemDict = saveDate.sceneItemDict;
+            this.sceneFurnitureDict = saveDate.sceneFurnitureDict;
+            RecreateAllItems();
+            RebuildFurniturn();//刷新
         }
     }
 }

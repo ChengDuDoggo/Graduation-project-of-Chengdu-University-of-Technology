@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using MFarm.CropPlant;
+using MFarm.Save;
 namespace MFarm.Map
 {
-    public class GridMapManager : Singleton<GridMapManager>
+    public class GridMapManager : Singleton<GridMapManager>,ISaveable
     {
         [Header("种地瓦片切换信息")]
         public RuleTile digTile;//实例化两个规则瓦片
@@ -23,6 +24,9 @@ namespace MFarm.Map
         private Season currentSeason;
         //杂草列表
         private List<ReapItem> itemsInRadius;
+
+        public string GUID => GetComponent<DataGUID>().guid;
+
         private void OnEnable()
         {
             EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
@@ -92,6 +96,8 @@ namespace MFarm.Map
                 firstLoadDic.Add(mapData.sceneName, true);//所有的场景都是第一次加载,加载场景之后就把它改为False
                 InitTileDetailsDict(mapData);
             }
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
         }
         /// <summary>
         /// 根据地图信息生成字典
@@ -386,6 +392,20 @@ namespace MFarm.Map
                 }//则将当前场景中的数据全部输出传入节点中并返回true
             }
             return false;
+        }
+
+        public GameSaveData GenerateSaveData()
+        {
+            GameSaveData saveData = new GameSaveData();
+            saveData.tileDetailsDict = this.tileDetailesDict;
+            saveData.firstLoadDict = this.firstLoadDic;
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData saveDate)
+        {
+            this.tileDetailesDict = saveDate.tileDetailsDict;
+            this.firstLoadDic = saveDate.firstLoadDict;
         }
     }
 }

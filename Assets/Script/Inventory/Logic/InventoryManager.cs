@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using MFarm.Save;
 namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以调用到该命名空间中的变量或者函数，达到保护作用
 {
-    public class InventoryManager : Singleton<InventoryManager>//数据管理类
+    public class InventoryManager : Singleton<InventoryManager>,ISaveable//数据管理类
     {
         [Header("物品数据")]
         public ItemDataList_SO itemDataList_SO;//拿到数据库
@@ -17,6 +17,8 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         public int playerMoney;
         private Dictionary<string, List<InventoryItem>> boxDataDict = new Dictionary<string, List<InventoryItem>>();
         public int BoxDataAmount => boxDataDict.Count;
+
+        public string GUID => GetComponent<DataGUID>().guid;
         private void OnEnable()
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
@@ -63,6 +65,8 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         private void Start()
         {
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//游戏一开始就调用一下更新UI的委托事件
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
         }
         /// <summary>
         /// 通过ID返回物品信息
@@ -311,6 +315,33 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
             {
                 boxDataDict.Add(key, box.boxBagData.itemList);
             }
+        }
+
+        public GameSaveData GenerateSaveData()
+        {
+            GameSaveData saveData = new GameSaveData();
+            saveData.playerMoney = this.playerMoney;
+            saveData.inventoryDict = new Dictionary<string, List<InventoryItem>>();
+            saveData.inventoryDict.Add(PlayerBag.name, PlayerBag.itemList);
+            foreach (var item in boxDataDict)
+            {
+                saveData.inventoryDict.Add(item.Key, item.Value);
+            }
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData saveDate)
+        {
+            this.playerMoney = saveDate.playerMoney;
+            PlayerBag.itemList = saveDate.inventoryDict[PlayerBag.name];
+            foreach (var item in saveDate.inventoryDict)
+            {
+                if (boxDataDict.ContainsKey(item.Key))
+                {
+                    boxDataDict[item.Key] = item.Value;
+                }
+            }
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//刷新一下UI
         }
     }
 }

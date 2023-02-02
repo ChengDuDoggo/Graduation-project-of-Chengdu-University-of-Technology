@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MFarm.Save;
 
-public class Player : MonoBehaviour //控制玩家基本操作的类
+public class Player : MonoBehaviour,ISaveable //控制玩家基本操作的类
 {
     private Rigidbody2D rb;
     public float speed;
@@ -17,10 +18,17 @@ public class Player : MonoBehaviour //控制玩家基本操作的类
     private float mouseY;
     private bool useTool;
 
+    public string GUID => GetComponent<DataGUID>().guid;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
+    }
+    private void Start()
+    {
+        ISaveable saveable = this;//因为Player类继承了ISaveable接口所有能够直接赋值进ISaveable接口类型
+        saveable.RegisterSaveable();//注册Player类放入SaveLoadManager列表中代表是要被保存为数据的类
     }
     private void OnEnable()
     {
@@ -162,5 +170,20 @@ public class Player : MonoBehaviour //控制玩家基本操作的类
                 anim.SetFloat("InputY", InputY);
             }
         }
+    }
+
+    public GameSaveData GenerateSaveData()
+    {
+        //写好了将当前人物坐标数据存入到一个新的GameSaveData
+        GameSaveData saveData = new GameSaveData();
+        saveData.characterPosDict = new Dictionary<string, SerializableVector3>();
+        saveData.characterPosDict.Add(this.name, new SerializableVector3(transform.position));
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveDate)
+    {
+        var targetPosition = saveDate.characterPosDict[this.name].ToVector3();
+        transform.position = targetPosition;
     }
 }
