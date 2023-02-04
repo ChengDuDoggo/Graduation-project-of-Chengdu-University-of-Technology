@@ -4,9 +4,10 @@ using UnityEngine;
 using MFarm.AStar;
 using UnityEngine.SceneManagement;
 using System;
+using MFarm.Save;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public class NPCMovement : MonoBehaviour
+public class NPCMovement : MonoBehaviour,ISaveable
 {
     public SchedulDataList_SO schedulData;
     private SortedSet<SchedulDetails> scheduleSet;//始终保持其中内容的排序顺序以及唯一性的集合
@@ -42,6 +43,9 @@ public class NPCMovement : MonoBehaviour
     public AnimationClip blankAnimationClip;//定义一个空白的动画片段
     private AnimatorOverrideController animOverride;//重构一个动画控制器
     private TimeSpan GameTime => TimeManager.Instance.GameTime;//TimeSpan:表示一个时间戳
+
+    public string GUID => GetComponent<DataGUID>().guid;
+
     //作用:例如,定义一个时间戳 TimeSpan targetTime = new TimeSpan(10,20); 这个时间戳就是10分20秒
     //拥有时间戳之后可以利用时间戳作为条件,比如GameTime游戏时间到达10分20秒时能够触发什么事件
 
@@ -60,6 +64,11 @@ public class NPCMovement : MonoBehaviour
         {
             scheduleSet.Add(schedule);
         }
+    }
+    private void Start()
+    {
+        ISaveable saveable = this;
+        saveable.RegisterSaveable();
     }
     private void OnEnable()
     {
@@ -355,4 +364,35 @@ public class NPCMovement : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
     }
     #endregion
+    public GameSaveData GenerateSaveData()
+    {
+        GameSaveData saveData = new GameSaveData();
+        saveData.characterPosDict = new Dictionary<string, SerializableVector3>();
+        saveData.characterPosDict.Add("targetGridPosition", new SerializableVector3(targetGridPostion));
+        saveData.characterPosDict.Add("currentPosition", new SerializableVector3(transform.position));
+        saveData.dataSceneName = currentScene;
+        saveData.targetScene = this.targetScene;
+        if (stopAnimationClip != null)
+        {
+            saveData.animationInstanceID = stopAnimationClip.GetInstanceID();
+        }
+        saveData.interactable = this.interactable;
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveDate)
+    {
+        isInitialised = true;
+        currentScene = saveDate.dataSceneName;
+        targetScene = saveDate.targetScene;
+        Vector3 pos = saveDate.characterPosDict["currentPosition"].ToVector3();
+        Vector3Int gridPos = (Vector3Int)saveDate.characterPosDict["targetGridPosition"].ToVector2Int();
+        transform.position = pos;
+        targetGridPostion = gridPos;
+        if (saveDate.animationInstanceID != 0)
+        {
+            this.stopAnimationClip = Resources.InstanceIDToObject(saveDate.animationInstanceID) as AnimationClip;
+        }
+        this.interactable = saveDate.interactable;
+    }
 }

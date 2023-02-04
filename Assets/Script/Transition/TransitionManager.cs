@@ -2,16 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MFarm.Save;
 namespace MFarm.Transition
 {
-    public class TransitionManager : MonoBehaviour
+    public class TransitionManager : MonoBehaviour,ISaveable
     {
         [SceneName]//自己编写的Unity辅助功能标记
         public string startSceneName = string.Empty;
         private CanvasGroup fadeCanvasGroup;
         private bool isFade;//判断场景切换阿尔法加载是否完成
+
+        public string GUID => GetComponent<DataGUID>().guid;
+        private void Awake()
+        {
+            SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+        }
         private IEnumerator Start()
         {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
             fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
             yield return LoadSceneSetActive(startSceneName);
             EventHandler.CallAfterSceneLoadedEvent();
@@ -78,6 +87,30 @@ namespace MFarm.Transition
             }
             fadeCanvasGroup.blocksRaycasts = false;//动画执行完毕,关闭鼠标遮挡
             isFade = false;
+        }
+        private IEnumerator LoadSaveDataScene(string sceneName)
+        {
+            yield return Fade(1f);
+            if (SceneManager.GetActiveScene().name != "PersistentScene")//在游戏过程中加载另外的游戏进度
+            {
+                EventHandler.CallBeforeSceneUnloadEvent();
+                yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            }
+            yield return LoadSceneSetActive(sceneName);
+            EventHandler.CallAfterSceneLoadedEvent();
+            yield return Fade(0);
+        }
+        public GameSaveData GenerateSaveData()
+        {
+            GameSaveData saveData = new GameSaveData();
+            saveData.dataSceneName = SceneManager.GetActiveScene().name;
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData saveDate)
+        {
+            //加载游戏进度场景
+            StartCoroutine(LoadSaveDataScene(saveDate.dataSceneName));
         }
     }
 }

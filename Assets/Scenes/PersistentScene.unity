@@ -926,6 +926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371030383}
   - component: {fileID: 371030384}
+  - component: {fileID: 371030385}
   m_Layer: 0
   m_Name: TransitionManager
   m_TagString: Untagged
@@ -961,6 +962,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSceneName: 01.Field
+--- !u!114 &371030385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371030382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 
 --- !u!1 &387900551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651063315}
   - component: {fileID: 651063316}
+  - component: {fileID: 651063317}
   m_Layer: 0
   m_Name: GirdMap Manager
   m_TagString: Untagged
@@ -2178,6 +2193,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bff33c0db99f9649b3bef8a1177d5d2, type: 2}
   - {fileID: 11400000, guid: 6e7203854ae9f814d8c66b0636a27ca1, type: 2}
   - {fileID: 11400000, guid: 0687ffdbbd9072f4884d2aceaf9454c6, type: 2}
+--- !u!114 &651063317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651063314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: ce24abb3-4931-4837-b944-ae38a8df328d
 --- !u!1 &652593186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,7 +2520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guid: 
+  guid: 25134636-756f-4600-9438-458e77cf31bc
 --- !u!1 &766325466
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,6 +3384,7 @@ GameObject:
   - component: {fileID: 1308913696}
   - component: {fileID: 1308913698}
   - component: {fileID: 1308913697}
+  - component: {fileID: 1308913699}
   m_Layer: 0
   m_Name: NPC_Girl_01
   m_TagString: Untagged
@@ -3564,6 +3593,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopData: {fileID: 11400000, guid: 1497fdf90747451458b7d9ea03cd8a0c, type: 2}
+--- !u!114 &1308913699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308913690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 52d90cc9-8ad0-4a2b-8960-88b74b35bcfc
 --- !u!1 &1310498178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,7 +3713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guid: 
+  guid: 2f2688f6-4d58-4c32-a334-20ce3e6b98f3
 --- !u!1 &1322520128
 GameObject:
   m_ObjectHideFlags: 0
@@ -4491,7 +4533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guid: 
+  guid: c0582a98-f041-4a08-80c1-84c5f0f27082
 --- !u!1 &1718700431
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,6 +5266,7 @@ GameObject:
   - component: {fileID: 2065040018}
   - component: {fileID: 2065040019}
   - component: {fileID: 2065040020}
+  - component: {fileID: 2065040021}
   m_Layer: 0
   m_Name: NPC_Mayor
   m_TagString: Untagged
@@ -5413,6 +5456,19 @@ MonoBehaviour:
     dialogueText: 666
     hasToPause: 1
     isDone: 0
+--- !u!114 &2065040021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065040013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93339254e3012a4ca5c3cc5067fa73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 3097128f-50c9-4f1d-b7ec-6a395be10a09
 --- !u!1 &2125660000
 GameObject:
   m_ObjectHideFlags: 0
