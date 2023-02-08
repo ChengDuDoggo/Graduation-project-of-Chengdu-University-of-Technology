@@ -149,4 +149,9 @@ public static class EventHandler //´´½¨Ò»¸ö½Å±¾À´¿ØÖÆÓÎÏ·ÖĞËùÓĞµÄÊÂ¼ş£¬¾²Ì¬µÄ£¬È
     {
         PlaySoundEvent?.Invoke(soundName);
     }
+    public static event Action<int> StartNewGameEvent;
+    public static void CallStartNewGameEvent(int index)
+    {
+        StartNewGameEvent?.Invoke(index);
+    }
 }

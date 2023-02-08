@@ -37,6 +37,7 @@ public class Player : MonoBehaviour,ISaveable //控制玩家基本操作的类
         EventHandler.MoveToPosition += OnMoveToPosition;
         EventHandler.MouseClickedEvent += OnMouseClickedEvent;
         EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
     }
     private void OnDisable()
     {
@@ -45,7 +46,15 @@ public class Player : MonoBehaviour,ISaveable //控制玩家基本操作的类
         EventHandler.MoveToPosition -= OnMoveToPosition;
         EventHandler.MouseClickedEvent -= OnMouseClickedEvent;
         EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
     }
+
+    private void OnStartNewGameEvent(int index)
+    {
+        inputDisable = false;
+        transform.position = Settings.playerStartPos;
+    }
+
     private void Update()
     {
         if (!inputDisable)

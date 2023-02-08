@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using MFarm.Save;
 namespace MFarm.Transition
 {
-    public class TransitionManager : MonoBehaviour,ISaveable
+    public class TransitionManager : Singleton<TransitionManager>,ISaveable
     {
         [SceneName]//自己编写的Unity辅助功能标记
         public string startSceneName = string.Empty;
@@ -13,25 +13,31 @@ namespace MFarm.Transition
         private bool isFade;//判断场景切换阿尔法加载是否完成
 
         public string GUID => GetComponent<DataGUID>().guid;
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             SceneManager.LoadScene("UI", LoadSceneMode.Additive);
         }
-        private IEnumerator Start()
+        private void Start()
         {
             ISaveable saveable = this;
             saveable.RegisterSaveable();
             fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
-            yield return LoadSceneSetActive(startSceneName);
-            EventHandler.CallAfterSceneLoadedEvent();
         }
         private void OnEnable()
         {
             EventHandler.TransitionEvent += OnTransitionEvent;
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
         }
         private void OnDisable()
         {
             EventHandler.TransitionEvent -= OnTransitionEvent;
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        }
+
+        private void OnStartNewGameEvent(int index)
+        {
+            StartCoroutine(LoadSaveDataScene(startSceneName));
         }
 
         private void OnTransitionEvent(string sceneToGo, Vector3 positionToGo)

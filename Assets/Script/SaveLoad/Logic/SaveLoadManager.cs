@@ -15,7 +15,22 @@ namespace MFarm.Save
         {
             base.Awake();
             jsonFolder = Application.persistentDataPath + "/SAVE DATA/";//创建一个系统路径下的名为SAVE DATA的文件夹(加斜杠表明这是文件夹,不加斜杠表明是文件)
+            ReadSaveData();
         }
+        private void OnEnable()
+        {
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+        }
+        private void OnDisable()
+        {
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        }
+
+        private void OnStartNewGameEvent(int index)
+        {
+            currentDataIndex = index;
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.I))
@@ -33,6 +48,22 @@ namespace MFarm.Save
             if (!saveableList.Contains(saveable))
             {
                 saveableList.Add(saveable);
+            }
+        }
+        private void ReadSaveData()
+        {
+            if (Directory.Exists(jsonFolder))
+            {
+                for (int i = 0; i < dataSlots.Count; i++)
+                {
+                    var resultPath = jsonFolder + "data" + i + ".json";
+                    if (File.Exists(resultPath))
+                    {
+                        var stringData = File.ReadAllText(resultPath);
+                        var jsonData = JsonConvert.DeserializeObject<DataSlot>(stringData);
+                        dataSlots[i] = jsonData;
+                    }
+                }
             }
         }
         private void Save(int index)//index用来判断玩家点击的是哪一个存档格子
@@ -53,9 +84,10 @@ namespace MFarm.Save
             {
                 Directory.CreateDirectory(jsonFolder);//创建文件夹
             }
+            Debug.Log("DATA" + index + "SAVED!");
             File.WriteAllText(resultPath, jsonData);//将jsonData数据写入resultPath文件中去,数据写入后就自动创建了文件
         }
-        private void Load(int index)
+        public void Load(int index)
         {
             currentDataIndex = index;
             var resultPath = jsonFolder + "data" + index + ".json";

@@ -30,4 +30,7 @@ public class Settings //自己编写的一个静态设置类，相当于写了一个设置按钮来控制工
     public const float lightChangeDuration = 25f;//灯光25秒动态变换更新一次
     public static TimeSpan morningTime = new TimeSpan(5, 0, 0);
     public static TimeSpan nightTime = new TimeSpan(19, 0, 0);//TimeSpan:时间戳
+    //开始新游戏人物的初始坐标,初始金钱,背包等
+    public static Vector3 playerStartPos = new Vector3(-9.0f,-7.0f,0);
+    public const int playerStartMoney = 100;
 }

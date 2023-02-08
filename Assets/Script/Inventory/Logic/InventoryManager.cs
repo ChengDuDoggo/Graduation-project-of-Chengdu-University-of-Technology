@@ -11,6 +11,7 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         [Header("建造蓝图")]
         public BluePrintDataList_SO bulePrintData;
         [Header("背包数据")]
+        public InventoryBag_SO playerBagTemp;
         public InventoryBag_SO PlayerBag;
         private InventoryBag_SO currentBoxBag;//当前打开的箱子的数据库
         [Header("交易")]
@@ -25,6 +26,7 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
             EventHandler.HarvestAtPlayerPostion += OnHarvestAtPlayerPostion;
             EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
             EventHandler.BaseBagOpenEvent += OnBaseBagOpenEvent;
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
         }
         private void OnDisable()
         {
@@ -32,6 +34,15 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
             EventHandler.HarvestAtPlayerPostion -= OnHarvestAtPlayerPostion;
             EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
             EventHandler.BaseBagOpenEvent -= OnBaseBagOpenEvent;
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        }
+
+        private void OnStartNewGameEvent(int index)
+        {
+            PlayerBag = Instantiate(playerBagTemp);
+            playerMoney = Settings.playerStartMoney;
+            boxDataDict.Clear();
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);
         }
 
         private void OnBaseBagOpenEvent(SlotType slotType, InventoryBag_SO bag_SO)
@@ -64,7 +75,7 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
 
         private void Start()
         {
-            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//游戏一开始就调用一下更新UI的委托事件
+/*            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, PlayerBag.itemList);//游戏一开始就调用一下更新UI的委托事件*/
             ISaveable saveable = this;
             saveable.RegisterSaveable();
         }

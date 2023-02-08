@@ -31,6 +31,7 @@ namespace MFarm.Inventory
             EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
             EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
         }
         private void OnDisable()
         {
@@ -39,6 +40,13 @@ namespace MFarm.Inventory
             EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
             EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
             EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        }
+
+        private void OnStartNewGameEvent(int index)
+        {
+            sceneItemDict.Clear();
+            sceneFurnitureDict.Clear();
         }
 
         private void OnBuildFurnitureEvent(int ID,Vector3 mousePos)

@@ -4519,7 +4519,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDataList_SO: {fileID: 11400000, guid: a3ee38617a7d34d40909c51843c3c558, type: 2}
   bulePrintData: {fileID: 11400000, guid: 10ac2d3d5dbdb784fb03943cf3516d80, type: 2}
-  PlayerBag: {fileID: 11400000, guid: 01295299c08ed714dad37397b6c5a2ef, type: 2}
+  playerBagTemp: {fileID: 11400000, guid: 01295299c08ed714dad37397b6c5a2ef, type: 2}
+  PlayerBag: {fileID: 0}
   playerMoney: 300
 --- !u!114 &1698939024
 MonoBehaviour:
