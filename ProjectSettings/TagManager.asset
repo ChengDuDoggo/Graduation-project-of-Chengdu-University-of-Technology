@@ -10,6 +10,7 @@ TagManager:
   - Dig
   - Water
   - CropParent
+  - MenuCanvas
   layers:
   - Default
   - TransparentFX

@@ -24,6 +24,7 @@ public class Player : MonoBehaviour,ISaveable //控制玩家基本操作的类
     {
         rb = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
+        inputDisable= true;
     }
     private void Start()
     {

@@ -37,6 +37,8 @@ public class NPCMovement : MonoBehaviour,ISaveable
     private bool npcMove;//判断NPC是否移动
     private bool sceneLoaded;//判断场景是否加载完毕
     public bool interactable;//是否可以互动
+    public bool isFirstLoad;
+    private Season currentSeason;
     private float animationBreakTime;//动画计时器
     private bool canPlayStopAnimation;
     private AnimationClip stopAnimationClip;
@@ -112,10 +114,16 @@ public class NPCMovement : MonoBehaviour,ISaveable
             isInitialised = true;
         }
         sceneLoaded = true;
+        if (!isFirstLoad)
+        {
+            currentGridPostion = grid.WorldToCell(transform.position);
+            var schedule = new SchedulDetails(0, 0, 0, 0, currentSeason, targetScene, (Vector2Int)targetGridPostion, stopAnimationClip, interactable);
+        }
     }
     private void OnGameMinuteEvent(int minute, int hour, Season season,int day)
     {
         int time = (hour * 100) + minute;
+        currentSeason= season;
         SchedulDetails matchSchedule = null;
         foreach (var schedule in scheduleSet)
         {
@@ -221,6 +229,7 @@ public class NPCMovement : MonoBehaviour,ISaveable
     {
         movementSteps.Clear();//清理之前堆栈中的路径
         currentSchedule = schedule;
+        targetScene = schedule.targetScene;
         targetGridPostion = (Vector3Int)schedule.targetGridPosition;
         stopAnimationClip = schedule.clipAtStop;
         this.interactable = schedule.interactable;
@@ -377,12 +386,17 @@ public class NPCMovement : MonoBehaviour,ISaveable
             saveData.animationInstanceID = stopAnimationClip.GetInstanceID();
         }
         saveData.interactable = this.interactable;
+        saveData.timeDict = new Dictionary<string, int>
+        {
+            { "currentSeason", (int)currentSeason }
+        };
         return saveData;
     }
 
     public void RestoreData(GameSaveData saveDate)
     {
         isInitialised = true;
+        isFirstLoad = false;
         currentScene = saveDate.dataSceneName;
         targetScene = saveDate.targetScene;
         Vector3 pos = saveDate.characterPosDict["currentPosition"].ToVector3();
@@ -394,5 +408,6 @@ public class NPCMovement : MonoBehaviour,ISaveable
             this.stopAnimationClip = Resources.InstanceIDToObject(saveDate.animationInstanceID) as AnimationClip;
         }
         this.interactable = saveDate.interactable;
+        this.currentSeason = (Season)saveDate.timeDict["currentSeason"];
     }
 }

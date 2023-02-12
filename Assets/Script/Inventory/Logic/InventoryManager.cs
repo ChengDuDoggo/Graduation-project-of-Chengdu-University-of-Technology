@@ -344,6 +344,7 @@ namespace MFarm.Inventory //手动添加一个命名空间，别的类不使用该命名空间就不可以
         public void RestoreData(GameSaveData saveDate)
         {
             this.playerMoney = saveDate.playerMoney;
+            PlayerBag = Instantiate(playerBagTemp);
             PlayerBag.itemList = saveDate.inventoryDict[PlayerBag.name];
             foreach (var item in saveDate.inventoryDict)
             {
