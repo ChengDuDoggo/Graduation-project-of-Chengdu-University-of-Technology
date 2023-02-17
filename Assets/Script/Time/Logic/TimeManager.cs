@@ -20,6 +20,7 @@ public class TimeManager : Singleton<TimeManager>,ISaveable
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
         EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+        EventHandler.EndGameEvent += OnEndGameEvent;
     }
     private void OnDisable()
     {
@@ -27,6 +28,12 @@ public class TimeManager : Singleton<TimeManager>,ISaveable
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
         EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        EventHandler.EndGameEvent -= OnEndGameEvent;
+    }
+
+    private void OnEndGameEvent()
+    {
+        gameClockPause = true;
     }
 
     private void OnStartNewGameEvent(int index)

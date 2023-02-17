@@ -33,6 +33,7 @@ public class NPCMovement : MonoBehaviour,ISaveable
     private Animator anim;
     private Grid grid;
     private Stack<MovementStep> movementSteps;
+    private Coroutine npcMoveRoutine;//NPC移动的一个协程将它作为变量操作
     private bool isInitialised;//判断NPC是否是第一次加载
     private bool npcMove;//判断NPC是否移动
     private bool sceneLoaded;//判断场景是否加载完毕
@@ -77,13 +78,34 @@ public class NPCMovement : MonoBehaviour,ISaveable
         EventHandler.AfterSceneLoadedEvent += OnAfterSceneLoadedEvent;
         EventHandler.BeforeSceneUnloadEvent += OnBeforeSceneUnloadEvent;
         EventHandler.GameMinuteEvent += OnGameMinuteEvent;
+        EventHandler.EndGameEvent += OnEndGameEvent;
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
     }
     private void OnDisable()
     {
         EventHandler.AfterSceneLoadedEvent -= OnAfterSceneLoadedEvent;
         EventHandler.BeforeSceneUnloadEvent -= OnBeforeSceneUnloadEvent;
         EventHandler.GameMinuteEvent -= OnGameMinuteEvent;
+        EventHandler.EndGameEvent -= OnEndGameEvent;
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
     }
+
+    private void OnStartNewGameEvent(int obj)
+    {
+        isInitialised = false;
+        isFirstLoad = true;
+    }
+
+    private void OnEndGameEvent()
+    {
+        sceneLoaded= false;
+        npcMove = false;
+        if (npcMoveRoutine != null)
+        {
+            StopCoroutine(npcMoveRoutine);
+        }
+    }
+
     private void Update()
     {
         if (sceneLoaded)
@@ -186,7 +208,7 @@ public class NPCMovement : MonoBehaviour,ISaveable
     }
     private void MoveToGridPosition(Vector3Int gridPos,TimeSpan stepTime)
     {
-        StartCoroutine(MoveRoutine(gridPos, stepTime));
+        npcMoveRoutine = StartCoroutine(MoveRoutine(gridPos, stepTime));
     }
     //因为NPC的移动脱离于主程(自己在场景中自己管理自己移动)所以要用协程辅助
     private IEnumerator MoveRoutine(Vector3Int gridPos,TimeSpan stepTime)

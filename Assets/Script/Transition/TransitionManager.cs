@@ -28,11 +28,18 @@ namespace MFarm.Transition
         {
             EventHandler.TransitionEvent += OnTransitionEvent;
             EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+            EventHandler.EndGameEvent += OnEndGameEvent;
         }
         private void OnDisable()
         {
             EventHandler.TransitionEvent -= OnTransitionEvent;
             EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+            EventHandler.EndGameEvent -= OnEndGameEvent;
+        }
+
+        private void OnEndGameEvent()
+        {
+            StartCoroutine(UnloadScene());
         }
 
         private void OnStartNewGameEvent(int index)
@@ -104,6 +111,13 @@ namespace MFarm.Transition
             }
             yield return LoadSceneSetActive(sceneName);
             EventHandler.CallAfterSceneLoadedEvent();
+            yield return Fade(0);
+        }
+        private IEnumerator UnloadScene()
+        {
+            EventHandler.CallBeforeSceneUnloadEvent();
+            yield return Fade(1f);
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
             yield return Fade(0);
         }
         public GameSaveData GenerateSaveData()

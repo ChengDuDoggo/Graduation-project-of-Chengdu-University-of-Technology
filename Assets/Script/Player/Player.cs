@@ -39,6 +39,7 @@ public class Player : MonoBehaviour,ISaveable //控制玩家基本操作的类
         EventHandler.MouseClickedEvent += OnMouseClickedEvent;
         EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
         EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+        EventHandler.EndGameEvent += OnEndGameEvent;
     }
     private void OnDisable()
     {
@@ -48,6 +49,12 @@ public class Player : MonoBehaviour,ISaveable //控制玩家基本操作的类
         EventHandler.MouseClickedEvent -= OnMouseClickedEvent;
         EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
         EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        EventHandler.EndGameEvent -= OnEndGameEvent;
+    }
+
+    private void OnEndGameEvent()
+    {
+        inputDisable = true;
     }
 
     private void OnStartNewGameEvent(int index)
