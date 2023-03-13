@@ -9,17 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757796e7bcc486d4a827b0539c4cae2e, type: 3}
-  m_Name: Girl01_Shop
+  m_Script: {fileID: 11500000, guid: 7959d7ca80161844daa919a503d3e3ed, type: 3}
+  m_Name: MapData_Forest
   m_EditorClassIdentifier: 
-  itemList:
-  - itemID: 1026
-    itemAmount: 1
-  - itemID: 1028
-    itemAmount: 1
-  - itemID: 1040
-    itemAmount: 1
-  - itemID: 1041
-    itemAmount: 1
-  - itemID: 1033
-    itemAmount: 1
+  sceneName: 06.TwilightForest
+  gridWidth: 48
+  gridHeight: 30
+  originX: -24
+  originY: -15
+  tileProperties: []

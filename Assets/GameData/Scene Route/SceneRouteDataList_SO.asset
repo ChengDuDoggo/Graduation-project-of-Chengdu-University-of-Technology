@@ -49,3 +49,12 @@ MonoBehaviour:
     - sceneName: 01.Field
       fromGridCell: {x: 99999, y: 99999}
       gotoGridCell: {x: 7, y: 14}
+  - fromSceneName: 04.SandBeach
+    gotoSceneName: 01.Field
+    scenePathList:
+    - sceneName: 04.SandBeach
+      fromGridCell: {x: -7, y: -7}
+      gotoGridCell: {x: 99999, y: 99999}
+    - sceneName: 01.Field
+      fromGridCell: {x: 99999, y: 99999}
+      gotoGridCell: {x: 7, y: 14}

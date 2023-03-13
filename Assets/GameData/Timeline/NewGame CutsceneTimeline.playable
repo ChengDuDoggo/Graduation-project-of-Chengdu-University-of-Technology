@@ -371,11 +371,11 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 0.3000000000000007
+    m_PostExtrapolationTime: 0.5500000000000007
     m_PreExtrapolationTime: 0
     m_DisplayName: HairIdleDown
   - m_Version: 1
-    m_Start: 26.916666666666668
+    m_Start: 27.166666666666668
     m_ClipIn: 0
     m_Asset: {fileID: 1420117900754302284}
     m_Duration: 1
@@ -573,6 +573,26 @@ MonoBehaviour:
   m_Loop: 0
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &-3318876868212257684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f4362d4867b7e4195c18c8f70fd59f, type: 3}
+  m_Name: DialogueClip(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialoguePiece:
+      faceImage: {fileID: 21300000, guid: 36e7d59ac1efc4cf7bc6a250df52e2b4, type: 3}
+      onLeft: 0
+      name: Mike
+      dialogueText: "\u5927\u7F8E\u5973\uFF01\u6211\u4E0D\u662F\u5728\u505A\u68A6\u5427\uFF1F"
+      hasToPause: 1
+      isDone: 1
 --- !u!114 &-3215354396140971838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -798,11 +818,11 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 0.3000000000000007
+    m_PostExtrapolationTime: 0.5500000000000007
     m_PreExtrapolationTime: 0
     m_DisplayName: ArmIdleDown
   - m_Version: 1
-    m_Start: 26.916666666666668
+    m_Start: 27.166666666666668
     m_ClipIn: 0
     m_Asset: {fileID: -5739444329516938769}
     m_Duration: 1
@@ -998,7 +1018,7 @@ MonoBehaviour:
       faceImage: {fileID: 21300000, guid: bcb4accdbcb044b98bc839a4ab34d0f6, type: 3}
       onLeft: 1
       name: Trace
-      dialogueText: "\u4F60\u9192\u5566?"
+      dialogueText: "\u4F60\u9192\u5566?\u4E4B\u524D\u6D77\u4E0A\u964D\u4E34\u4E86\u98CE\u66B4\uFF0C\u4F60\u7684\u8239\u597D\u50CF\u5DF2\u7ECF\u88AB\u5927\u98CE\u5439\u8DD1\u4E86\u3002\u3002\u3002"
       hasToPause: 1
       isDone: 1
 --- !u!114 &1106057965358732552
@@ -1248,11 +1268,11 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 0.3000000000000007
+    m_PostExtrapolationTime: 0.5500000000000007
     m_PreExtrapolationTime: 0
     m_DisplayName: BodyIdleDown
   - m_Version: 1
-    m_Start: 26.916666666666668
+    m_Start: 27.166666666666668
     m_ClipIn: 0
     m_Asset: {fileID: -2529404556957919009}
     m_Duration: 1
@@ -11523,6 +11543,26 @@ MonoBehaviour:
       dialogueText: "\u6211\u8FD9\u662F\u5728\u54EA\u513F......."
       hasToPause: 1
       isDone: 1
+--- !u!114 &7872702665139739075
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f4362d4867b7e4195c18c8f70fd59f, type: 3}
+  m_Name: DialogueClip(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialoguePiece:
+      faceImage: {fileID: 21300000, guid: 954616e3c701f4e22bd74bbccd87ccc2, type: 3}
+      onLeft: 1
+      name: Trace
+      dialogueText: "\u4F60\u5168\u8EAB\u90FD\u6E7F\u4E86\uFF0C\u5C0F\u5FC3\u611F\u5192\uFF0C\u5148\u5230\u5904\u5C9B\u4E0A\u8DD1\u4E00\u8DD1\u5427\uFF01"
+      hasToPause: 1
+      isDone: 1
 --- !u!114 &9025844724358287857
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11617,6 +11657,144 @@ MonoBehaviour:
     m_Start: 26.75
     m_ClipIn: 0
     m_Asset: {fileID: 51268002698955433}
+    m_Duration: 0.10000000000000142
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 9025844724358287857}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: DialogueClip
+  - m_Version: 1
+    m_Start: 26.883333333333333
+    m_ClipIn: 0
+    m_Asset: {fileID: -3318876868212257684}
+    m_Duration: 0.10000000000000142
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 9025844724358287857}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: DialogueClip
+  - m_Version: 1
+    m_Start: 27.016666666666666
+    m_ClipIn: 0
+    m_Asset: {fileID: 7872702665139739075}
     m_Duration: 0.10000000000000142
     m_TimeScale: 1
     m_ParentTrack: {fileID: 9025844724358287857}

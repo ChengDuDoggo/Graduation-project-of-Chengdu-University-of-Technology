@@ -25,3 +25,33 @@ MonoBehaviour:
     - itemID: 1029
       itemAmount: 400
     buildPrefab: {fileID: 5082556123020448779, guid: b4dd956e3651dc649b4547c89c17ef1f, type: 3}
+  - ID: 1042
+    resourceItem:
+    - itemID: 1017
+      itemAmount: 700
+    - itemID: 1029
+      itemAmount: 100
+    buildPrefab: {fileID: 113592134985273119, guid: caeaf8da9ef42814991aee6d7692a11f, type: 3}
+  - ID: 1043
+    resourceItem:
+    - itemID: 1033
+      itemAmount: 50
+    - itemID: 1038
+      itemAmount: 20
+    buildPrefab: {fileID: 113592134985273119, guid: f0e0aaa6b5768f846806ad6121f45c65, type: 3}
+  - ID: 1044
+    resourceItem:
+    - itemID: 1017
+      itemAmount: 300
+    - itemID: 1026
+      itemAmount: 200
+    - itemID: 1028
+      itemAmount: 100
+    - itemID: 1033
+      itemAmount: 50
+    buildPrefab: {fileID: 113592134985273119, guid: 3b88c15ae0ea01c4a9ed460625def2a1, type: 3}
+  - ID: 1045
+    resourceItem:
+    - itemID: 1029
+      itemAmount: 1000
+    buildPrefab: {fileID: 113592134985273119, guid: 161e09b51475f444c90fba2b2ac50cd9, type: 3}

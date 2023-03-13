@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/03.SmellTown.unity
     guid: 6cbc35dfc62381841ac659bf1a39043c
+  - enabled: 1
+    path: Assets/Scenes/04.SandBeach.unity
+    guid: 8f8fa0742c1c83c41a13d2d1670c3fcf
+  - enabled: 1
+    path: Assets/Scenes/05.Farm.unity
+    guid: bc995c8bbd1757844850c8aaf9de52c6
+  - enabled: 1
+    path: Assets/Scenes/06.TwilightForest.unity
+    guid: f10cf90c3da456a4b80dac868ed6b6cc
+  - enabled: 1
+    path: Assets/Scenes/07.FreedomHouse.unity
+    guid: 87a8db741a054124da42d5186eb919fc
   m_configObjects: {}

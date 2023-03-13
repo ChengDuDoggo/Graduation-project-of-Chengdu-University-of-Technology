@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72649ea6dfea90945ad545ee43da15e0, type: 3}
-  m_Name: Girl01 Schedule
+  m_Name: Girl02 Schedule
   m_EditorClassIdentifier: 
   schedulList:
   - hour: 7
@@ -18,8 +18,8 @@ MonoBehaviour:
     day: 0
     priority: 0
     season: 0
-    targetScene: 04.SandBeach
-    targetGridPosition: {x: -7, y: 3}
+    targetScene: 03.SmellTown
+    targetGridPosition: {x: 9, y: 1}
     clipAtStop: {fileID: 0}
     interactable: 1
   - hour: 8
@@ -27,8 +27,8 @@ MonoBehaviour:
     day: 0
     priority: 0
     season: 0
-    targetScene: 04.SandBeach
-    targetGridPosition: {x: 5, y: 9}
+    targetScene: 03.SmellTown
+    targetGridPosition: {x: -16, y: 1}
     clipAtStop: {fileID: 0}
     interactable: 0
   - hour: 9
@@ -36,7 +36,7 @@ MonoBehaviour:
     day: 0
     priority: 0
     season: 0
-    targetScene: 04.SandBeach
-    targetGridPosition: {x: -4, y: 5}
+    targetScene: 03.SmellTown
+    targetGridPosition: {x: 9, y: -3}
     clipAtStop: {fileID: 0}
     interactable: 0

@@ -22,3 +22,15 @@ MonoBehaviour:
   - sceneName: 03.SmellTown
     ambient: 15
     music: 21
+  - sceneName: 04.SandBeach
+    ambient: 14
+    music: 19
+  - sceneName: 05.Farm
+    ambient: 15
+    music: 20
+  - sceneName: 06.TwilightForest
+    ambient: 14
+    music: 21
+  - sceneName: 07.FreedomHouse
+    ambient: 22
+    music: 16
